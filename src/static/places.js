@@ -1,16 +1,51 @@
 const places = [
     {
-        title: 'Green',
+        title: 'Scotland 2020',
         description:
-            "The Maldives are home to some of the world's most ravishing islands, but it's the sea, which truly makes these islands shine. Luminous aquamarine waters with a crystal clarity lap upon these dazzling white shores, which barely peek above the Indian Ocean.",
-        imageUrl: process.env.PUBLIC_URL + '/assets/island1.jpg',
+            "West Highland Way.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-scotland.JPG',
         time: 1500,
     },
     {
-        title: 'Bora Bora',
+        title: 'Western Europe 2019',
         description:
-            'Shaped like a giant sombrero, this lush volcanic island stars in countless South Pacific fantasies. The focal point and best asset of this tropical beauty is its ravishing lagoon in technicolor turquoise. Fish, turtles, sharks, and rays swim in the clear waters.',
-        imageUrl: process.env.PUBLIC_URL + '/assets/island2.jpg',
+            "TBA.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-portugal.JPG',
+        time: 1500,
+    },
+    {
+        title: 'India 2018',
+        description:
+            "TBA.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-india.JPG',
+        time: 1500,
+    },
+    {
+        title: 'South America 2018',
+        description:
+            "TBA.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-south-america.JPG',
+        time: 1500,
+    },
+    {
+        title: 'Sri Lanka 2017',
+        description:
+            "TBA.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-sri-lanka.JPG',
+        time: 1500,
+    },
+    {
+        title: 'Japan 2016',
+        description:
+            '3 Weeks in Japan.',
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-japan.JPG',
+        time: 1500,
+    },
+    {
+        title: 'Oz, NZ, SE-Asia 2015',
+        description:
+            "TBA.",
+        imageUrl: process.env.PUBLIC_URL + '/assets/card-nz.JPG',
         time: 1500,
     },
 ];

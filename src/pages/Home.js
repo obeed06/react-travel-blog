@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import NavBar from "../components/NavBar";
-import PlacesToVisit from "../components/PlacesToVisit";
 import {makeStyles} from '@material-ui/core/styles'
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {Link as Scroll} from 'react-scroll';
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Slide from "@material-ui/core/Slide";
+import Welcome from "../components/Welcome";
+import AboutSummary from "../components/AboutSummary";
+import Trips from "../components/Trips";
+import Fab from "@mui/material/Fab";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Zoom from "@mui/material/Zoom";
+import Footer from "../components/Footer";
+import ItineraryMap from "../components/ItineraryMap";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,22 +21,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
         position: 'relative',
         opacity: 0.75,
-    },
-    welcome: {
-        // minHeight: '100vh',
-    },
-    colorText: {
-        color: '#ff8100',
-    },
-    title: {
-        color: '#fff',
-        fontSize: '4.5rem',
-        fontFamily: 'Nunito',
-        textAlign: 'center',
-    },
-    goDown: {
-        color: '#ff8100',
-        fontSize: '4rem',
     },
 }));
 
@@ -47,34 +34,58 @@ const Home = () => {
 
     return (
         <Box>
+            <span id="back-to-top-anchor"></span>
+            <NavBar/>
             <Box className={classes.root}>
-                <NavBar/>
-                <Box sx={{height: '100%'}}>
-                    <Slide direction="up"
-                           in={checked}
-                           {...(checked ? {timeout: 1000} : {})}
-                           container={containerRef}
-                    >
-                        <Box sx={{pt: 15}}>
-                            <Grid container direction="column" justifyContent="center" alignItems="center">
-                                <h1 className={classes.title}>
-                                    <div>Welcome to</div>
-                                    <div>My <span className={classes.colorText}>Blog</span>.</div>
-                                </h1>
-                                <Scroll to="place-to-visit" smooth={true}>
-                                    <IconButton>
-                                        <ExpandMoreIcon className={classes.goDown}/>
-                                    </IconButton>
-                                </Scroll>
-                            </Grid>
-                        </Box>
-                    </Slide>
-                </Box>
+                <Welcome/>
             </Box>
-            <PlacesToVisit />
-
+            <AboutSummary/>
+            <Trips />
+            <ItineraryMap/>
+            <Footer/>
+            {/*<PlacesToVisit/>*/}
+            <ScrollTop>
+                <Fab size="small" aria-label="scroll back to top">
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            </ScrollTop>
         </Box>
     );
 };
+
+function ScrollTop(props) {
+    const { children } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+        disableHysteresis: true,
+        threshold: 100,
+    });
+
+    const handleClick = (event) => {
+        const anchor = (event.target.ownerDocument || document).querySelector(
+            '#back-to-top-anchor',
+        );
+        if (anchor) {
+            anchor.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }
+    };
+
+    return (
+        <Zoom in={trigger}>
+            <Box
+                onClick={handleClick}
+                role="presentation"
+                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+            >
+                {children}
+            </Box>
+        </Zoom>
+    );
+}
 
 export default Home;
