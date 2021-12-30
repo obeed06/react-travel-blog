@@ -7,7 +7,7 @@ const ItineraryMap = () => {
         <Box sx={{py: 5}}>
             <Container maxWidth="md">
                 <h1 className="sectionHeader itineraryHeader">
-                    Map Itinerary.
+                    Map.
                 </h1>
                 <iframe
                     src="https://www.travellerspoint.com/embed/map.cfm/#/embed/955332/?tiles=default&showguide=true&triponly"

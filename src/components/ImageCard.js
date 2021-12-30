@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Collapse } from '@material-ui/core';
+import Grow from "@material-ui/core/Grow";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     root: {
-        width: 250,
+        transition: "transform 0.15s ease-in-out",
+        minWidth: 250,
         background: 'rgba(0,0,0,0.5)',
-        // margin: '20px',
+    },
+    cardHovered: {
+        transform: "scale3d(1.05, 1.05, 1)"
     },
     media: {
         height: 200,
@@ -27,36 +30,44 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ImageCard({ place, checked }) {
+export default function ImageCard({ place, checked, timeout }) {
     const classes = useStyles();
-
+    const [state, setState] = useState({
+        raised:false,
+        shadow:1,
+    });
     return (
-        <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
-            <Card className={classes.root}>
-                <CardMedia
-                    className={classes.media}
-                    image={place.imageUrl}
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h1"
-                        className={classes.title}
-                    >
-                        {place.title}
-                    </Typography>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                        className={classes.desc}
-                    >
-                        {place.description}
-                    </Typography>
-                </CardContent>
-            </Card>
-        </Collapse>
+        <Grow in={checked} {...(checked ? { timeout: 500*timeout } : {})}>
+            <Box>
+                <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
+                      onMouseOver={()=>setState({ raised: true, shadow:3})}
+                      onMouseOut={()=>setState({ raised:false, shadow:1 })}
+                      raised={state.raised} zdepth={state.shadow}>
+                    <CardMedia
+                        className={classes.media}
+                        image={place.imageUrl}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="h1"
+                            className={classes.title}
+                        >
+                            {place.title}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                            className={classes.desc}
+                        >
+                            {place.description}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Box>
+        </Grow>
     );
 }
