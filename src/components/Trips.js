@@ -5,6 +5,7 @@ import useWindowPosition from '../hook/useWindowPosition';
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const Trips = () => {
     const checked = useWindowPosition("trips")
@@ -12,9 +13,9 @@ const Trips = () => {
     return (
         <Box className="tripsBG" id="trips" sx={{py: 5}}>
             <Container maxWidth='md'>
-                <h1 className="sectionHeader tripHeader">
+                <Typography vairant="h1" component="h2" className="sectionHeader tripHeader">
                     TRIPS.
-                </h1>
+                </Typography>
             </Container>
             <Stack direction="row" spacing={2} className="trips" sx={{p: 5}}>
                 {places.map((place, i) => {

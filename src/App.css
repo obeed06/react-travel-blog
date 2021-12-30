@@ -12,10 +12,14 @@
     margin: 0;
     font-size: 4.5rem;
     font-family: Bungee Outline;
+    font-weight: bold;
+}
+
+.brandColor {
+    color: #ff8100;
 }
 
 .myStoryHeader {
-    color: #ff8100;
     text-align: center;
 }
 

@@ -23,6 +23,7 @@ const Footer = () => {
                     <IconButton><FontAwesomeIcon icon={['fab', 'instagram']}/></IconButton>
                     <IconButton><FontAwesomeIcon icon={['fab', 'facebook']}/></IconButton>
                     <IconButton><FontAwesomeIcon icon={['fab', 'linkedin']}/></IconButton>
+                    <IconButton><FontAwesomeIcon icon={['fab', 'twitter']}/></IconButton>
                     <IconButton><FontAwesomeIcon icon={['fab', 'youtube']}/></IconButton>
                 </Grid>
             </Grid>

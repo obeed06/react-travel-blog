@@ -13,7 +13,6 @@ export const ColorModeContextProvider = ({app}) => {
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
-                debugger;
                 setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
             },
             mode,

@@ -13,7 +13,7 @@ import {useContext} from "react";
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
-        background: 'none',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         fontFamily: 'Nunito',
     },
     appbarWrapper: {
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 auto',
     },
     appbarTitle: {
+        marginTop: 0,
+        marginBottom: 0,
         flexGrow: '1',
     },
 
@@ -49,7 +51,7 @@ export default function TopNavigation() {
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar className={classes.appbarWrapper}>
                         <h1 className={classes.appbarTitle}>
-                            Where's<span className={classes.colorText}>Obee</span>?
+                            Where's<span className="brandColor">Obee</span>?
                         </h1>
                         <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
                             {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}

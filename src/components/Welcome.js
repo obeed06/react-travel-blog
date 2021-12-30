@@ -7,15 +7,14 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme) => ({
-    colorText: {
-        color: '#ff8100',
-    },
     title: {
         color: '#fff',
         fontSize: '4.5rem',
         fontFamily: 'Nunito',
+        fontWeight: 'bold',
         textAlign: 'center',
     },
     goDown: {
@@ -40,10 +39,10 @@ const Welcome = () => {
         // >
             <Box sx={{pt: 15}}>
                 <Grid container direction="column" justifyContent="center" alignItems="center">
-                    <h1 className={classes.title}>
+                    <Typography vairant="h1" component="h2" className={classes.title}>
                         <div>Welcome to</div>
-                        <div>My <span className={classes.colorText}>Blog</span>.</div>
-                    </h1>
+                        <div>My <span className="brandColor">Blog</span>.</div>
+                    </Typography>
                     <Scroll to="about-summary" smooth={true}>
                         <IconButton>
                             <ExpandMoreIcon className={classes.goDown}/>
