@@ -1,11 +1,9 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import DarkModeIcon from '@mui/icons-material/Brightness4';
-import LightModeIcon from '@mui/icons-material/Brightness5';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
 
 const Footer = () => {
     return (
@@ -26,11 +24,6 @@ const Footer = () => {
                     <IconButton><FontAwesomeIcon icon={['fab', 'facebook']}/></IconButton>
                     <IconButton><FontAwesomeIcon icon={['fab', 'linkedin']}/></IconButton>
                     <IconButton><FontAwesomeIcon icon={['fab', 'youtube']}/></IconButton>
-
-                </Grid>
-                <Grid item>
-                    <p><IconButton><DarkModeIcon/></IconButton> Dark Mode</p>
-                    <p><IconButton><LightModeIcon/></IconButton> Light Mode</p>
                 </Grid>
             </Grid>
         </Box>

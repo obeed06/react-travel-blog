@@ -1,3 +1,13 @@
+.landingHome {
+    height: 100vh;
+    background-image: url('../public/assets/bg-hero-sand.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    opacity: 0.75;
+
+}
 .sectionHeader {
     margin: 0;
     font-size: 4.5rem;
@@ -15,7 +25,6 @@
 }
 
 .itineraryHeader {
-    color: #000000;
     text-align: right;
 }
 

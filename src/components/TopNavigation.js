@@ -1,14 +1,17 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton } from '@material-ui/core';
-import SortIcon from '@material-ui/icons/Sort';
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-
+import {makeStyles} from "@mui/styles";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { ColorModeContext } from "../context/ColorModeContext";
+import {useContext} from "react";
 
 const useStyles = makeStyles((theme) => ({
-
     appbar: {
         background: 'none',
         fontFamily: 'Nunito',
@@ -20,20 +23,7 @@ const useStyles = makeStyles((theme) => ({
     appbarTitle: {
         flexGrow: '1',
     },
-    icon: {
-        color: '#fff',
-        fontSize: '2rem',
-    },
-    colorText: {
-        color: '#ff8100',
-    },
-    container: {
-        textAlign: 'center',
-    },
-    title: {
-        color: '#fff',
-        fontSize: '4.5rem',
-    },
+
 }));
 
 function HideOnScroll(props) {
@@ -47,22 +37,22 @@ function HideOnScroll(props) {
     );
 }
 
-
-
-export default function NavBar(props) {
+export default function TopNavigation() {
+    const { toggleColorMode, mode } = useContext(ColorModeContext);
     const classes = useStyles();
 
+    console.log("mode", mode)
     return (
         <React.Fragment>
             <CssBaseline />
-            <HideOnScroll {...props}>
+            <HideOnScroll>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar className={classes.appbarWrapper}>
                         <h1 className={classes.appbarTitle}>
                             Where's<span className={classes.colorText}>Obee</span>?
                         </h1>
-                        <IconButton>
-                            <SortIcon className={classes.icon} />
+                        <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
+                            {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                         </IconButton>
                     </Toolbar>
                 </AppBar>

@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import * as React from 'react';
+import {useEffect, useState} from "react";
 import {Link as Scroll} from "react-scroll";
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Slide from "@material-ui/core/Slide";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@mui/styles";
+import Slide from "@mui/material/Slide";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     colorText: {
@@ -25,18 +26,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Welcome = () => {
     const classes = useStyles();
-    const [checked, setChecked] = useState(false);
-    const containerRef = React.useRef(null);
-    useEffect(() => {
-        setChecked(true);
-    }, []);
+    // const [checked, setChecked] = useState(false);
+    // const containerRef = React.useRef(null);
+    // useEffect(() => {
+    //     setChecked(true);
+    // }, []);
 
     return (
-        <Slide direction="up"
-               in={checked}
-               {...(checked ? {timeout: 1000} : {})}
-               container={containerRef}
-        >
+        // <Slide direction="up"
+        //        in={checked}
+        //        {...(checked ? {timeout: 1000} : {})}
+        //        container={containerRef}
+        // >
             <Box sx={{pt: 15}}>
                 <Grid container direction="column" justifyContent="center" alignItems="center">
                     <h1 className={classes.title}>
@@ -50,7 +51,7 @@ const Welcome = () => {
                     </Scroll>
                 </Grid>
             </Box>
-        </Slide>
+        // </Slide>
     );
 };
 

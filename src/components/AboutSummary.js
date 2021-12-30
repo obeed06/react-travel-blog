@@ -1,12 +1,10 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import {makeStyles} from "@mui/styles";
+
 
 const useStyles = makeStyles((theme) => ({
-    aboutBG: {
-        backgroundColor: '#f8f8f8',
-    },
     subHeading: {
         fontFamily: 'Nunito',
         textAlign: 'center',
@@ -17,7 +15,7 @@ const AboutSummary = () => {
     const classes = useStyles();
 
     return (
-        <Box className={classes.aboutBG}  id="about-summary" sx={{py: 5 }}>
+        <Box  id="about-summary" sx={{py: 5 }}>
             <h1 className="sectionHeader myStoryHeader" >
                 MY STORY.
             </h1>

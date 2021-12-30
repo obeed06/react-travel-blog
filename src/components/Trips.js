@@ -1,11 +1,10 @@
 import React from 'react';
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 import ImageCard from "./ImageCard";
 import places from '../static/places';
 import useWindowPosition from '../hook/useWindowPosition';
 import Stack from "@mui/material/Stack";
-
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 const Trips = () => {
     const checked = useWindowPosition("trips")
@@ -18,8 +17,8 @@ const Trips = () => {
                 </h1>
             </Container>
             <Stack direction="row" spacing={2} className="trips" sx={{p: 5}}>
-                {places.map((place, index) => {
-                    return <ImageCard place={place} checked={checked} timeout={index}/>
+                {places.map((place, i) => {
+                    return <ImageCard key={i} place={place} checked={checked} timeout={i}/>
 
                 })}
             </Stack>
