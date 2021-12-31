@@ -43,7 +43,6 @@ export default function TopNavigation() {
     const { toggleColorMode, mode } = useContext(ColorModeContext);
     const classes = useStyles();
 
-    console.log("mode", mode)
     return (
         <React.Fragment>
             <CssBaseline />

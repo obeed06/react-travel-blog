@@ -8,7 +8,6 @@ import MapPlaceholder from "./MapPlaceholder";
 const ItineraryMap = () => {
     const [isMapLoaded, setIsMapLoaded] = useState(false)
 
-    console.log("is map loaded", isMapLoaded)
     return (
         <Box sx={{py: 5}}>
             <Container maxWidth="lg">

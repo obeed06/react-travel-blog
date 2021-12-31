@@ -12,12 +12,15 @@ import ItineraryMap from "../components/ItineraryMap";
 import Box from "@mui/material/Box";
 
 const Home = (mode, onDarkModeClick) => {
+    const containerRef = React.useRef(null);
+
+
     return (
         <Box>
             <span id="back-to-top-anchor"></span>
             <TopNavigation mode={mode} onDarkModeClick={onDarkModeClick}/>
-            <Box className="landingHome">
-                <Welcome/>
+            <Box className="landingHome" ref={containerRef}>
+                <Welcome slideContainerRef={containerRef}/>
             </Box>
             <AboutSummary/>
             <Trips />

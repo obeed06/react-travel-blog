@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from "@mui/material/Typography";
+import Slide from "@mui/material/Slide";
+import {useEffect, useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -21,20 +23,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Welcome = () => {
+const Welcome = ({slideContainerRef}) => {
     const classes = useStyles();
-    // const [checked, setChecked] = useState(false);
-    // const containerRef = React.useRef(null);
-    // useEffect(() => {
-    //     setChecked(true);
-    // }, []);
+    const [checked, setChecked] = useState(false);
+    useEffect(() => {
+        setChecked(true);
+    }, []);
 
     return (
-        // <Slide direction="up"
-        //        in={checked}
-        //        {...(checked ? {timeout: 1000} : {})}
-        //        container={containerRef}
-        // >
+        <Slide direction="up"
+               in={checked}
+               {...(checked ? {timeout: 1000} : {})}
+               container={slideContainerRef.current}
+        >
             <Box sx={{pt: 15}}>
                 <Grid container direction="column" justifyContent="center" alignItems="center">
                     <Typography vairant="h1" component="h2" className={classes.title}>
@@ -48,7 +49,7 @@ const Welcome = () => {
                     </Scroll>
                 </Grid>
             </Box>
-        // </Slide>
+        </Slide>
     );
 };
 
