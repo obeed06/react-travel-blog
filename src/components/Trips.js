@@ -12,7 +12,7 @@ const Trips = () => {
 
     return (
         <Box className="tripsBG" id="trips" sx={{py: 5}}>
-            <Container maxWidth='md'>
+            <Container maxWidth='lg'>
                 <Typography vairant="h1" component="h2" className="sectionHeader tripHeader">
                     TRIPS.
                 </Typography>
