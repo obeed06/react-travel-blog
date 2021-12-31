@@ -36,19 +36,17 @@ const Welcome = ({slideContainerRef}) => {
                {...(checked ? {timeout: 1000} : {})}
                container={slideContainerRef.current}
         >
-            <Box sx={{pt: 15}}>
-                <Grid container direction="column" justifyContent="center" alignItems="center">
-                    <Typography vairant="h1" component="h2" className={classes.title}>
-                        <div>Welcome to</div>
-                        <div>My <span className="brandColor">Blog</span>.</div>
-                    </Typography>
-                    <Scroll to="about-summary" smooth={true}>
-                        <IconButton>
-                            <ExpandMoreIcon className={classes.goDown}/>
-                        </IconButton>
-                    </Scroll>
-                </Grid>
-            </Box>
+            <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
+                <Typography vairant="h1" component="h2" className={classes.title}>
+                    <div>Welcome to</div>
+                    <div>My <span className="brandColor">Blog</span>.</div>
+                </Typography>
+                <Scroll to="about-summary" smooth={true}>
+                    <IconButton>
+                        <ExpandMoreIcon className={classes.goDown}/>
+                    </IconButton>
+                </Scroll>
+            </Grid>
         </Slide>
     );
 };
