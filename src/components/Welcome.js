@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Link as Scroll} from "react-scroll";
 import {makeStyles} from "@mui/styles";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
