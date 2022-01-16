@@ -19,12 +19,12 @@ const Footer = () => {
             <Divider/>
             <Grid container direction="row" justifyContent="space-around" >
                 <Grid item>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'github']}/></IconButton>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'instagram']}/></IconButton>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'facebook']}/></IconButton>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'linkedin']}/></IconButton>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'twitter']}/></IconButton>
-                    <IconButton><FontAwesomeIcon icon={['fab', 'youtube']}/></IconButton>
+                    <IconButton href="https://github.com/obeed06" target="_blank"><FontAwesomeIcon icon={['fab', 'github']}/></IconButton>
+                    <IconButton href="https://www.instagram.com/wheresobee/" target="_blank"><FontAwesomeIcon icon={['fab', 'instagram']}/></IconButton>
+                    <IconButton href="https://www.facebook.com/david.obee" target="_blank"><FontAwesomeIcon icon={['fab', 'facebook']}/></IconButton>
+                    <IconButton href="https://www.linkedin.com/in/david-obee-49153941" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']}/></IconButton>
+                    <IconButton href="https://twitter.com/davidobee" target="_blank"><FontAwesomeIcon icon={['fab', 'twitter']}/></IconButton>
+                    <IconButton href="https://www.youtube.com/channel/UCrG29-sOLEvxYbNqTtuJhrg" target="_blank"><FontAwesomeIcon icon={['fab', 'youtube']}/></IconButton>
                 </Grid>
             </Grid>
         </Box>

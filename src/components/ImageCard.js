@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ImageCard({ place, checked, timeout }) {
+export default function ImageCard({ trip, checked, timeout }) {
     const classes = useStyles();
     const [state, setState] = useState({
         raised:false,
@@ -45,8 +45,8 @@ export default function ImageCard({ place, checked, timeout }) {
                       raised={state.raised} zdepth={state.shadow}>
                     <CardMedia
                         className={classes.media}
-                        image={place.imageUrl}
-                        title="Contemplative Reptile"
+                        image={trip.thumbnail.asset.url}
+                        alt={trip.thumbnail.alt}
                     />
                     <CardContent>
                         <Typography
@@ -55,7 +55,7 @@ export default function ImageCard({ place, checked, timeout }) {
                             component="h1"
                             className={classes.title}
                         >
-                            {place.title}
+                            {trip.name}
                         </Typography>
                         <Typography
                             variant="body2"
@@ -63,7 +63,7 @@ export default function ImageCard({ place, checked, timeout }) {
                             component="p"
                             className={classes.desc}
                         >
-                            {place.description}
+                            {trip.summary}
                         </Typography>
                     </CardContent>
                 </Card>
