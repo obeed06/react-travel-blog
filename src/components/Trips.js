@@ -37,11 +37,6 @@ const Trips = () => {
                     return <ImageCard key={i} trip={trip} checked={checked} timeout={i}/>
 
                 })}
-
-                {/*{places.map((place, i) => {*/}
-                {/*    return <ImageCard key={i} place={place} checked={checked} timeout={i}/>*/}
-
-                {/*})}*/}
             </Stack>
         </Box>
     );
