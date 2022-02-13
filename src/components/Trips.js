@@ -9,11 +9,12 @@ import sanityClient from "../client.js"
 
 const Trips = () => {
     const checked = useWindowPosition("trips")
-    const [tripData, setTrip] = useState(null);
+    const [tripsData, setTrips] = useState(null);
     useEffect(() => {
         sanityClient.fetch(`*[_type == "trip"]{
             name,
             summary,
+            slug,
             thumbnail{
                 asset->{
                     _id,
@@ -22,7 +23,7 @@ const Trips = () => {
                 alt
             }
         } | order(tripDate desc)`)
-            .then((data) => setTrip(data))
+            .then((data) => setTrips(data))
             .catch(console.error);
     }, []);
     return (
@@ -33,8 +34,8 @@ const Trips = () => {
                 </Typography>
             </Container>
             <Stack direction="row" spacing={2} className="trips" sx={{p: 5}}>
-                {tripData && tripData.map((trip, i) => {
-                    return <ImageCard key={i} trip={trip} checked={checked} timeout={i}/>
+                {tripsData && tripsData.map((trip, i) => {
+                    return <ImageCard key={i} slugPrefix="/trip/" item={trip} checked={checked} timeout={i}/>
 
                 })}
             </Stack>

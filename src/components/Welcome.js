@@ -9,13 +9,6 @@ import Slide from "@mui/material/Slide";
 import {useEffect, useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
-    title: {
-        color: '#fff',
-        fontSize: '4.5rem',
-        fontFamily: 'Nunito',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
     goDown: {
         color: '#ff8100',
         fontSize: '4rem',
@@ -36,7 +29,7 @@ const Welcome = ({slideContainerRef}) => {
                container={slideContainerRef.current}
         >
             <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
-                <Typography vairant="h1" component="h2" className={classes.title}>
+                <Typography vairant="h1" component="h2" className="title">
                     <div>Welcome to</div>
                     <div>My <span className="brandColor">Blog</span>.</div>
                 </Typography>

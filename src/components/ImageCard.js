@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import {makeStyles} from "@mui/styles";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import Grow from "@mui/material/Grow";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import {Card, CardMedia, CardContent, CardActionArea} from '@mui/material';
 
 const useStyles = makeStyles({
     root: {
@@ -30,23 +27,24 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ImageCard({ trip, checked, timeout }) {
+export default function ImageCard({slugPrefix, item, checked, timeout}) {
     const classes = useStyles();
     const [state, setState] = useState({
-        raised:false,
-        shadow:1,
+        raised: false,
+        shadow: 1,
     });
+    console.log(item)
     return (
-        <Grow in={checked} {...(checked ? { timeout: 500*timeout } : {})}>
-            <Box>
-                <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
-                      onMouseOver={()=>setState({ raised: true, shadow:3})}
-                      onMouseOut={()=>setState({ raised:false, shadow:1 })}
-                      raised={state.raised} zdepth={state.shadow}>
+        <Grow in={checked} {...(checked ? {timeout: 500 * timeout} : {})}>
+            <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
+                  onMouseOver={() => setState({raised: true, shadow: 3})}
+                  onMouseOut={() => setState({raised: false, shadow: 1})}
+                  raised={state.raised} zdepth={state.shadow}>
+                <CardActionArea href={slugPrefix+item.slug.current} key={item.slug.current}>
                     <CardMedia
                         className={classes.media}
-                        image={trip.thumbnail.asset.url}
-                        alt={trip.thumbnail.alt}
+                        image={item.thumbnail.asset.url}
+                        alt={item.thumbnail.alt}
                     />
                     <CardContent>
                         <Typography
@@ -55,7 +53,7 @@ export default function ImageCard({ trip, checked, timeout }) {
                             component="h1"
                             className={classes.title}
                         >
-                            {trip.name}
+                            {item.name}
                         </Typography>
                         <Typography
                             variant="body2"
@@ -63,11 +61,11 @@ export default function ImageCard({ trip, checked, timeout }) {
                             component="p"
                             className={classes.desc}
                         >
-                            {trip.summary}
+                            {item.summary}
                         </Typography>
                     </CardContent>
-                </Card>
-            </Box>
+                </CardActionArea>
+            </Card>
         </Grow>
     );
 }

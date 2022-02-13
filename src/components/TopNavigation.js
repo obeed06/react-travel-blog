@@ -10,6 +10,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ColorModeContext } from "../context/ColorModeContext";
 import {useContext} from "react";
+import Link from "@mui/material/Link";
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
@@ -49,9 +50,11 @@ export default function TopNavigation() {
             <HideOnScroll>
                 <AppBar className={classes.appbar} elevation={0}>
                     <Toolbar className={classes.appbarWrapper}>
-                        <h1 className={classes.appbarTitle}>
-                            Where's<span className="brandColor">Obee</span>?
-                        </h1>
+                        <Link href="/" underline="none" color="inherit">
+                            <h1 className={classes.appbarTitle}>
+                                Where's<span className="brandColor">Obee</span>?
+                            </h1>
+                        </Link>
                         <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
                             {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                         </IconButton>

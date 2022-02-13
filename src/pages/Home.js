@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 const Home = () => {
     const containerRef = React.useRef(null);
 
-
     return (
         <Box>
             <Box className="landingHome" ref={containerRef}>
@@ -18,10 +17,8 @@ const Home = () => {
             <AboutSummary/>
             <Trips />
             <ItineraryMap/>
-
         </Box>
     );
 };
-
 
 export default Home;
