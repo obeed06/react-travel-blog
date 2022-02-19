@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Card, CardMedia, CardContent, CardActionArea} from '@mui/material';
+import React from 'react';
+import {Card, CardContent, CardActionArea} from '@mui/material';
 
 export default function CountryCard({country}) {
     console.log(country)
