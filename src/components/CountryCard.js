@@ -1,7 +1,4 @@
 import React, {useState} from 'react';
-import {makeStyles} from "@mui/styles";
-import Grow from "@mui/material/Grow";
-import Typography from "@mui/material/Typography";
 import {Card, CardMedia, CardContent, CardActionArea} from '@mui/material';
 
 export default function CountryCard({country}) {

@@ -7,7 +7,7 @@ import CountryCard from "./CountryCard";
 import Grid from "@mui/material/Grid";
 
 const Countries = ({countries}) => {
-    const checked = useWindowPosition("countries")
+    useWindowPosition("countries");
     console.log(countries)
 
     return (
