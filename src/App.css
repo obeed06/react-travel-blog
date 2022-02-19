@@ -75,10 +75,23 @@
 
 .sectionHeader {
     margin: 0;
-    font-size: 4.5rem;
     font-family: Bungee Outline;
     font-weight: bold;
 }
+
+@media screen and (min-width: 401px) {
+    .sectionHeader {
+        font-size: 4.5rem;
+    }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 400px) {
+    .sectionHeader {
+        font-size: 2.5rem;
+    }
+}
+
 
 .brandColor {
     color: #ff8100;
