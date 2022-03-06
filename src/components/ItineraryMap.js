@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import MapPlaceholder from "./MapPlaceholder";
 
-const ItineraryMap = () => {
+const ItineraryMap = ( data ) => {
     const [isMapLoaded, setIsMapLoaded] = useState(false)
 
     return (
@@ -14,13 +14,12 @@ const ItineraryMap = () => {
                     Map.
                 </Typography>
                 {
-                    !isMapLoaded ? <MapPlaceholder loadMap={() => {setIsMapLoaded(true);}} /> :
-                        <iframe title="embedded-travel-map" src="https://www.travellerspoint.com/embed/map.cfm/#/embed/955332/?tiles=default&showguide=true&triponly"
+                    !isMapLoaded ? <MapPlaceholder data={data?.data?.placeholder} loadMap={() => {setIsMapLoaded(true);}} /> :
+                        <iframe title="embedded-travel-map" src={data?.data?.iframeLink}
                         width="100%" height="500"/>
                 }
             </Container>
         </Box>
-
     );
 };
 

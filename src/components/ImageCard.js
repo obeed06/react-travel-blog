@@ -33,7 +33,6 @@ export default function ImageCard({slugPrefix, item, checked, timeout}) {
         raised: false,
         shadow: 1,
     });
-    console.log(item)
     return (
         <Grow in={checked} {...(checked ? {timeout: 500 * timeout} : {})}>
             <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}

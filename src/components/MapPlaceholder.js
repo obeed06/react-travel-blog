@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const MapPlaceholder = ({loadMap} ) => {
+const MapPlaceholder = ({data, loadMap} ) => {
     const classes = useStyles();
     const [state, setState] = useState({
         raised:false,
@@ -39,7 +39,7 @@ const MapPlaceholder = ({loadMap} ) => {
     return (
         <Box sx={{height: '500', width: '100%', position: 'relative'}} id="mapHolder">
             <img className={classes.mapPlaceholder}
-                 src={process.env.PUBLIC_URL + '/assets/placeholder-travel-map.jpg'}
+                 src={data?.asset?.url}
                  alt="travel map placeholder"/>
             <div className={classes.overlay}
                  onMouseOver={()=>setState({ raised: true})}
