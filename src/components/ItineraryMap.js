@@ -8,9 +8,9 @@ const ItineraryMap = ( data ) => {
     const [isMapLoaded, setIsMapLoaded] = useState(false)
 
     return (
-        <Box sx={{py: 5}}>
+        <Box className="section" sx={{py: 5}}>
             <Container maxWidth="lg">
-                <Typography vairant="h1" component="h2" className="sectionHeader itineraryHeader">
+                <Typography vairant="h1" component="h2" className="sectionHeader">
                     Map.
                 </Typography>
                 {

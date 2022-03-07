@@ -73,49 +73,42 @@
 }
 
 
-.sectionHeader {
+h2.sectionHeader {
     margin: 0;
     font-family: Bungee Outline;
     font-weight: bold;
 }
-
+span.sections div:nth-of-type(3n - 2) h2.sectionHeader {
+    text-align: center;
+}
+span.sections div:nth-of-type(3n - 1) h2.sectionHeader {
+    color: white;
+    text-align: right;
+}
+span.sections div:nth-of-type(3n) h2.sectionHeader {
+    text-align: left;
+}
 @media screen and (min-width: 501px) {
     .sectionHeader {
         font-size: 4.5rem;
     }
 }
-
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 500px) {
     .sectionHeader {
         font-size: 2.5rem;
     }
 }
-
-
-.brandColor {
-    color: #ff8100;
-}
-
-.myStoryHeader {
-    text-align: center;
-}
-
-.tripHeader {
-    color: #fff;
-    text-align: left;
-}
-
-.itineraryHeader {
-    text-align: right;
-}
-
-.tripsBG {
+span.sections div.section:nth-of-type(3n - 1)  {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/assets/bg-taiwan.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.brandColor {
+    color: #ff8100;
 }
 
 .trips {

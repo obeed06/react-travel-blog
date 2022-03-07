@@ -29,9 +29,11 @@ const Home = () => {
             <Box className="landingHome" ref={containerRef}>
                 <Welcome slideContainerRef={containerRef}/>
             </Box>
-            <AboutSummary/>
-            <Trips />
-            <ItineraryMap data={itineraryData}/>
+            <span className="sections">
+                <AboutSummary/>
+                <Trips />
+                <ItineraryMap data={itineraryData}/>
+            </span>
         </Box>
     );
 };

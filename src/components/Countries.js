@@ -11,9 +11,9 @@ const Countries = ({countries}) => {
     console.log(countries)
 
     return (
-        <Box id="countries" sx={{py: 5}}>
+        <Box id="countries" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
-                <Typography vairant="h1" component="h2" className="sectionHeader itineraryHeader">
+                <Typography vairant="h1" component="h2" className="sectionHeader">
                     Countries.
                 </Typography>
             </Container>

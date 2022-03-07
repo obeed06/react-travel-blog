@@ -63,11 +63,12 @@ const Trip = () => {
                     </Typography>
                 </Grid>
             </Box>
-            <Countries countries={trip?.countries}/>
-            <ItineraryMap data={trip?.itinerary}/>
+            <span className="sections">
+                <Countries countries={trip?.countries}/>
+                <ItineraryMap data={trip?.itinerary}/>
+            </span>
         </Box>
     ) : "";
 };
-
 
 export default Trip;

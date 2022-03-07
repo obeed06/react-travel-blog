@@ -8,6 +8,7 @@ import {faCheckSquare, faCoffee} from '@fortawesome/free-solid-svg-icons'
 import {ColorModeContextProvider} from './context/ColorModeContext';
 import About from "./pages/About";
 import Trip from "./pages/Trip";
+import Country from "./pages/Country";
 import Box from "@mui/material/Box";
 import Footer from "./components/Footer";
 import Fab from "@mui/material/Fab";
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path='/' element={<Home/>}/>} exact/>
                 <Route path='/about' element={<About/>}/>
                 <Route path='/trip/:slug' element={<Trip/>}/>
+                <Route path='/country/:slug' element={<Country/>}/>
             </Routes>
 
             <Footer/>

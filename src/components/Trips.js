@@ -27,9 +27,9 @@ const Trips = () => {
             .catch(console.error);
     }, []);
     return (
-        <Box className="tripsBG" id="trips" sx={{py: 5}}>
+        <Box id="trips" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
-                <Typography vairant="h1" component="h2" className="sectionHeader tripHeader">
+                <Typography vairant="h1" component="h2" className="sectionHeader">
                     TRIPS.
                 </Typography>
             </Container>

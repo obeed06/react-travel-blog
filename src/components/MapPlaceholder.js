@@ -7,7 +7,6 @@ import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
     mapPlaceholder: {
-        opacity: "0.65",
         display: 'block',
         width: '100%',
         height: 'auto',
