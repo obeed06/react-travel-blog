@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 
 const Footer = () => {
     return (
-        <Box className="siteFooter" sx={{ width: '100%' }}>
+        <Box className="siteFooter" sx={{ width: '100%', height: '75vh' }}>
             <Grid container direction="row" justifyContent="space-around" >
                 <Grid item>
                     <h6>ABOUT</h6>

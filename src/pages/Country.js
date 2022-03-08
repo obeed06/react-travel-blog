@@ -38,7 +38,6 @@ const Country = () => {
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <div className="d-icon" style={{width: '60%', height: '60%'}}>
                         <div className="d-icon-bg" style={{backgroundImage: "url("+country?.cIcon?.asset?.url+")"}}></div>
-                        {/*<div className="d-title">{country.name}</div>*/}
                         <Typography vairant="h1" component="h2" className="title" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
                             <div>{country?.name}</div>
                         </Typography>

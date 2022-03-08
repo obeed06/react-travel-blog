@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import {makeStyles} from "@mui/styles";
 import Typography from "@mui/material/Typography";
 
+
 const useStyles = makeStyles((theme) => ({
     subHeading: {
         fontFamily: 'Nunito',
@@ -15,8 +16,8 @@ const AboutSummary = () => {
     const classes = useStyles();
 
     return (
-        <Box id="about-summary" className="section" sx={{py: 5 }}>
-            <Typography vairant="h1" component="h2" className="sectionHeader brandColor" >
+        <Box  id="about-summary" sx={{py: 5 }}>
+            <Typography vairant="h1" component="h2" className="sectionHeader myStoryHeader brandColor" >
                 MY STORY.
             </Typography>
             <Container maxWidth='sm'>

@@ -15,31 +15,31 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Zoom from "@mui/material/Zoom";
+import {ParallaxProvider} from "react-scroll-parallax";
 
 library.add(fab, faCheckSquare, faCoffee)
 
 const App = () => {
     return (
-        //
-        <Router>
-            <span id="back-to-top-anchor"></span>
-            <ColorModeContextProvider app={<TopNavigation/> } />
-            <Routes>
+        <ParallaxProvider>
+            <Router>
+                <span id="back-to-top-anchor"></span>
+                <ColorModeContextProvider app={<TopNavigation/>}/>
+                <Routes>
+                    <Route path='/' element={<Home/>}/>} exact/>
+                    <Route path='/about' element={<About/>}/>
+                    <Route path='/trip/:slug' element={<Trip/>}/>
+                    <Route path='/country/:slug' element={<Country/>}/>
+                </Routes>
 
-                <Route path='/' element={<Home/>}/>} exact/>
-                <Route path='/about' element={<About/>}/>
-                <Route path='/trip/:slug' element={<Trip/>}/>
-                <Route path='/country/:slug' element={<Country/>}/>
-            </Routes>
-
-            <Footer/>
-            <ScrollTop>
-                <Fab size="small" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon/>
-                </Fab>
-            </ScrollTop>
-        </Router>
-        // } />
+                <Footer/>
+                <ScrollTop>
+                    <Fab size="small" aria-label="scroll back to top">
+                        <KeyboardArrowUpIcon/>
+                    </Fab>
+                </ScrollTop>
+            </Router>
+        </ParallaxProvider>
     )
 }
 
