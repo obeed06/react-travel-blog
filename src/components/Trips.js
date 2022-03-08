@@ -6,13 +6,10 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import sanityClient from "../client.js"
-import {Parallax, useParallax} from "react-scroll-parallax";
+import {Parallax} from "react-scroll-parallax";
 
 const Trips = () => {
     const checked = useWindowPosition("trips")
-    const {sectionHeader} = useParallax<HTMLDivElement>({
-        translateY: [-100, 100],
-    })
     const [tripsData, setTrips] = useState(null);
     useEffect(() => {
         sanityClient.fetch(`*[_type == "trip"]{
@@ -31,7 +28,7 @@ const Trips = () => {
             .catch(console.error);
     }, []);
     return (
-        <Box id="trips" className="section" sx={{py: 5}} ref={sectionHeader}>
+        <Box id="trips" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
@@ -42,7 +39,6 @@ const Trips = () => {
             <Stack direction="row" spacing={2} className="trips" sx={{pb: 5, pl: 5}}>
                 {tripsData && tripsData.map((trip, i) => {
                     return <ImageCard key={i} slugPrefix="/trip/" item={trip} checked={checked} timeout={i}/>
-
                 })}
             </Stack>
         </Box>
