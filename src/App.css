@@ -1,3 +1,42 @@
+.subHeadline {
+    font-family: Nunito;
+    font-weight: bold;
+    font-size: 9vw;
+    text-align: center;
+}
+
+.headline {
+    font-family: Nunito;
+    font-weight: lighter;
+    font-size: 18vw;
+    text-align: center;
+}
+
+.inset {
+    position: absolute;
+    inset: 0;
+}
+.white {
+    color: white;
+}
+.gray {
+    color: #446;
+}
+
+.full {
+    height: 100vh;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gradient {
+    background: linear-gradient(rgba(14, 62, 151, 0.5) 50%, black);
+}
+
 .landingHome {
     height: 100vh;
     background-image: url('../public/assets/bg-hero-sand.jpg');

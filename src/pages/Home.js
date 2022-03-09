@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Welcome from "../components/Welcome";
 import AboutSummary from "../components/AboutSummary";
 import Trips from "../components/Trips";
-
 import ItineraryMap from "../components/ItineraryMap";
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
+import WelcomeParallax from "../components/WelcomeParallax";
 
 const Home = () => {
     const containerRef = React.useRef(null);
@@ -26,9 +25,7 @@ const Home = () => {
     }, []);
     return (
         <Box>
-            <Box className="landingHome" ref={containerRef}>
-                <Welcome slideContainerRef={containerRef}/>
-            </Box>
+            <WelcomeParallax slideContainerRef={containerRef}/>
             <span className="sections">
                 <AboutSummary/>
                 <Trips />
