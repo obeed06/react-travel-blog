@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import sanityClient from "../client.js";
+import React from "react";
 import Container from "@mui/material/Container";
 import {Parallax} from "react-scroll-parallax";
 import Typography from "@mui/material/Typography";
@@ -8,37 +7,14 @@ import Box from "@mui/material/Box";
 import PostCard from "./cards/PostCard";
 import useWindowPosition from "../hook/useWindowPosition";
 
-export default function RecentPosts() {
-    const [recentPostsData, setRecentPosts] = useState(null);
-    const checked = useWindowPosition("recentPosts")
-
-    useEffect(() => {
-        sanityClient
-            .fetch(
-                `*[_type == "post"] | order(publishedAt desc)[0..19] {
-                    title,
-                    "authorName": author->name,
-                    publishedAt,
-                    "country": countries[]->name[0],
-                    "category": categories[]->{title, "colourHex": colour.hex}[0],
-                    slug,
-                    mainImage{
-                      asset->{
-                      _id,
-                      url
-                    }
-                  }
-                }`
-            )
-            .then((data) => setRecentPosts(data))
-            .catch(console.error);
-    }, []);
+export default function RecentPosts({recentPostsData}) {
+    const checked = useWindowPosition("postsSection")
 
     return (
-        <Box id="recentPosts" className="section" sx={{py: 5}}>
+        <Box id="recentPosts">
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
-                    <Typography vairant="h1" component="h2" className="sectionHeader">
+                    <Typography vairant="h1" component="h2" className="sectionHeader" style={{color: "black"}}>
                         Recent Posts.
                     </Typography>
                 </Parallax>

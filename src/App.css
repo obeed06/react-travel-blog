@@ -140,7 +140,6 @@ h2.sectionHeader {
     }
 }
 
-
 span.sections div:nth-of-type(3n - 2) h2.sectionHeader {
     text-align: center;
 }
@@ -152,7 +151,7 @@ span.sections div:nth-of-type(3n) h2.sectionHeader {
     text-align: left;
 }
 
-span.sections div.section:nth-of-type(3n - 1)  {
+span.sections div.section:nth-of-type(2)  {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/assets/bg-taiwan.jpg');
     background-size: cover;
@@ -177,6 +176,13 @@ span.sections div.section:nth-of-type(3n - 1)  {
     font-weight: lighter;
     font-size: 16px;
     color: white;
+}
+
+.featuredPostSection  {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-bottom: 150px;
 }
 
 .postCardAuthor {
