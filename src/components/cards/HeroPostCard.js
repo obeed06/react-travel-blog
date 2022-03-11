@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         background: 'rgba(0,0,0,0.5)',
     },
     cardHovered: {
-        transform: "scale3d(1.05, 1.05, 0.5)!important"
+        transform: "scale3d(1.05, 1.05, 1)"
     },
     media: {
         height: 200,
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function PostCard({slugPrefix, post, checked, timeout}) {
+export default function HeroPostCard({slugPrefix, post, checked, timeout}) {
     Moment.locale('en')
     const classes = useStyles();
     const [state, setState] = useState({

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         background: 'rgba(0,0,0,0.5)',
     },
     cardHovered: {
-        transform: "scale3d(1.05, 1.05, 1)"
+        transform: "scale3d(1.05, 1.05, 0.5)!important"
     },
     media: {
         height: 200,

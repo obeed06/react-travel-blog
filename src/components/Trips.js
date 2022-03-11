@@ -30,13 +30,13 @@ const Trips = () => {
     return (
         <Box id="trips" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
-                <Parallax translateY={['0', '+48']}>
+                <Parallax translateY={['0', '+68']}>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
                         TRIPS.
                     </Typography>
                 </Parallax>
             </Container>
-            <Stack direction="row" spacing={2} className="cardYScroll" sx={{pb: 5, pl: 5}}>
+            <Stack direction="row" spacing={2} className="cardYScroll" sx={{pt:1, py: 5, pl: 5}}>
                 {tripsData && tripsData.map((trip, i) => {
                     return <ImageCard key={i} slugPrefix="/trip/" item={trip} checked={checked} timeout={i}/>
                 })}
