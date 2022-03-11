@@ -13,7 +13,7 @@ const ItineraryMap = (data) => {
 
 
     return (
-        <Box className="section" sx={{py: 5}}>
+        <Box id="mapSection" className="section" sx={{py: 5}}>
             <Parallax translateY={['0', '+48']}>
                 <Container maxWidth='lg'>
                     <Typography vairant="h1" component="h2" className="sectionHeader">

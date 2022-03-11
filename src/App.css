@@ -144,7 +144,6 @@ span.sections div:nth-of-type(3n - 2) h2.sectionHeader {
     text-align: center;
 }
 span.sections div:nth-of-type(3n - 1) h2.sectionHeader {
-    color: white;
     text-align: right;
 }
 span.sections div:nth-of-type(3n) h2.sectionHeader {
@@ -159,16 +158,26 @@ span.sections div.section:nth-of-type(2)  {
     background-position: center;
 }
 
+span.sections div.section:nth-of-type(2) h2.sectionHeader {
+    color: #d1deea;
+}
+
 .brandColor {
     color: #ff8100;
 }
 
-.trips {
+.cardYScroll {
     overflow-x: auto;
 }
 
-.trips::-webkit-scrollbar {
+.cardYScroll::-webkit-scrollbar {
     width: 0;
+}
+
+@media screen and (max-width: 1400px) {
+    .cardYScroll {
+        justify-content: flex-start;
+    }
 }
 
 .cardHeader {
@@ -178,7 +187,7 @@ span.sections div.section:nth-of-type(2)  {
     color: white;
 }
 
-.featuredPostSection  {
+.featuredPostSection {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

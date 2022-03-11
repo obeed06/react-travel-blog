@@ -40,7 +40,6 @@ export default function PostsSection() {
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
                 <Box className="featuredPostSection"  style={{backgroundImage: "url("+sectionBGUrl+")"}}>
-                    <div className="shadow"></div>
                     <FeaturedPosts featuredPostsData={featuredPosts} />
                 </Box>
             <RecentPosts recentPostsData={recentPosts}/>

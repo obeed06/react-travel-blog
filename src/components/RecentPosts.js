@@ -8,13 +8,13 @@ import PostCard from "./cards/PostCard";
 import useWindowPosition from "../hook/useWindowPosition";
 
 export default function RecentPosts({recentPostsData}) {
-    const checked = useWindowPosition("postsSection")
+    const checked = useWindowPosition("mapSection")
 
     return (
         <Box id="recentPosts">
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
-                    <Typography vairant="h1" component="h2" className="sectionHeader" style={{color: "black"}}>
+                    <Typography vairant="h1" component="h2" className="sectionHeader">
                         Recent Posts.
                     </Typography>
                 </Parallax>
