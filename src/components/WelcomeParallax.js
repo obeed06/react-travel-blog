@@ -13,7 +13,7 @@ const WelcomeParallax = () => {
     };
 
     const headline = {
-        translateY: [0, 30],
+        translateY: [0, 50],
         scale: [1, 1.05, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
@@ -27,7 +27,7 @@ const WelcomeParallax = () => {
     };
 
     const headline2 = {
-        translateY: [0, 30],
+        translateY: [0, 35],
         scale: [1, 1.05, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,

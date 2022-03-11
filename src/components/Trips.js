@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import ImageCard from "./ImageCard";
+import ImageCard from "./cards/ImageCard";
 import useWindowPosition from '../hook/useWindowPosition';
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";

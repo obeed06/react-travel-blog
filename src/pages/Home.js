@@ -5,6 +5,8 @@ import ItineraryMap from "../components/ItineraryMap";
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import WelcomeParallax from "../components/WelcomeParallax";
+import FeaturedPosts from "../components/FeaturedPosts";
+import RecentPosts from "../components/RecentPosts";
 
 const Home = () => {
     const containerRef = React.useRef(null);
@@ -30,6 +32,8 @@ const Home = () => {
                 <AboutSummary/>
                 <Trips />
                 <ItineraryMap data={itineraryData}/>
+                <FeaturedPosts />
+                <RecentPosts />
             </span>
         </Box>
     );

@@ -3,7 +3,7 @@ import useWindowPosition from '../hook/useWindowPosition';
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CountryCard from "./CountryCard";
+import CountryCard from "./cards/CountryCard";
 import Grid from "@mui/material/Grid";
 import {Parallax} from "react-scroll-parallax";
 
