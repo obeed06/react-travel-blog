@@ -10,7 +10,6 @@ import CountryCard from "../components/cards/CountryCard";
 
 const Destinations = () => {
     const [destinations, setDestinations] = useState(null)
-    let {slug} = useParams();
     useEffect(() => {
         sanityClient.fetch(`*[_type == "country"]{
             name,
