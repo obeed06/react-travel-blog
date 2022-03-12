@@ -37,7 +37,7 @@ export default function RecentPosts({recentPostsData}) {
                                         </Grid>
                                     );
                                 return (
-                                    <Grid sm={6} md={4} lg={3} item key={i}><PostCard post={post} key={i} checked={checked} timeout={i}/></Grid>
+                                    <Grid sm={6} md={4} lg={3} item key={i}><PostCard post={post} key={i} checked={checked}/></Grid>
                                 );
                             }
                         )}

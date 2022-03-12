@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function PostCard({post, checked, timeout}) {
+export default function PostCard({post, checked, timeout = 1}) {
     Moment.locale('en')
     const classes = useStyles();
     const [state, setState] = useState({
