@@ -10,7 +10,7 @@ export default function PostsSection() {
     useEffect(() => {
         sanityClient
             .fetch(
-                `*[_type == "post"] | order(publishedAt desc) {
+                `*[_type == "post"][0..16] | order(publishedAt desc) {
                     title,
                     "authorName": author->name,
                     publishedAt,

@@ -57,6 +57,7 @@
 
 .landingTripImage {
     height: 50vh;
+    background-color: darkgrey;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
