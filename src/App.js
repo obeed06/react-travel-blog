@@ -22,27 +22,28 @@ library.add(fab, faCheckSquare, faCoffee)
 
 const App = () => {
     return (
-        <ParallaxProvider>
-            <Router>
-                <span id="back-to-top-anchor"></span>
-                <ColorModeContextProvider app={<TopNavigation/>}/>
-                <Routes>
-                    <Route path='/' element={<Home/>}/>} exact/>
-                    <Route path='/about' element={<About/>}/>
-                    <Route path='/trip/:slug' element={<Trip/>}/>
-                    <Route path='/country/:slug' element={<Country/>}/>
-                    <Route path='/post/:slug' element={<Post/>}/>
-                </Routes>
+        <ColorModeContextProvider app={
+            <ParallaxProvider>
+                <Router>
+                    <span id="back-to-top-anchor"></span>
+                    <TopNavigation/>
+                    <Routes>
+                        <Route path='/' element={<Home/>}/> exact/>
+                        <Route path='/about' element={<About/>}/>
+                        <Route path='/trip/:slug' element={<Trip/>}/>
+                        <Route path='/country/:slug' element={<Country/>}/>
+                        <Route path='/post/:slug' element={<Post/>}/>
+                    </Routes>
 
-                <Footer/>
-                <ScrollTop>
-                    <Fab size="small" aria-label="scroll back to top">
-                        <KeyboardArrowUpIcon/>
-                    </Fab>
-                </ScrollTop>
-            </Router>
-        </ParallaxProvider>
-    )
+                    <Footer/>
+                    <ScrollTop>
+                        <Fab size="small" aria-label="scroll back to top">
+                            <KeyboardArrowUpIcon/>
+                        </Fab>
+                    </ScrollTop>
+                </Router>
+            </ParallaxProvider>
+        } />);
 }
 
 function ScrollTop(props) {

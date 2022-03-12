@@ -44,7 +44,6 @@ export default function RecentPosts({recentPostsData}) {
                     </Grid>
                     {olderPostBtn()}
                 </Container>
-
                 :
                 <Grid container direction="column" justifyContent="flex-start" alignItems="stretch"
                       sx={{position: "relative"}}>
@@ -54,10 +53,7 @@ export default function RecentPosts({recentPostsData}) {
                     ))}
                     {olderPostBtn()}
                 </Grid>
-
-
             }
-
         </Box>
     );
 }

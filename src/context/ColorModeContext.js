@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {deepOrange, pink} from "@mui/material/colors";
 
 
 export const ColorModeContext = React.createContext({
@@ -24,6 +25,8 @@ export const ColorModeContextProvider = ({app}) => {
         () =>
             createTheme({
                 palette: {
+                    primary:  deepOrange,
+                    secondary: pink,
                     mode,
                 },
             }),
