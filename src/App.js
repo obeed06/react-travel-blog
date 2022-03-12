@@ -17,6 +17,8 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Zoom from "@mui/material/Zoom";
 import {ParallaxProvider} from "react-scroll-parallax";
 import Post from "./pages/Post";
+import Posts from "./pages/Posts";
+import Destinations from "./pages/Destinations";
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -32,6 +34,8 @@ const App = () => {
                         <Route path='/about' element={<About/>}/>
                         <Route path='/trip/:slug' element={<Trip/>}/>
                         <Route path='/country/:slug' element={<Country/>}/>
+                        <Route path='/destinations' element={<Destinations/>}/>
+                        <Route path='/posts' element={<Posts/>}/>
                         <Route path='/post/:slug' element={<Post/>}/>
                     </Routes>
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import useWindowPosition from '../hook/useWindowPosition';
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -8,7 +7,6 @@ import Grid from "@mui/material/Grid";
 import {Parallax} from "react-scroll-parallax";
 
 const Countries = ({countries}) => {
-    useWindowPosition("countries");
     return (
         <Box id="countries" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>

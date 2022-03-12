@@ -5,15 +5,11 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import PostCard from "./PostCard";
-import useWindowPosition from "../../hook/useWindowPosition";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobilePostCard from "./MobilePostCard";
-import Button from "@mui/material/Button";
-import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import HeroPostCard from "./HeroPostCard";
 
-export default function RecentPosts({recentPostsData}) {
-    const checked = useWindowPosition("mapSection")
+export default function RecentPosts({recentPostsData, checked, actions}) {
     const matches = useMediaQuery('(min-width:656px)');
     return (
         <Box id="recentPosts">
@@ -42,7 +38,7 @@ export default function RecentPosts({recentPostsData}) {
                             }
                         )}
                     </Grid>
-                    {olderPostBtn()}
+                    {actions}
                 </Container>
                 :
                 <Grid container direction="column" justifyContent="flex-start" alignItems="stretch"
@@ -51,17 +47,9 @@ export default function RecentPosts({recentPostsData}) {
                     recentPostsData.map((post, i) => (
                         <Grid item key={i}><MobilePostCard post={post}/></Grid>
                     ))}
-                    {olderPostBtn()}
+                    {actions}
                 </Grid>
             }
         </Box>
-    );
-}
-
-function olderPostBtn() {
-    return (
-        <Grid container item direction="row" justifyContent="flex-end" alignItems="center" sx={{pt: 3}}>
-            <Button variant="outlined" endIcon={<DoubleArrowIcon/>}>OLDER POSTS</Button>
-        </Grid>
     );
 }
