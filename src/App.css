@@ -194,6 +194,13 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
     padding-bottom: 150px;
 }
 
+.mobilePostCard {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 350px;
+}
+
 .postCardAuthor {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);

@@ -9,8 +9,6 @@ import {Parallax} from "react-scroll-parallax";
 
 const Countries = ({countries}) => {
     useWindowPosition("countries");
-    console.log(countries)
-
     return (
         <Box id="countries" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import sanityClient from "../client.js";
+import sanityClient from "../../client.js";
 import Box from "@mui/material/Box";
 import FeaturedPosts from "./FeaturedPosts";
 import RecentPosts from "./RecentPosts";

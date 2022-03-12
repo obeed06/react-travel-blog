@@ -2,7 +2,6 @@ import React from 'react';
 import {Card, CardContent, CardActionArea} from '@mui/material';
 
 export default function CountryCard({country}) {
-    console.log(country)
     return (
         <Card className="d-card" style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url("+country?.cBackground?.asset?.url+")"}}>
             <CardActionArea href={"/country/" + country.slug.current} key={country.slug.current}>

@@ -5,7 +5,7 @@ import ItineraryMap from "../components/ItineraryMap";
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import WelcomeParallax from "../components/WelcomeParallax";
-import PostsSection from "../components/PostsSection";
+import PostsSection from "../components/post/PostsSection";
 
 const Home = () => {
     const containerRef = React.useRef(null);

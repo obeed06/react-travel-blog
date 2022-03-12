@@ -9,7 +9,7 @@ const Country = () => {
     const [country, setCountry] = useState(null)
     let {slug} = useParams();
     useEffect(() => {
-        sanityClient.fetch(`*[slug.current == "${slug}"][0]{
+        sanityClient.fetch(`*[_type == "country" && slug.current == "${slug}"][0]{
                 name,
                 cIcon{
                     asset->{
@@ -30,7 +30,6 @@ const Country = () => {
             .then((data) => setCountry(data))
             .catch(console.error);
     }, [slug]);
-    console.log(country)
     return typeof (country) !== 'undefined' && country !== null ? (
         <Box>
             <Box className="landingTripImage"

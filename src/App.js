@@ -16,6 +16,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Zoom from "@mui/material/Zoom";
 import {ParallaxProvider} from "react-scroll-parallax";
+import Post from "./pages/Post";
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -30,6 +31,7 @@ const App = () => {
                     <Route path='/about' element={<About/>}/>
                     <Route path='/trip/:slug' element={<Trip/>}/>
                     <Route path='/country/:slug' element={<Country/>}/>
+                    <Route path='/post/:slug' element={<Post/>}/>
                 </Routes>
 
                 <Footer/>

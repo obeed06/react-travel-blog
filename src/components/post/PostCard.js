@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import {Card, CardMedia, CardContent, CardActionArea} from '@mui/material';
 import Divider from "@mui/material/Divider";
 import Moment from "moment";
-import Box from "@mui/material/Box";
+import PostTags from "./PostTags";
 
 const useStyles = makeStyles({
     root: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function PostCard({slugPrefix, post, checked, timeout}) {
+export default function PostCard({post, checked, timeout}) {
     Moment.locale('en')
     const classes = useStyles();
     const [state, setState] = useState({
@@ -44,28 +44,14 @@ export default function PostCard({slugPrefix, post, checked, timeout}) {
                   onMouseOver={() => setState({raised: true, shadow: 3})}
                   onMouseOut={() => setState({raised: false, shadow: 1})}
                   raised={state.raised} zdepth={state.shadow}>
-                <CardActionArea href={slugPrefix + post.slug.current} key={post.slug.current}>
+                <CardActionArea href={"/post/" + post.slug.current} key={post.slug.current}>
                     <CardMedia
                         className={classes.media}
                         image={post.mainImage.asset.url}
                         alt={post.mainImage.alt}
                     />
                     <CardContent sx={{width: 300}}>
-                        <Box className="postCardTags"
-                            sx={{
-                                display: 'flex',
-                                '& hr': {
-                                    mx: 0.5,
-                                    my: 0.35,
-                                    borderColor: "rgba(255, 255, 255, 0.5)"
-                                },
-                            }}
-                        >
-                            {post?.category?.title ? <span style={post?.category?.colourHex ? {color: post?.category?.colourHex} : {}}>{post?.category?.title}</span> : ""}
-                            {post?.country && post?.category ?
-                                <Divider orientation="vertical" variant="inset" flexItem/> : ""}
-                            {post?.country ? <span>{post?.country}</span> : ""}
-                        </Box>
+                        <PostTags post={post} />
                         <Typography
                             gutterBottom
                             variant="h5"

@@ -11,7 +11,7 @@ const Trip = () => {
     const [trip, setTrip] = useState(null)
     let {slug} = useParams();
     useEffect(() => {
-        sanityClient.fetch(`*[slug.current == "${slug}"][0]{
+        sanityClient.fetch(`*[_type == "trip" && slug.current == "${slug}"][0]{
                 name,
                 hero{
                     asset->{
@@ -52,7 +52,6 @@ const Trip = () => {
             .then((data) => setTrip(data))
             .catch(console.error);
     }, [slug]);
-    console.log(trip)
     return typeof (trip) !== 'undefined' && trip !== null ? (
         <Box>
             <Box className="landingTripImage"

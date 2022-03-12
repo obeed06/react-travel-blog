@@ -30,7 +30,7 @@ const Trips = () => {
     return (
         <Box id="trips" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
-                <Parallax translateY={['0', '+68']}>
+                <Parallax translateY={['0', '+75']}>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
                         TRIPS.
                     </Typography>
