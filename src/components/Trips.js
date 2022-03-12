@@ -36,7 +36,7 @@ const Trips = () => {
                     </Typography>
                 </Parallax>
             </Container>
-            <Stack direction="row" spacing={2} className="cardXScroll" sx={{pt:1, py: 5, pl: 5}}>
+            <Stack direction="row" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5}}>
                 {tripsData && tripsData.map((trip, i) => {
                     return <ImageCard key={i} slugPrefix="/trip/" item={trip} checked={checked}/>
                 })}
