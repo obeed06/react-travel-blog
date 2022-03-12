@@ -2,19 +2,23 @@ import * as React from 'react';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import {deepOrange, pink} from "@mui/material/colors";
 
+const initialColorMode = localStorage.getItem('colorMode');
 
 export const ColorModeContext = React.createContext({
     toggleColorMode: () => {
-    },
-    mode: "light",
+    }
 });
 
 export const ColorModeContextProvider = ({app}) => {
-    const [mode, setMode] = React.useState("light");
+    debugger;
+    const [mode, setMode] = React.useState(initialColorMode ? initialColorMode : "light");
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+                setMode((prevMode) => {
+                    localStorage.setItem('colorMode', prevMode === "light" ? "dark" : "light")
+                    return (prevMode === "light" ? "dark" : "light");
+                });
             },
             mode,
         }),
