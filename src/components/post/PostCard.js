@@ -50,7 +50,7 @@ export default function PostCard({post, checked, timeout = 1}) {
                         image={post.mainImage.asset.url}
                         alt={post.mainImage.alt}
                     />
-                    <CardContent sx={{width: 300}}>
+                    <CardContent>
                         <PostTags post={post} />
                         <Typography
                             gutterBottom
