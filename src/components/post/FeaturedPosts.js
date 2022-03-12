@@ -19,7 +19,7 @@ export default function FeaturedPosts({featuredPostsData}) {
                     </Typography>
                 </Parallax>
             </Container>
-            <Stack direction="row" justifyContent="center" spacing={2} className="cardYScroll" sx={{pt:1, pb: 5, pl: 5}}>
+            <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, pl: 5}}>
                 {featuredPostsData &&
                 featuredPostsData.map((post, i) => (
                     <PostCard post={post} key={i} checked={checked} timeout={i}/>

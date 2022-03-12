@@ -166,16 +166,16 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
     color: #ff8100;
 }
 
-.cardYScroll {
+.cardXScroll {
     overflow-x: auto;
 }
 
-.cardYScroll::-webkit-scrollbar {
+.cardXScroll::-webkit-scrollbar {
     width: 0;
 }
 
 @media screen and (max-width: 1400px) {
-    .cardYScroll {
+    .cardXScroll {
         justify-content: flex-start;
     }
 }

@@ -1,27 +1,29 @@
 import React from 'react';
-import Moment from "moment";
-import Paper from "@mui/material/Paper";
-import PostTags from "./PostTags";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import Moment from "moment";
 import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import PostTags from "./PostTags";
 
-export default function MobilePostCard({post}) {
+
+export default function HeroPostCard({post}) {
     Moment.locale('en')
-
     return (
         <Link href={"/post/" + post.slug.current} key={post.slug.current} underline="none" style={{width: "100%"}}>
-            <Paper elevation={0} square className="mobilePostCard"
-                   style={{backgroundImage: "linear-gradient(rgba(0, 0, 0, 0) 65%, black), url(" + post.mainImage.asset.url + ")"}}>
+            <Paper elevation={3} className="mobilePostCard"
+                   style={{height: "550px", backgroundImage: "linear-gradient(rgba(0, 0, 0, 0) 65%, black), url(" + post.mainImage.asset.url + ")"}}>
                 <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1} style={{height: "80%"}}>
-                    <PostTags post={post}/>
+                    <span style={{fontSize: "15px"}}>
+                        <PostTags post={post} tagSize="large"/>
+                    </span>
                     <Typography
                         gutterBottom
                         variant="h3"
                         component="h1"
                         className="cardHeader"
-                        style={{fontSize: "6vw", textAlign: "center"}}
+                        style={{fontSize: "45px", textAlign: "center"}}
                     >
                         {post.title}
                     </Typography>

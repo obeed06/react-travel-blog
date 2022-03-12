@@ -2,7 +2,7 @@ import React from 'react';
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 
-export default function PostTags({post}) {
+export default function PostTags({post, tagSize = "x-small"}) {
     return (
         <Box className="postCardTags"
              sx={{
@@ -15,10 +15,10 @@ export default function PostTags({post}) {
              }}
         >
             {post?.category?.title ? <span
-                style={post?.category?.colourHex ? {color: post?.category?.colourHex} : {}}>{post?.category?.title}</span> : ""}
+                style={post?.category?.colourHex ? {color: post?.category?.colourHex, fontSize: tagSize} : {fontSize: tagSize}}>{post?.category?.title}</span> : ""}
             {post?.country && post?.category ?
                 <Divider orientation="vertical" variant="inset" flexItem/> : ""}
-            {post?.country ? <span>{post?.country}</span> : ""}
+            {post?.country ? <span style={{fontSize: tagSize}}>{post?.country}</span> : ""}
         </Box>
     );
 }
