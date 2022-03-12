@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
