@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import {Parallax} from "react-scroll-parallax";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import PostCard from "./PostCard";
@@ -9,23 +8,23 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import MobilePostCard from "./MobilePostCard";
 import HeroPostCard from "./HeroPostCard";
 
-export default function RecentPosts({recentPostsData, checked, actions}) {
+export default function PostsGrid({postsData, checked, header, actions}) {
     const matches = useMediaQuery('(min-width:656px)');
+    if (!postsData || !postsData.length) return "";
+
     return (
         <Box id="recentPosts">
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
-                    <Typography vairant="h1" component="h2" className="sectionHeader">
-                        Recent Posts.
-                    </Typography>
+                    {header}
                 </Parallax>
             </Container>
             {matches ?
                 <Container maxWidth='lg'>
                     <Grid container direction="row" justifyContent="space-between"
                           spacing={2} sx={{position: "relative"}}>
-                        {recentPostsData &&
-                        recentPostsData.map((post, i) => {
+                        {postsData &&
+                        postsData.map((post, i) => {
                                 if (i === 0)
                                     return (
                                         <Grid sm={12} item key={i}>
@@ -43,8 +42,8 @@ export default function RecentPosts({recentPostsData, checked, actions}) {
                 :
                 <Grid container direction="column" justifyContent="flex-start" alignItems="stretch"
                       sx={{position: "relative"}}>
-                    {recentPostsData &&
-                    recentPostsData.map((post, i) => (
+                    {postsData &&
+                    postsData.map((post, i) => (
                         <Grid item key={i}><MobilePostCard post={post}/></Grid>
                     ))}
                     {actions}

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import RecentPosts from "../components/post/RecentPosts";
+import PostsGrid from "../components/post/PostsGrid";
 
 const Country = () => {
     const [country, setCountry] = useState(null)
@@ -66,7 +66,13 @@ const Country = () => {
             </Box>
             <span className="sections">
                 <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <RecentPosts recentPostsData={country.relatedPosts} checked={true} />
+                    <PostsGrid postsData={country.relatedPosts} checked={true}
+                               header={
+                                   <Typography vairant="h1" component="h2" className="sectionHeader">
+                                       Related Posts.
+                                   </Typography>
+                               }
+                    />
                 </Box>
             </span>
         </Box>

@@ -21,16 +21,16 @@ const Footer = () => {
     return (
         <Box className="siteFooter" sx={{ width: '100%', height: '75vh' }}>
             <Grid container direction="row" justifyContent="space-around"  spacing={{xs: 1, md: 3}} sx={{py:5}}>
-                <Grid item sx={{alignItems: "center"}}>
-                    <h6>QUICK LINKS</h6>
+                <Grid item>
+                    <h6 style={{textAlign: "center"}}>QUICK LINKS</h6>
                     <List dense="true">
                         <ListItem><Link href="/about" underline="none">About Me</Link></ListItem>
                         <ListItem><Link href="/destinations" underline="none">Destinations</Link></ListItem>
                         <ListItem><Link href="/posts" underline="none">Blog</Link></ListItem>
                     </List>
                 </Grid>
-                <Grid item sx={{alignItems: "center"}}>
-                    <h6>STAY CONNECTED</h6>
+                <Grid item>
+                    <h6 style={{textAlign: "center"}}>STAY CONNECTED</h6>
                     <IconButton href="https://github.com/obeed06" target="_blank"><FontAwesomeIcon icon={['fab', 'github']}/></IconButton>
                     <IconButton href="https://www.instagram.com/wheresobee/" target="_blank"><FontAwesomeIcon icon={['fab', 'instagram']}/></IconButton>
                     <IconButton href="https://www.facebook.com/david.obee" target="_blank"><FontAwesomeIcon icon={['fab', 'facebook']}/></IconButton>

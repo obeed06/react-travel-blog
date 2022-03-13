@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
-import RecentPosts from "../components/post/RecentPosts";
+import PostsGrid from "../components/post/PostsGrid";
+import Typography from "@mui/material/Typography";
 
 const Posts = () => {
     const [postsData, setPosts] = useState(null);
@@ -34,7 +35,13 @@ const Posts = () => {
 
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
-            <RecentPosts recentPostsData={postsData} checked={true} />
+            <PostsGrid postsData={postsData} checked={true}
+                       header={
+                           <Typography vairant="h1" component="h2" className="sectionHeader">
+                               Posts.
+                           </Typography>
+                       }
+            />
         </Box>
     );
 };

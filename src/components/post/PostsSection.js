@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import sanityClient from "../../client.js";
 import Box from "@mui/material/Box";
 import FeaturedPosts from "./FeaturedPosts";
-import RecentPosts from "./RecentPosts";
+import PostsGrid from "./PostsGrid";
 import useWindowPosition from "../../hook/useWindowPosition";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import Typography from "@mui/material/Typography";
 
 export default function PostsSection() {
     const [postsData, setPosts] = useState(null);
@@ -48,7 +49,13 @@ export default function PostsSection() {
                 <Box className="featuredPostSection"  style={{backgroundImage: "url("+sectionBGUrl+")"}}>
                     <FeaturedPosts featuredPostsData={featuredPosts} />
                 </Box>
-            <RecentPosts recentPostsData={recentPosts} checked={checked} actions={olderPostBtn()}/>
+            <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn()}
+                       header={
+                           <Typography vairant="h1" component="h2" className="sectionHeader">
+                                Recent Posts.
+                           </Typography>
+                       }
+            />
         </Box>
     );
 }
