@@ -39,7 +39,7 @@ export default function PostCard({post, checked, timeout = 1}) {
         shadow: 1,
     });
     return (
-        <Grow in={checked} {...(checked ? {timeout: 500 * timeout} : {})}>
+        // <Grow in={checked} {...(checked ? {timeout: 500 * timeout} : {})}>
             <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
                   onMouseOver={() => setState({raised: true, shadow: 3})}
                   onMouseOut={() => setState({raised: false, shadow: 1})}
@@ -66,6 +66,6 @@ export default function PostCard({post, checked, timeout = 1}) {
                     </CardContent>
                 </CardActionArea>
             </Card>
-        </Grow>
+        // </Grow>
     );
 }

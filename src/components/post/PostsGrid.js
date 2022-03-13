@@ -7,11 +7,11 @@ import PostCard from "./PostCard";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobilePostCard from "./MobilePostCard";
 import HeroPostCard from "./HeroPostCard";
+import SkeletonPostCard from "./SkeletonPostCard";
+import SkeletonHeroPostCard from "./SkeletonHeroPostCard";
 
 export default function PostsGrid({postsData, checked, header, actions}) {
     const matches = useMediaQuery('(min-width:656px)');
-    if (!postsData || !postsData.length) return "";
-
     return (
         <Box id="recentPosts">
             <Container maxWidth='lg'>
@@ -23,19 +23,35 @@ export default function PostsGrid({postsData, checked, header, actions}) {
                 <Container maxWidth='lg'>
                     <Grid container direction="row" justifyContent="space-between"
                           spacing={2} sx={{position: "relative"}}>
-                        {postsData &&
-                        postsData.map((post, i) => {
-                                if (i === 0)
+                        {
+                            postsData && postsData.length ?
+                            (
+                                postsData.map((post, i) => {
+                                    if (i === 0)
+                                        return (
+                                            <Grid sm={12} item key={i}>
+                                                <HeroPostCard post={post}/>
+                                            </Grid>
+                                        );
                                     return (
-                                        <Grid sm={12} item key={i}>
-                                            <HeroPostCard post={post}/>
-                                        </Grid>
+                                        <Grid sm={6} md={4} lg={3} item key={i}><PostCard post={post} key={i} checked={checked}/></Grid>
                                     );
-                                return (
-                                    <Grid sm={6} md={4} lg={3} item key={i}><PostCard post={post} key={i} checked={checked}/></Grid>
-                                );
-                            }
-                        )}
+                                })
+                            ) : (
+                                <React.Fragment>
+                                    <Grid sm={12} item>
+                                        <SkeletonHeroPostCard />
+                                    </Grid>
+                                    {
+                                        [...Array(8)].map((e, i) => (
+                                            <Grid sm={6} md={4} lg={3} item>
+                                                <SkeletonPostCard />
+                                            </Grid>
+                                        ))
+                                    }
+                                </React.Fragment>
+                            )
+                        }
                     </Grid>
                     {actions}
                 </Container>

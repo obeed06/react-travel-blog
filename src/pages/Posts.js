@@ -31,8 +31,6 @@ const Posts = () => {
             .then((data) => setPosts(data))
             .catch(console.error);
     }, []);
-    if (!postsData) return <div>Loading...</div>;
-
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
             <PostsGrid postsData={postsData} checked={true}

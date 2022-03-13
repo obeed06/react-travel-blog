@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import PostCard from "./PostCard";
 import useWindowPosition from "../../hook/useWindowPosition";
 import Stack from "@mui/material/Stack";
+import Skeleton from "@mui/material/Skeleton";
+import SkeletonPostCard from "./SkeletonPostCard";
 
 export default function FeaturedPosts({featuredPostsData}) {
     const checked = useWindowPosition("mapSection")
@@ -19,11 +21,18 @@ export default function FeaturedPosts({featuredPostsData}) {
                     </Typography>
                 </Parallax>
             </Container>
-            <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5}}>
-                {featuredPostsData &&
-                featuredPostsData.map((post, i) => (
-                    <PostCard post={post} key={i} checked={checked} />
-                ))}
+            <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative"}}>
+                {
+                    featuredPostsData && featuredPostsData.length ?
+                    (
+                        featuredPostsData.map((post, i) => <PostCard post={post} key={i} checked={checked}/>)
+                    ) :
+                    (
+                        [...Array(4)].map((e, i) => (
+                            <SkeletonPostCard />
+                        ))
+                    )
+                }
             </Stack>
         </Box>
     );
