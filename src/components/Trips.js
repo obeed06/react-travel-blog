@@ -12,7 +12,7 @@ const Trips = () => {
     const checked = useWindowPosition("trips")
     const [tripsData, setTrips] = useState(null);
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "trip"]{
+        sanityClient.fetch(`*[_type == "trip"] | order(tripDate desc) {
             name,
             summary,
             slug,
@@ -23,7 +23,7 @@ const Trips = () => {
                 },
                 alt
             }
-        } | order(tripDate desc)`)
+        }`)
             .then((data) => setTrips(data))
             .catch(console.error);
     }, []);

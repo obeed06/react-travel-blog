@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import PostCard from "./PostCard";
 import useWindowPosition from "../../hook/useWindowPosition";
 import Stack from "@mui/material/Stack";
-import Skeleton from "@mui/material/Skeleton";
 import SkeletonPostCard from "./SkeletonPostCard";
 
 export default function FeaturedPosts({featuredPostsData}) {

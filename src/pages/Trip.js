@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Countries from "../components/Countries";
+import Countries from "../components/country/Countries";
 import ItineraryMap from "../components/ItineraryMap";
 
 const Trip = () => {

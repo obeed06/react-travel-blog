@@ -2,9 +2,8 @@ import React from 'react';
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CountryCard from "./cards/CountryCard";
-import Grid from "@mui/material/Grid";
 import {Parallax} from "react-scroll-parallax";
+import CountriesGrid from "./CountriesGrid";
 
 const Countries = ({countries}) => {
     return (
@@ -15,14 +14,8 @@ const Countries = ({countries}) => {
                         Countries.
                     </Typography>
                 </Parallax>
+                <CountriesGrid countries={countries} />
             </Container>
-            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{xs: 1, md: 3}}
-                  columns={{xs: 1, sm: 2, md: 8}} sx={{position: "relative"}}>
-                {Array.isArray(countries) ? countries.map((country, i) => {
-                    return <Grid item key={i}><CountryCard country={country}/></Grid>
-                }) : ""
-                }
-            </Grid>
         </Box>
     );
 };

@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import {Parallax} from "react-scroll-parallax";
-import CountryCard from "../components/cards/CountryCard";
+import CountriesGrid from "../components/country/CountriesGrid";
 
 const Destinations = () => {
     const [destinations, setDestinations] = useState(null)
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "country"]{
+        sanityClient.fetch(`*[_type == "country"] | order(name asc) {
             name,
                 slug,
                 cIcon{
@@ -27,7 +26,7 @@ const Destinations = () => {
                     },
                 alt
                 }
-             }  | order(name asc)`)
+             }`)
             .then((data) => setDestinations(data))
             .catch(console.error);
     }, []);
@@ -43,13 +42,7 @@ const Destinations = () => {
                     </Typography>
                 </Parallax>
             </Container>
-            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{xs: 1, md: 3}}
-                  columns={{xs: 1, sm: 2, md: 8}} sx={{position: "relative"}}>
-                {Array.isArray(destinations) ? destinations.map((country, i) => {
-                    return <Grid item key={i}><CountryCard country={country}/></Grid>
-                }) : ""
-                }
-            </Grid>
+            <CountriesGrid countries={destinations} />
         </Box>
     );
 };
