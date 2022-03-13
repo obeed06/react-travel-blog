@@ -16,7 +16,7 @@ export default function PostsGrid({postsData, checked, header, actions}) {
         <Box id="recentPosts">
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
-                    {header}
+                    {postsData && postsData.length === 0 ? "" : header}
                 </Parallax>
             </Container>
             {matches ?
@@ -24,7 +24,7 @@ export default function PostsGrid({postsData, checked, header, actions}) {
                     <Grid container direction="row" justifyContent="space-between"
                           spacing={2} sx={{position: "relative"}}>
                         {
-                            postsData && postsData.length ?
+                            postsData ?
                             (
                                 postsData.map((post, i) => {
                                     if (i === 0)
@@ -39,12 +39,12 @@ export default function PostsGrid({postsData, checked, header, actions}) {
                                 })
                             ) : (
                                 <React.Fragment>
-                                    <Grid sm={12} item>
+                                    <Grid sm={12} item key="skeleton-hfp">
                                         <SkeletonHeroPostCard />
                                     </Grid>
                                     {
                                         [...Array(8)].map((e, i) => (
-                                            <Grid sm={6} md={4} lg={3} item>
+                                            <Grid sm={6} md={4} lg={3} item key={"skeleton-p-"+i}>
                                                 <SkeletonPostCard />
                                             </Grid>
                                         ))
@@ -60,7 +60,7 @@ export default function PostsGrid({postsData, checked, header, actions}) {
                       sx={{position: "relative"}}>
                     {postsData &&
                     postsData.map((post, i) => (
-                        <Grid item key={i}><MobilePostCard post={post}/></Grid>
+                        <Grid item key={"mobile-post-"+i}><MobilePostCard post={post}/></Grid>
                     ))}
                     {actions}
                 </Grid>

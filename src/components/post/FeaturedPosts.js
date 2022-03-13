@@ -23,7 +23,7 @@ export default function FeaturedPosts({featuredPostsData}) {
             </Container>
             <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative"}}>
                 {
-                    featuredPostsData && featuredPostsData.length ?
+                    featuredPostsData ?
                     (
                         featuredPostsData.map((post, i) => <PostCard post={post} key={i} checked={checked}/>)
                     ) :

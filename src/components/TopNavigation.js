@@ -103,7 +103,7 @@ export default function TopNavigation() {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu} href={page.href}>
+                                    <MenuItem key={"desktop-nav-"+page.title} onClick={handleCloseNavMenu} href={page.href}>
                                         <Typography textAlign="center">{page.title}</Typography>
                                     </MenuItem>
                                 ))}
@@ -114,7 +114,7 @@ export default function TopNavigation() {
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Button
-                                    key={page}
+                                    key={"mobile-nav-"+page.title}
                                     onClick={handleCloseNavMenu}
                                     href={page.href}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
