@@ -42,7 +42,7 @@ export default function PostTags({post, tagSize = "x-small"}) {
                             <span style={{fontSize: tagSize}}>
                                 {countryName}
                             </span>
-                            {i === countryName.length-1 ? "" : divider("tag-country-divider"+countryName+i)}
+                            {i === countryNames.length-1 ? "" : divider("tag-country-divider"+countryName+i)}
                         </React.Fragment>
                     ) : (
                         ""
