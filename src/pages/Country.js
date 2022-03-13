@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import RecentPosts from "../components/post/RecentPosts";
 
 const Country = () => {
     const [country, setCountry] = useState(null)
@@ -24,12 +25,31 @@ const Country = () => {
                         url
                     },
                     alt
-                }
-               
+                },
+               "relatedPosts": *[_type == "post" && "${slug}" in countries[]->slug.current] | order(publishedAt desc)  {
+                    title,
+                    "authorName": author->name,
+                    publishedAt,
+                    countries[]->{slug},
+                    "country": countries[]->name[0],
+                    "category": categories[]->{
+                        "colourHex": colour.hex,
+                        title
+                    }[0],
+                    slug,
+                    isFeatured,
+                    mainImage{
+                        asset->{
+                            _id,
+                            url
+                        }
+                    }
+               }
              }`)
             .then((data) => setCountry(data))
             .catch(console.error);
     }, [slug]);
+
     return typeof (country) !== 'undefined' && country !== null ? (
         <Box>
             <Box className="landingTripImage"
@@ -45,6 +65,9 @@ const Country = () => {
                 </Grid>
             </Box>
             <span className="sections">
+                <Box id="postsSection" className="section" sx={{py: 5}}>
+                    <RecentPosts recentPostsData={country.relatedPosts} checked={true} />
+                </Box>
             </span>
         </Box>
     ) : "";

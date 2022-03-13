@@ -5,12 +5,10 @@ import Slide from '@mui/material/Slide';
 import {makeStyles} from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ColorModeContext } from "../context/ColorModeContext";
-import {useContext} from "react";
 import Link from "@mui/material/Link";
+
+const pages = ['Destinations', 'Blog', 'About'];
+
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
@@ -41,7 +39,6 @@ function HideOnScroll(props) {
 }
 
 export default function TopNavigation() {
-    const { toggleColorMode, mode } = useContext(ColorModeContext);
     const classes = useStyles();
 
     return (
@@ -55,9 +52,6 @@ export default function TopNavigation() {
                                 Where's<span className="brandColor">Obee</span>?
                             </h1>
                         </Link>
-                        <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
-                            {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
