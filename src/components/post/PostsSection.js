@@ -21,11 +21,8 @@ export default function PostsSection() {
                     title,
                     "authorName": author->name,
                     publishedAt,
-                    "country": countries[]->name[0],
-                    "category": categories[]->{
-                        "colourHex": colour.hex,
-                        title
-                    }[0],
+                    'countryNames': countries[]->name,
+                    categories[]->{title, 'colourHex':colour.hex},
                     slug,
                     isFeatured,
                     mainImage{

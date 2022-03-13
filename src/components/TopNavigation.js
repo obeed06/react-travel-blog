@@ -70,7 +70,7 @@ export default function TopNavigation() {
             <CssBaseline />
             <HideOnScroll>
                 <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar className={classes.appbarWrapper} disableGutters>
+                    <Toolbar className={classes.appbarWrapper} disableGutters sx={{display: "justify-"}}>
                         <Link sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
