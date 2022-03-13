@@ -6,8 +6,24 @@ import {makeStyles} from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-const pages = ['Destinations', 'Blog', 'About'];
+const pages = [{
+    title: 'Destinations',
+    href: '/destinations'
+},{
+    title: 'Blog',
+    href: '/posts'
+},{
+    title: 'About',
+    href: '/about'
+}];
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Nunito',
     },
     appbarWrapper: {
-        width: '80%',
+        width: '90%',
         margin: '0 auto',
     },
     appbarTitle: {
@@ -40,18 +56,73 @@ function HideOnScroll(props) {
 
 export default function TopNavigation() {
     const classes = useStyles();
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
 
     return (
         <React.Fragment>
             <CssBaseline />
             <HideOnScroll>
                 <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar className={classes.appbarWrapper}>
-                        <Link href="/" underline="none" color="inherit">
-                            <h1 className={classes.appbarTitle}>
-                                Where's<span className="brandColor">Obee</span>?
-                            </h1>
-                        </Link>
+                    <Toolbar className={classes.appbarWrapper} disableGutters>
+                        <Link sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
+
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                }}
+                            >
+                                {pages.map((page) => (
+                                    <MenuItem key={page} onClick={handleCloseNavMenu} href={page.href}>
+                                        <Typography textAlign="center">{page.title}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+
+                        <Link sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            {pages.map((page) => (
+                                <Button
+                                    key={page}
+                                    onClick={handleCloseNavMenu}
+                                    href={page.href}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.title}
+                                </Button>
+                            ))}
+                        </Box>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
