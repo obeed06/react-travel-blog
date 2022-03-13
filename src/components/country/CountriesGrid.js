@@ -2,9 +2,9 @@ import React from 'react';
 import Container from "@mui/material/Container";
 import CountryCard from "./CountryCard";
 import Grid from "@mui/material/Grid";
-import SkeletonPostCard from "../post/SkeletonPostCard";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileCountryCard from "./MobileCountryCard";
+import SkeletonCountryCard from "./SkeletonCountryCard";
 
 const CountriesGrid = ({countries}) => {
     const matches = useMediaQuery('(min-width:656px)');
@@ -24,9 +24,9 @@ const CountriesGrid = ({countries}) => {
                             ) : (
                                 <React.Fragment>
                                     {
-                                        [...Array(8)].map((e, i) => (
+                                        [...Array(16)].map((e, i) => (
                                             <Grid sm={6} md={4} lg={3} item key={"skeleton-c-" + i}>
-                                                <SkeletonPostCard/>
+                                                <SkeletonCountryCard/>
                                             </Grid>
                                         ))
                                     }

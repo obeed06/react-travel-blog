@@ -31,8 +31,6 @@ const Destinations = () => {
             .catch(console.error);
     }, []);
 
-    if (!destinations) return <div>Loading...</div>;
-
     return (
         <Box id="countries" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
