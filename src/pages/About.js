@@ -12,6 +12,11 @@ import Divider from "@mui/material/Divider";
 import Moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
+    landingAbout: {
+        "&::after": {
+            backgroundColor: theme.palette.background.default,
+        }
+    },
     title: {
         color: '#fff',
         fontSize: '4.5rem',
@@ -55,7 +60,7 @@ const About = () => {
 
     return (
         <Box>
-            <Box className="landingAbout" ref={containerRef}>
+            <Box className={[classes.landingAbout, "landingAbout"]}  ref={containerRef}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <Typography vairant="h1" component="h2" className={classes.title}>
                         <div className={classes.smallTitle}>LEARN MORE</div>
@@ -95,9 +100,9 @@ const About = () => {
                         </div>
                     </Stack>
 
-                    <div>
+                    <Box sx={{py: 5}}>
                         <BlockContent blocks={aboutData?.author?.bio} projectId="ho3u0oh3" dataset="production"/>
-                    </div>
+                    </Box>
                 </Container>
             ) : (
                 ""

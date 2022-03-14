@@ -6,8 +6,30 @@
     background-position: center;
     position: relative;
     opacity: 0.75;
+    overflow: hidden;
 }
 
+.landingAbout:after {
+    mask: url('../../public/assets/diagonal.svg');
+    -webkit-mask-image: url('../../public/assets/diagonal.svg');
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    bottom: -4px;
+    width: 100%;
+    min-width: 2400px;
+    backface-visibility: hidden;
+    height: 275px;
+    background-size: cover;
+}
+
+@media screen and (max-width: 600px) {
+    .landingAbout:after {
+        height: 125px;
+    }
+}
 
 .statTitle {
     text-transform: uppercase;
