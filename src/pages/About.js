@@ -1,3 +1,4 @@
+import './About.css';
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import sanityClient from "../client.js";
@@ -6,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import {makeStyles} from "@mui/styles";
 import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import Moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -30,20 +34,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const About = () => {
+    Moment.locale('en')
     const classes = useStyles();
     const containerRef = React.useRef(null);
-    const [author, setAuthor] = useState(null);
+    const [aboutData, setAboutData] = useState(null);
 
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "author"]{
-        name,
-        bio
+        sanityClient.fetch(`{
+            "author": *[_type == "author"][0]{
+                name,
+                bio
+            },
+            "countryCount": count(*[_type == "country"]),
+            "postCount": count(*[_type == "post"]),
+            "earliestTrip": *[_type == "trip"]| order(tripDate asc)[0] {tripDate}
         }`)
-            .then((data) => setAuthor(data[0]))
+            .then((data) => setAboutData(data))
             .catch(console.error);
     }, []);
 
-    if (!author) return <div>Loading...</div>
     return (
         <Box>
             <Box className="landingAbout" ref={containerRef}>
@@ -53,14 +62,46 @@ const About = () => {
                         ABOUT ME
                     </Typography>
                     <Container maxWidth='sm'>
-                        <p className={classes.subHeading}>I'm David Obee, a software developer based in the UK. <br/>Welcome to my blog, this my space to practice my frontend skills and emerging technologies while documenting my solo travelling experiences.</p>
+                        <p className={classes.subHeading}>I'm David Obee, a software developer based in the UK. <br/>Welcome
+                            to my blog, this my space to practice my frontend skills and emerging technologies while
+                            documenting my solo travelling experiences.</p>
                     </Container>
                 </Grid>
             </Box>
-            <div>
-                <BlockContent blocks={author.bio} projectId="ho3u0oh3" dataset="production"/>
-            </div>
+            {aboutData ? (
+                <Container maxWidth='md'>
+                    <Stack direction={{xs: 'column', sm: 'row'}}
+                           divider={<Divider style={{marginLeft: "5px", marginRight: "5px"}} orientation="vertical"
+                                             flexItem/>}
+                           sx={{alignItems: "center", justifyContent: "space-evenly"}}>
 
+                        <div>
+                            <Typography className="statTitle" vairant="h5" component="h5">
+                                Countries Visited:
+                            </Typography>
+                            <em className="statNumber">{aboutData?.countryCount}+</em>
+                        </div>
+                        <div>
+                            <Typography className="statTitle" vairant="h5" component="h5">
+                                Years Travelled:
+                            </Typography>
+                            <em className="statNumber">{new Date().getFullYear() - Moment(aboutData?.earliestTrip?.tripDate).year()}+</em>
+                        </div>
+                        <div>
+                            <Typography className="statTitle" vairant="h5" component="h5">
+                                Posts Written:
+                            </Typography>
+                            <em className="statNumber">{aboutData?.postCount}</em>
+                        </div>
+                    </Stack>
+
+                    <div>
+                        <BlockContent blocks={aboutData?.author?.bio} projectId="ho3u0oh3" dataset="production"/>
+                    </div>
+                </Container>
+            ) : (
+                ""
+            )}
         </Box>
     );
 };

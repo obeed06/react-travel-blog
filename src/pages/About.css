@@ -1,0 +1,33 @@
+.landingAbout {
+    height: 80vh;
+    background-image: url('../../public/assets/bg-bolivia-train.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    opacity: 0.75;
+}
+
+
+.statTitle {
+    text-transform: uppercase;
+    font-family: Nunito;
+    font-weight: lighter;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.statNumber {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-family: Bungee Outline;
+    font-weight: bold;
+    font-style: normal;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 80px;
+    line-height: 100%;
+    color: #ff8100;
+}

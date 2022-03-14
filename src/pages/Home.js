@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import AboutSummary from "../components/AboutSummary";
+import AboutSummary from "../components/about/AboutSummary";
 import Trips from "../components/Trips";
 import ItineraryMap from "../components/ItineraryMap";
 import Box from "@mui/material/Box";

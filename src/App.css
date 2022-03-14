@@ -1,3 +1,7 @@
+.brandColor {
+    color: #ff8100;
+}
+
 .subHeadline {
     font-family: Nunito;
     font-weight: bold;
@@ -70,16 +74,6 @@
     background-size: cover;
     background-position: center;
     position: relative;
-}
-
-.landingAbout {
-    height: 100vh;
-    background-image: url('../public/assets/bg-bolivia-train.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    opacity: 0.75;
 }
 
 .d-card {
@@ -169,10 +163,6 @@ span.sections div.section:nth-of-type(2)  {
 
 span.sections div.section:nth-of-type(2) h2.sectionHeader {
     color: #d1deea;
-}
-
-.brandColor {
-    color: #ff8100;
 }
 
 .cardXScroll {
