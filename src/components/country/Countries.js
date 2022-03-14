@@ -8,7 +8,7 @@ import CountriesGrid from "./CountriesGrid";
 const Countries = ({countries}) => {
     return (
         <Box id="countries" className="section" sx={{py: 5}}>
-            <Container maxWidth='lg'>
+            <Container maxWidth='lg' disableGutters>
                 <Parallax translateY={['0', '+48']}>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
                         Countries.
