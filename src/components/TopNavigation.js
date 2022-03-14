@@ -69,11 +69,11 @@ export default function TopNavigation() {
         <React.Fragment>
             <CssBaseline />
             <HideOnScroll>
-                <AppBar className={classes.appbar} elevation={0}>
-                    <Toolbar className={classes.appbarWrapper} disableGutters sx={{display: "justify-"}}>
+                <AppBar className={classes.appbar} elevation={0} >
+                    <Toolbar className={classes.appbarWrapper} disableGutters sx={{flexDirection: { xs: 'column', md: 'row' }, justifyContent: { xs: 'center', md: 'flex-start' }}} >
                         <Link sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
 
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none'}, alignSelf: { xs: 'flex-start'} }}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -110,7 +110,6 @@ export default function TopNavigation() {
                             </Menu>
                         </Box>
 
-                        <Link sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Button
@@ -123,7 +122,9 @@ export default function TopNavigation() {
                                 </Button>
                             ))}
                         </Box>
+                        <Link sx={{ display: { xs: 'flex', md: 'none' }, position: { xs: 'absolute', md: '' }, top: { xs: '25px', md: '' } }} href="/"><img style={{height: "65px", width: "65px"}} src={process.env.PUBLIC_URL + '/assets/logo-with-title.png'} alt="logo with title" /></Link>
                     </Toolbar>
+
                 </AppBar>
             </HideOnScroll>
         </React.Fragment>
