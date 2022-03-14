@@ -5,6 +5,9 @@ import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import PostsGrid from "../components/post/PostsGrid";
+import SkeletonHeroPostCard from "../components/post/SkeletonHeroPostCard";
+import Skeleton from "@mui/material/Skeleton";
+import Paper from "@mui/material/Paper";
 
 const Country = () => {
     const [country, setCountry] = useState(null)
@@ -56,8 +59,14 @@ const Country = () => {
                  style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + country?.cBackground?.asset?.url + ")"}}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <div className="d-icon" style={{width: '60%', height: '60%'}}>
-                        <div className="d-icon-bg" style={{backgroundImage: "url("+country?.cIcon?.asset?.url+")"}}></div>
-                        <Typography vairant="h1" component="h2" className="title" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+                        <div className="d-icon-bg"
+                             style={{backgroundImage: "url(" + country?.cIcon?.asset?.url + ")"}}></div>
+                        <Typography vairant="h1" component="h2" className="title" style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)'
+                        }}>
                             <div>{country?.name}</div>
                         </Typography>
                     </div>
@@ -76,7 +85,14 @@ const Country = () => {
                 </Box>
             </span>
         </Box>
-    ) : "";
+    ) : (
+        <Box>
+            <Box className="landingTripImage">
+                <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="center">
+                    <Skeleton height={80} width={"40%"}/>
+                </Grid>
+            </Box>
+        </Box>);
 };
 
 export default Country;
