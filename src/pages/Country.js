@@ -5,9 +5,7 @@ import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import PostsGrid from "../components/post/PostsGrid";
-import SkeletonHeroPostCard from "../components/post/SkeletonHeroPostCard";
 import Skeleton from "@mui/material/Skeleton";
-import Paper from "@mui/material/Paper";
 
 const Country = () => {
     const [country, setCountry] = useState(null)

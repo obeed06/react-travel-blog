@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import PostTags from "../components/post/PostTags";
 import Divider from "@mui/material/Divider";
 import Moment from "moment";
+import Skeleton from "@mui/material/Skeleton";
 
 const Post = () => {
     const [post, setPost] = useState(null)
@@ -36,7 +37,8 @@ const Post = () => {
             <Box className="landingPostImage"
                  style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + post?.mainImage?.asset?.url + ")"}}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
-                    <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1} style={{height: "80%"}}>
+                    <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1}
+                           style={{height: "80%"}}>
                     <span style={{fontSize: "15px"}}>
                         <PostTags post={post} tagSize="large"/>
                     </span>
@@ -56,7 +58,15 @@ const Post = () => {
                 </Grid>
             </Box>
         </Box>
-    ) : "";
+    ) : (
+        <Box>
+            <Box className="landingPostImage">
+                <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="end">
+                    <Skeleton sx={{mb: 5}} height={80} width={"40%"}/>
+                </Grid>
+            </Box>
+        </Box>
+    );
 };
 
 export default Post;
