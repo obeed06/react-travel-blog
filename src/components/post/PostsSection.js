@@ -1,3 +1,4 @@
+import './PostsSection.css'
 import React, {useEffect, useState} from "react";
 import sanityClient from "../../client.js";
 import Box from "@mui/material/Box";
@@ -9,8 +10,18 @@ import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import Typography from "@mui/material/Typography";
+import {makeStyles} from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+    featuredPostSection: {
+        "&::before": {
+            backgroundColor: theme.palette.background.default,
+        }
+    },
+}));
 
 export default function PostsSection() {
+    const classes = useStyles();
     const [postsData, setPosts] = useState(null);
     const checked = useWindowPosition("mapSection");
 
@@ -21,7 +32,7 @@ export default function PostsSection() {
                     title,
                     "authorName": author->name,
                     publishedAt,
-                    'countryNames': countries[]->name,
+                    'destinationNames': destinations[]->name,
                     categories[]->{title, 'colourHex':colour.hex},
                     slug,
                     isFeatured,
@@ -38,21 +49,28 @@ export default function PostsSection() {
     }, []);
 
     if (!postsData) return <div>Loading...</div>;
-    let featuredPosts = postsData.filter(p => { return p.isFeatured}).slice(0, 4)
-    let recentPosts = postsData.filter(p => { return !featuredPosts.includes(p)})
+    let featuredPosts = postsData.filter(p => {
+        return p.isFeatured
+    }).slice(0, 4)
+    let recentPosts = postsData.filter(p => {
+        return !featuredPosts.includes(p)
+    })
     let sectionBGUrl = featuredPosts[0]?.mainImage?.asset?.url;
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
-                <Box className="featuredPostSection"  style={{backgroundImage: "url("+sectionBGUrl+")"}}>
-                    <FeaturedPosts featuredPostsData={featuredPosts} />
-                </Box>
-            <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn()}
-                       header={
-                           <Typography vairant="h1" component="h2" className="sectionHeader">
-                                Recent Posts.
-                           </Typography>
-                       }
-            />
+            <Box className={[classes.featuredPostSection, "featuredPostSection"]}
+                 sx={{backgroundImage: "url(" + sectionBGUrl + ")"}}>
+                <FeaturedPosts featuredPostsData={featuredPosts}/>
+            </Box>
+            <Box sx={{zIndex: "4", marginTop: "-15px"}}>
+                <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn()}
+                           header={
+                               <Typography variant="h1" component="h2" className="sectionHeader">
+                                   Recent Posts.
+                               </Typography>
+                           }
+                />
+            </Box>
         </Box>
     );
 }

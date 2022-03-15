@@ -1,3 +1,4 @@
+import './Destination.css'
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -6,33 +7,42 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import PostsGrid from "../components/post/PostsGrid";
 import Skeleton from "@mui/material/Skeleton";
+import {makeStyles, useTheme} from "@mui/styles";
 
-const Country = () => {
-    const [country, setCountry] = useState(null)
+const useStyles = makeStyles((theme) => ({
+    tripsSection: {
+            backgroundColor: theme.palette.background.default,
+    },
+}));
+
+const Destination = () => {
+    const themeProps = useTheme();
+    console.log(themeProps)
+    const [destination, setDestination] = useState(null)
     let {slug} = useParams();
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "country" && slug.current == "${slug}"][0]{
+        sanityClient.fetch(`*[_type == "destination" && slug.current == "${slug}"][0]{
                 name,
-                cIcon{
+                icon{
                     asset->{
                         _id,
                         url
                     },
                     alt
                 },
-                cBackground{
+                bgImage{
                     asset->{
                         _id,
                         url
                     },
                     alt
                 },
-               "relatedPosts": *[_type == "post" && "${slug}" in countries[]->slug.current] | order(publishedAt desc)  {
+               "relatedPosts": *[_type == "post" && "${slug}" in destinations[]->slug.current] | order(publishedAt desc)  {
                     title,
                     "authorName": author->name,
                     publishedAt,
-                    countries[]->{slug},
-                    "country": countries[]->name[0],
+                    destinations[]->{slug},
+                    "destination": destinations[]->name[0],
                     "category": categories[]->{
                         "colourHex": colour.hex,
                         title
@@ -47,25 +57,25 @@ const Country = () => {
                     }
                }
              }`)
-            .then((data) => setCountry(data))
+            .then((data) => setDestination(data))
             .catch(console.error);
     }, [slug]);
 
-    return typeof (country) !== 'undefined' && country !== null ? (
+    return typeof (destination) !== 'undefined' && destination !== null ? (
         <Box>
-            <Box className="landingTripImage"
-                 style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + country?.cBackground?.asset?.url + ")"}}>
+            <Box className="landingDestinationImage"
+                 style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5), "+themeProps.palette.background.default+"), url(" + destination?.bgImage?.asset?.url + ")"}}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <div className="d-icon" style={{width: '60%', height: '60%'}}>
                         <div className="d-icon-bg"
-                             style={{backgroundImage: "url(" + country?.cIcon?.asset?.url + ")"}}></div>
+                             style={{backgroundImage: "url(" + destination?.icon?.asset?.url + ")"}}></div>
                         <Typography vairant="h1" component="h2" className="title" style={{
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)'
                         }}>
-                            <div>{country?.name}</div>
+                            <div>{destination?.name}</div>
                         </Typography>
                     </div>
 
@@ -73,7 +83,7 @@ const Country = () => {
             </Box>
             <span className="sections">
                 <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <PostsGrid postsData={country.relatedPosts} checked={true}
+                    <PostsGrid postsData={destination.relatedPosts} checked={true}
                                header={
                                    <Typography vairant="h1" component="h2" className="sectionHeader">
                                        Related Posts.
@@ -93,4 +103,4 @@ const Country = () => {
         </Box>);
 };
 
-export default Country;
+export default Destination;

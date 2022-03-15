@@ -1,0 +1,8 @@
+.landingDestinationImage {
+    height: 100vh;
+    background-color: darkgrey;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}

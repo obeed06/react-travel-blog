@@ -1,12 +1,12 @@
 import React from 'react';
 import Container from "@mui/material/Container";
-import CountryCard from "./CountryCard";
+import DestiantionCard from "./DestiantionCard";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import MobileCountryCard from "./MobileCountryCard";
-import SkeletonCountryCard from "./SkeletonCountryCard";
+import MobileDestinationCard from "./MobileDestinationCard";
+import SkeletonDestinationCard from "./SkeletonDestinationCard";
 
-const CountriesGrid = ({countries}) => {
+const DestinationGrid = ({destinations}) => {
     const matches = useMediaQuery('(min-width:656px)');
 
     return (
@@ -15,10 +15,10 @@ const CountriesGrid = ({countries}) => {
                 <Grid container direction="row" justifyContent="space-between"
                       spacing={2} sx={{position: "relative"}}>
                     {
-                        countries ?
+                        destinations ?
                             (
-                                countries.map((country, i) => (
-                                    <Grid sm={6} md={4} lg={3} item key={i}><CountryCard country={country}/></Grid>
+                                destinations.map((destination, i) => (
+                                    <Grid sm={6} md={4} lg={3} item key={i}><DestiantionCard destination={destination}/></Grid>
 
                                 ))
                             ) : (
@@ -26,7 +26,7 @@ const CountriesGrid = ({countries}) => {
                                     {
                                         [...Array(16)].map((e, i) => (
                                             <Grid sm={6} md={4} lg={3} item key={"skeleton-c-" + i}>
-                                                <SkeletonCountryCard/>
+                                                <SkeletonDestinationCard/>
                                             </Grid>
                                         ))
                                     }
@@ -38,13 +38,13 @@ const CountriesGrid = ({countries}) => {
         ) : (
             <Grid container direction="column" justifyContent="flex-start" alignItems="stretch"
                   sx={{position: "relative"}}>
-                {countries &&
-                countries.map((post, i) => (
-                    <Grid item key={"mobile-country-" + i}><MobileCountryCard post={post}/></Grid>
+                {destinations &&
+                destinations.map((post, i) => (
+                    <Grid item key={"mobile-destination-" + i}><MobileDestinationCard post={post}/></Grid>
                 ))}
             </Grid>
         )
     );
 };
 
-export default CountriesGrid;
+export default DestinationGrid;

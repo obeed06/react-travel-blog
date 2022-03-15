@@ -17,25 +17,6 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.background.default,
         }
     },
-    title: {
-        color: '#fff',
-        fontSize: '4.5rem',
-        fontFamily: 'Nunito',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    smallTitle: {
-        color: '#fff',
-        fontSize: '2rem',
-        fontFamily: 'Nunito',
-        fontWeight: 'lighter',
-        textAlign: 'center',
-    },
-    subHeading: {
-        color: '#fff',
-        fontFamily: 'Nunito',
-        textAlign: 'center',
-    },
 }));
 
 const About = () => {
@@ -50,7 +31,7 @@ const About = () => {
                 name,
                 bio
             },
-            "countryCount": count(*[_type == "country"]),
+            "destinationCount": count(*[_type == "destination" && isCountry == true]),
             "postCount": count(*[_type == "post"]),
             "earliestTrip": *[_type == "trip"]| order(tripDate asc)[0] {tripDate}
         }`)
@@ -62,15 +43,11 @@ const About = () => {
         <Box>
             <Box className={[classes.landingAbout, "landingAbout"]}  ref={containerRef}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
-                    <Typography vairant="h1" component="h2" className={classes.title}>
-                        <div className={classes.smallTitle}>LEARN MORE</div>
-                        ABOUT ME
+                    <Typography vairant="h1" component="h2" className="aboutHeading">
+                        <div className="aboutSubHeading">learn more</div>
+                        <Divider style={{borderColor: "rgba(255, 255, 255, 0.15)", width: "75%", marginLeft: "12.5%"}}/>
+                        about me
                     </Typography>
-                    <Container maxWidth='sm'>
-                        <p className={classes.subHeading}>I'm David Obee, a software developer based in the UK. <br/>Welcome
-                            to my blog, this my space to practice my frontend skills and emerging technologies while
-                            documenting my solo travelling experiences.</p>
-                    </Container>
                 </Grid>
             </Box>
             {aboutData ? (
@@ -84,7 +61,7 @@ const About = () => {
                             <Typography className="statTitle" vairant="h5" component="h5">
                                 Countries Visited:
                             </Typography>
-                            <em className="statNumber">{aboutData?.countryCount}+</em>
+                            <em className="statNumber">{aboutData?.destinationCount}+</em>
                         </div>
                         <div>
                             <Typography className="statTitle" vairant="h5" component="h5">

@@ -67,14 +67,6 @@
     background-position: center;
     position: relative;
 }
-.landingPostImage {
-    height: 66vh;
-    background-color: darkgrey;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
 
 .d-card {
     background-color: darkgrey;
@@ -173,7 +165,7 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
     width: 0;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1240px) {
     .cardXScroll {
         justify-content: flex-start;
     }
@@ -184,13 +176,6 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
     font-weight: lighter;
     font-size: 16px;
     color: white;
-}
-
-.featuredPostSection {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding-bottom: 150px;
 }
 
 .mobilePostCard {

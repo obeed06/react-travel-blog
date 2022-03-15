@@ -8,7 +8,7 @@ import {faCheckSquare, faCoffee} from '@fortawesome/free-solid-svg-icons'
 import {ColorModeContextProvider} from './context/ColorModeContext';
 import About from "./pages/About";
 import Trip from "./pages/Trip";
-import Country from "./pages/Country";
+import Destination from "./pages/Destination";
 import Box from "@mui/material/Box";
 import Footer from "./components/Footer";
 import Fab from "@mui/material/Fab";
@@ -33,7 +33,7 @@ const App = () => {
                         <Route path='/' element={<Home/>}/> exact/>
                         <Route path='/about' element={<About/>}/>
                         <Route path='/trip/:slug' element={<Trip/>}/>
-                        <Route path='/country/:slug' element={<Country/>}/>
+                        <Route path='/destination/:slug' element={<Destination/>}/>
                         <Route path='/destinations' element={<Destinations/>}/>
                         <Route path='/posts' element={<Posts/>}/>
                         <Route path='/post/:slug' element={<Post/>}/>
@@ -74,7 +74,7 @@ function ScrollTop(props) {
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{position: 'fixed', bottom: 16, right: 16}}
+                sx={{position: 'fixed', bottom: 16, right: 16, zIndex: 5}}
             >
                 {children}
             </Box>

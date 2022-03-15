@@ -31,6 +31,24 @@
     }
 }
 
+.aboutHeading {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 4.5rem;
+    font-family: Nunito;
+    font-weight: bold;
+    text-align: center;
+}
+
+.aboutSubHeading {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 2rem;
+    font-family: Nunito;
+    font-weight: lighter;
+    text-align: center;
+}
+
 .statTitle {
     text-transform: uppercase;
     font-family: Nunito;

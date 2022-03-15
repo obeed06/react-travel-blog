@@ -4,22 +4,22 @@ import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {Parallax} from "react-scroll-parallax";
-import CountriesGrid from "../components/country/CountriesGrid";
+import DestinationGrid from "../components/destination/DestinationGrid";
 
 const Destinations = () => {
     const [destinations, setDestinations] = useState(null)
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "country"] | order(name asc) {
+        sanityClient.fetch(`*[_type == "destination"] | order(name asc) {
             name,
                 slug,
-                cIcon{
+                icon{
                     asset->{
                         _id,
                         url
                     },
                 alt
                 },
-                cBackground{
+                bgImage{
                     asset->{
                         _id,
                         url
@@ -32,7 +32,7 @@ const Destinations = () => {
     }, []);
 
     return (
-        <Box id="countries" className="section" sx={{py: 5}}>
+        <Box id="destinations" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
                 <Parallax translateY={['0', '+48']}>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
@@ -40,7 +40,7 @@ const Destinations = () => {
                     </Typography>
                 </Parallax>
             </Container>
-            <CountriesGrid countries={destinations} />
+            <DestinationGrid destinations={destinations} />
         </Box>
     );
 };

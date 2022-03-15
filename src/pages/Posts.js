@@ -13,7 +13,7 @@ const Posts = () => {
                     title,
                     "authorName": author->name,
                     publishedAt,
-                   'countryNames': countries[]->name,
+                   'destinationNames': destinations[]->name,
                     categories[]->{title, 'colourHex':colour.hex},
                     slug,
                     isFeatured,

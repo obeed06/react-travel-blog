@@ -4,12 +4,12 @@ import Stack from "@mui/material/Stack";
 
 export default function PostTags({post, tagSize = "x-small"}) {
     let categories = post?.categories
-    let countryNames = post?.countryNames
+    let destinationNames = post?.destinationNames
     if (tagSize === "x-small" || tagSize === "small") {
         if (Array.isArray(categories))
             categories = categories.slice(0, 1)
-        if (Array.isArray(countryNames))
-            countryNames = countryNames.slice(0, 1)
+        if (Array.isArray(destinationNames))
+            destinationNames = destinationNames.slice(0, 1)
     }
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }}
@@ -29,10 +29,10 @@ export default function PostTags({post, tagSize = "x-small"}) {
                     ""
                 ))
             )}
-            {countryNames && countryNames.map((countryName, i) =>
-                (countryName ? (
-                    <span key={"tag-country-" + countryName.title + i} style={{fontSize: tagSize}}>
-                                {countryName}
+            {destinationNames && destinationNames.map((destinationName, i) =>
+                (destinationName ? (
+                    <span key={"tag-destination-" + destinationName.title + i} style={{fontSize: tagSize}}>
+                                {destinationName}
                             </span>
                 ) : (
                     ""

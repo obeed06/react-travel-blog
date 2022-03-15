@@ -4,8 +4,8 @@ import Box from "@mui/material/Box";
 import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Countries from "../components/country/Countries";
-import ItineraryMap from "../components/ItineraryMap";
+import DestinationsSection from "../components/destination/DestinationsSection";
+import ItineraryMap from "../components/trip/ItineraryMap";
 
 const Trip = () => {
     const [trip, setTrip] = useState(null)
@@ -30,17 +30,17 @@ const Trip = () => {
                         alt
                     }
                 },
-                countries[]->{
+                destinations[]->{
                     name,
                     slug,
-                    cIcon{
+                    icon{
                         asset->{
                             _id,
                             url
                         },
                     alt
                     },
-                    cBackground{
+                    bgImage{
                         asset->{
                             _id,
                             url
@@ -63,7 +63,7 @@ const Trip = () => {
                 </Grid>
             </Box>
             <span className="sections">
-                <Countries countries={trip?.countries}/>
+                <DestinationsSection destinations={trip?.destinations}/>
                 <ItineraryMap data={trip?.itinerary}/>
             </span>
         </Box>

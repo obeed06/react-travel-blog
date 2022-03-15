@@ -20,7 +20,7 @@ export default function FeaturedPosts({featuredPostsData}) {
                     </Typography>
                 </Parallax>
             </Container>
-            <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative"}}>
+            <Stack direction="row" justifyContent="center" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative", zIndex: "3"}}>
                 {
                     featuredPostsData ?
                     (

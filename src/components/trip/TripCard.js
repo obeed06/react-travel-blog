@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ImageCard({slugPrefix, item, checked, timeout = 1}) {
+export default function TripCard({slugPrefix, item, checked, timeout = 1}) {
     const classes = useStyles();
     const [state, setState] = useState({
         raised: false,
