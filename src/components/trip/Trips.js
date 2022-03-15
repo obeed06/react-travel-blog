@@ -1,7 +1,6 @@
 import './Trips.css';
 import React, {useState, useEffect} from 'react';
 import TripCard from "./TripCard";
-import useWindowPosition from '../../hook/useWindowPosition';
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
