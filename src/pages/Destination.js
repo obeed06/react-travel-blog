@@ -7,13 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import PostsGrid from "../components/post/PostsGrid";
 import Skeleton from "@mui/material/Skeleton";
-import {makeStyles, useTheme} from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-    tripsSection: {
-            backgroundColor: theme.palette.background.default,
-    },
-}));
+import {useTheme} from "@mui/styles";
 
 const Destination = () => {
     const themeProps = useTheme();
