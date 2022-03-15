@@ -95,7 +95,7 @@ const Destination = () => {
         </Box>
     ) : (
         <Box>
-            <Box className="landingTripImage">
+            <Box className="landingDestinationImage">
                 <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="center">
                     <Skeleton height={80} width={"40%"}/>
                 </Grid>

@@ -59,15 +59,6 @@
     position: relative;
 }
 
-.landingTripImage {
-    height: 50vh;
-    background-color: darkgrey;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
 .d-card {
     background-color: darkgrey;
     background-size: 250%;
