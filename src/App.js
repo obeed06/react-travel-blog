@@ -19,10 +19,12 @@ import {ParallaxProvider} from "react-scroll-parallax";
 import Post from "./pages/Post";
 import Posts from "./pages/Posts";
 import Destinations from "./pages/Destinations";
+import useWindowDimensions from "./hook/useWindowDimensions";
 
 library.add(fab, faCheckSquare, faCoffee)
 
 const App = () => {
+    useWindowDimensions();
     return (
         <ColorModeContextProvider app={
             <ParallaxProvider>

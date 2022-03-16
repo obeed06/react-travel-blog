@@ -6,13 +6,16 @@ import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import PostTags from "../components/post/PostTags";
 import Divider from "@mui/material/Divider";
 import Moment from "moment";
 import Skeleton from "@mui/material/Skeleton";
 import BlockContent from "@sanity/block-content-to-react";
 import Container from "@mui/material/Container";
 import {makeStyles} from "@mui/styles";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Link from "@mui/material/Link";
+import Chip from "@mui/material/Chip";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -31,7 +34,7 @@ const Post = () => {
                  title,
                     "authorName": author->name,
                     publishedAt,
-                    'destinationNames': destinations[]->name,
+                    destinations[]->{name,slug},
                     categories[]->{title, 'colourHex':colour.hex},
                     slug,
                     isFeatured,
@@ -53,9 +56,6 @@ const Post = () => {
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1}
                            style={{height: "80%"}}>
-                    <span style={{fontSize: "15px"}}>
-                        <PostTags post={post} tagSize="large"/>
-                    </span>
                         <Typography
                             gutterBottom
                             variant="h3"
@@ -71,8 +71,10 @@ const Post = () => {
                     </Stack>
                 </Grid>
             </Box>
-            <Container maxWidth='md' sx={{my:5}}>
+            <Container maxWidth='md' sx={{my: 5}}>
+                <DestinationBreadcrumbs destinations={post?.destinations}/>
                 <BlockContent blocks={post?.body} projectId="ho3u0oh3" dataset="production"/>
+                <ChipCategories categories={post?.categories}/>
             </Container>
         </Box>
     ) : (
@@ -85,5 +87,34 @@ const Post = () => {
         </Box>
     );
 };
+
+const DestinationBreadcrumbs = ({destinations}) => {
+    return <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>}
+                        aria-label="breadcrumb">
+        <Link href="/" underline="hover">Home</Link>
+        {
+            destinations && Array.isArray(destinations) ?
+                (
+                    destinations.map((d, i) => <Link key={i+d.name} href={"/destination/" + d?.slug.current}
+                                                     underline="hover">{d.name}</Link>)
+                ) : ""
+        }
+    </Breadcrumbs>
+}
+
+const ChipCategories = ({categories}) => {
+    return categories && Array.isArray(categories) ?
+        <React.Fragment>
+            <Stack direction="row" spacing={1} alignItems="center">
+                <strong>CATEGORIES</strong>
+                {categories.map((c, i) => (
+                    <Chip key={i+c.title} clickable style={{color: c?.colourHex, borderColor: c?.colourHex}} variant="outlined"
+                          size="small"
+                          label={c?.title}/>))}
+            </Stack>
+
+        </React.Fragment>
+        : ""
+}
 
 export default Post;

@@ -21,7 +21,7 @@ export default function PostsGrid({postsData, checked, header, actions}) {
             </Container>
             {matches ?
                 <Container maxWidth='lg'>
-                    <Grid container direction="row" justifyContent="space-between"
+                    <Grid container direction="row" justifyContent="flex-start"
                           spacing={2} sx={{position: "relative"}}>
                         {
                             postsData ?
