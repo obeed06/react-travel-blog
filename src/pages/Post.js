@@ -62,7 +62,7 @@ const Post = ({preview = false}) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
                         <Box className="post_body">
-                            <PortableText value={post?.body} components={myPortableTextComponents}/>
+                            <PortableText value={post?.body} components={postBodyHeadingsComponent}/>
                         </Box>
                     </Grid>
                     <Grid sx={{display: { xs: "none", md: "block" }}} item md={4}>
@@ -113,7 +113,7 @@ const ChipCategories = ({categories}) => {
         : ""
 }
 
-const myPortableTextComponents = {
+const postBodyHeadingsComponent = {
     block: {
         h2: ({children}) => <h2 id={hyphenate(children[0])}>{children}</h2>,
         h3: ({children}) => <h3 id={hyphenate(children[0])}>{children}</h3>,

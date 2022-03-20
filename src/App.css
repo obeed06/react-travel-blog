@@ -1,5 +1,7 @@
 :root {
     --brand-color: #ff8100;
+    --font-heading-primary: Molot;
+    --font-heading-secondary: Bungee Outline;
 }
 
 .brandColor {
@@ -7,14 +9,14 @@
 }
 
 .subHeadline {
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: bold;
     font-size: 9vw;
     text-align: center;
 }
 
 .headline {
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: lighter;
     font-size: 18vw;
     text-align: center;
@@ -95,7 +97,7 @@
 }
 .title {
     color: #fff;
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: bold;
     text-align: center;
 }
@@ -115,7 +117,7 @@
 
 h2.sectionHeader {
     margin: 0;
-    font-family: Bungee Outline;
+    font-family: var(--font-heading-secondary);
     font-weight: bold;
 }
 
@@ -167,7 +169,7 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
 }
 
 .cardHeader {
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: lighter;
     font-size: 16px;
     color: white;
@@ -201,7 +203,7 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
 }
 
 .siteFooter h6 {
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;

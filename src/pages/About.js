@@ -53,7 +53,7 @@ const About = ({preview = false}) => {
             <Box className={[classes.landingAbout, "landingAbout"]}  ref={containerRef}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <Avatar alt="David Obee" src={process.env.PUBLIC_URL + '/assets/avatar.jpg'} sx={{ width: 56, height: 56 }} />
-                    <Box><span ref={el}></span></Box>
+                    <Box sx={{color: "white", font: "var(--font-heading-primary)"}}><span ref={el}></span></Box>
                     <Typography vairant="h1" component="h2" className="aboutHeading">
                         <div className="aboutSubHeading">learn more</div>
                         <Divider style={{borderColor: "rgba(255, 255, 255, 0.15)", width: "75%", marginLeft: "12.5%"}}/>

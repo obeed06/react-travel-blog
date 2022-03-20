@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme) => ({
     subHeading: {
-        fontFamily: 'Nunito',
+        fontFamily: 'var(--font-heading-primary)',
         textAlign: 'center',
     },
 }));

@@ -29,7 +29,7 @@ const pages = [{
 const useStyles = makeStyles((theme) => ({
     appbar: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        fontFamily: 'Nunito',
+        fontFamily: 'var(--font-heading-primary)',
     },
     appbarWrapper: {
         width: '90%',

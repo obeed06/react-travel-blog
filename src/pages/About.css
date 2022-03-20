@@ -35,7 +35,7 @@
     text-transform: uppercase;
     color: #fff;
     font-size: 4.5rem;
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: bold;
     text-align: center;
 }
@@ -44,14 +44,14 @@
     text-transform: uppercase;
     color: #fff;
     font-size: 2rem;
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: lighter;
     text-align: center;
 }
 
 .statTitle {
     text-transform: uppercase;
-    font-family: Nunito;
+    font-family: var(--font-heading-primary);
     font-weight: lighter;
     font-size: 14px;
     letter-spacing: 1px;
@@ -62,7 +62,7 @@
     width: 100%;
     text-align: center;
     margin: 0;
-    font-family: Bungee Outline;
+    font-family: var(--font-heading-secondary);
     font-weight: bold;
     font-style: normal;
     display: inline-block;
