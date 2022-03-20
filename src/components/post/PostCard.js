@@ -42,7 +42,7 @@ export default function PostCard({post}) {
               onMouseOver={() => setState({raised: true, shadow: 3})}
               onMouseOut={() => setState({raised: false, shadow: 1})}
               raised={state.raised} zdepth={state.shadow}>
-            <CardActionArea href={"/post/" + post.slug.current} key={post.slug.current}>
+            <CardActionArea href={"/post/" + post.slug} key={post.slug}>
                 <CardMedia
                     className={classes.media}
                     image={post.mainImage.asset.url}
@@ -60,7 +60,7 @@ export default function PostCard({post}) {
                     </Typography>
                     <Divider style={{borderColor: "rgba(255, 255, 255, 0.15)"}}/>
                     <span
-                        className="postCardAuthor">By {post.authorName} on {Moment(post.publishedAt).format('DD MMMM YYYY')}</span>
+                        className="postCardAuthor">By {post.author.name} on {Moment(post.date).format('DD MMMM YYYY')}</span>
                 </CardContent>
             </CardActionArea>
         </Card>

@@ -1,60 +1,24 @@
 import './Destination.css'
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
-import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import PostsGrid from "../components/post/PostsGrid";
 import Skeleton from "@mui/material/Skeleton";
 import {useTheme} from "@mui/styles";
+import {getDestinationAndRelatedPosts} from "../lib/destinationApi";
+import {useParams} from "react-router";
 
-const Destination = () => {
+const Destination = ({preview = false}) => {
     const themeProps = useTheme();
-    console.log(themeProps)
-    const [destination, setDestination] = useState(null)
     let {slug} = useParams();
+    const [destination, setDestination] = useState(null);
+    const [relatedPosts, setRelatedPosts] = useState(null);
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "destination" && slug.current == "${slug}"][0]{
-                name,
-                icon{
-                    asset->{
-                        _id,
-                        url
-                    },
-                    alt
-                },
-                bgImage{
-                    asset->{
-                        _id,
-                        url
-                    },
-                    alt
-                },
-               "relatedPosts": *[_type == "post" && "${slug}" in destinations[]->slug.current] | order(publishedAt desc)  {
-                    title,
-                    "authorName": author->name,
-                    publishedAt,
-                    destinations[]->{slug},
-                    "destination": destinations[]->name[0],
-                    "category": categories[]->{
-                        "colourHex": colour.hex,
-                        title
-                    }[0],
-                    slug,
-                    isFeatured,
-                    mainImage{
-                        asset->{
-                            _id,
-                            url
-                        }
-                    }
-               }
-             }`)
-            .then((data) => setDestination(data))
+        getDestinationAndRelatedPosts(slug, preview)
+            .then(([dData, rpData]) => { setDestination(dData); setRelatedPosts(rpData);})
             .catch(console.error);
-    }, [slug]);
-
+    }, []);
     return typeof (destination) !== 'undefined' && destination !== null ? (
         <Box>
             <Box className="landingDestinationImage"
@@ -77,7 +41,7 @@ const Destination = () => {
             </Box>
             <span className="sections">
                 <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <PostsGrid postsData={destination.relatedPosts} checked={true}
+                    <PostsGrid postsData={relatedPosts} checked={true}
                                header={
                                    <Typography vairant="h1" component="h2" className="sectionHeader">
                                        Related Posts.

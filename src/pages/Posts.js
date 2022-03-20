@@ -1,36 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
-import sanityClient from "../client";
 import PostsGrid from "../components/post/PostsGrid";
 import Typography from "@mui/material/Typography";
+import {getAllPosts} from "../lib/postApi";
 
-const Posts = () => {
-    const [postsData, setPosts] = useState(null);
+const Posts = ({preview = false}) => {
+    const [posts, setPosts] = useState(null);
     useEffect(() => {
-        sanityClient
-            .fetch(
-                `*[_type == "post"][0..16] | order(publishedAt desc) {
-                    title,
-                    "authorName": author->name,
-                    publishedAt,
-                   'destinationNames': destinations[]->name,
-                    categories[]->{title, 'colourHex':colour.hex},
-                    slug,
-                    isFeatured,
-                    mainImage{
-                      asset->{
-                      _id,
-                      url
-                    }
-                  }
-                }`
-            )
+        getAllPosts(preview)
             .then((data) => setPosts(data))
             .catch(console.error);
     }, []);
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
-            <PostsGrid postsData={postsData} checked={true}
+            <PostsGrid postsData={posts} checked={true}
                        header={
                            <Typography vairant="h1" component="h2" className="sectionHeader">
                                Posts.

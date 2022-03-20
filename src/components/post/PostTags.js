@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 
 export default function PostTags({post, tagSize = "x-small"}) {
     let categories = post?.categories
-    let destinationNames = post?.destinationNames
+    let destinationNames = post?.destinations && post?.destinations.map(d => d.name)
     if (tagSize === "x-small" || tagSize === "small") {
         if (Array.isArray(categories))
             categories = categories.slice(0, 1)

@@ -1,36 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
-import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {Parallax} from "react-scroll-parallax";
 import DestinationGrid from "../components/destination/DestinationGrid";
+import {getDestinations} from "../lib/destinationApi";
 
-const Destinations = () => {
-    const [destinations, setDestinations] = useState(null)
+const Destinations = ({preview = false}) => {
+    const [destinations, setDestinations] = useState(null);
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "destination"] | order(name asc) {
-            name,
-                slug,
-                icon{
-                    asset->{
-                        _id,
-                        url
-                    },
-                alt
-                },
-                bgImage{
-                    asset->{
-                        _id,
-                        url
-                    },
-                alt
-                }
-             }`)
+        getDestinations(preview)
             .then((data) => setDestinations(data))
             .catch(console.error);
     }, []);
-
     return (
         <Box id="destinations" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
@@ -40,7 +22,7 @@ const Destinations = () => {
                     </Typography>
                 </Parallax>
             </Container>
-            <DestinationGrid destinations={destinations} />
+            <DestinationGrid destinations={destinations}/>
         </Box>
     );
 };

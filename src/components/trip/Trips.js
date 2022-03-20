@@ -1,11 +1,10 @@
 import './Trips.css';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import TripCard from "./TripCard";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import sanityClient from "../../client.js"
 import {Parallax} from "react-scroll-parallax";
 import {makeStyles} from "@mui/styles";
 
@@ -17,29 +16,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Trips = () => {
+const Trips = ({trips}) => {
     const classes = useStyles();
     const checked = true;//useWindowPosition("trips")
-    const [tripsData, setTrips] = useState(null);
-    useEffect(() => {
-        sanityClient.fetch(`*[_type == "trip"] | order(tripDate desc) {
-            name,
-            summary,
-            slug,
-            thumbnail{
-                asset->{
-                    _id,
-                    url
-                },
-                alt
-            }
-        }`)
-            .then((data) => setTrips(data))
-            .catch(console.error);
-    }, []);
-    if (!tripsData) return <div>Loading...</div>;
-
-    // let sectionBGUrl = tripsData[0]?.thumbnail.asset.url;
+    if (!trips) return <div>Loading...</div>;
+    console.log(trips)
+    // let sectionBGUrl = trips[0]?.thumbnail.asset.url;
 
     return (
         <Box id="trips" className={[classes.tripsSection, "tripsSection", "section"]} sx={{py: 5}}>
@@ -53,7 +35,7 @@ const Trips = () => {
                 </Container>
             </Box>
             <Stack direction="row" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative", zIndex: "3"}}>
-                {tripsData && tripsData.map((trip, i) => {
+                {trips && trips.map((trip, i) => {
                     return <TripCard key={i} slugPrefix="/trip/" item={trip} checked={checked}/>
                 })}
             </Stack>

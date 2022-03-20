@@ -1,8 +1,6 @@
 import './Trip.css'
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
-import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import DestinationsSection from "../components/destination/DestinationsSection";
@@ -10,6 +8,8 @@ import ItineraryMap from "../components/trip/ItineraryMap";
 import PostsGrid from "../components/post/PostsGrid";
 import {makeStyles} from "@mui/styles";
 import Skeleton from "@mui/material/Skeleton";
+import {getTripAndRelatedPosts} from "../lib/tripApi";
+import {useParams} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     tripLanding: {
@@ -19,71 +19,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Trip = () => {
+const Trip = ({preview = false}) => {
     const classes = useStyles();
-    const [trip, setTrip] = useState(null)
     let {slug} = useParams();
+    const [trip, setTrip] = useState(null);
+    const [relatedPosts, setRelatedPosts] = useState(null);
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "trip" && slug.current == "${slug}"][0]{
-                name,
-                hero{
-                    asset->{
-                        _id,
-                        url
-                    },
-                    alt
-                },
-                itinerary->{
-                    iframeLink,
-                    placeholder{
-                        asset->{
-                            _id,
-                            url
-                        },
-                        alt
-                    }
-                },
-                destinations[]->{
-                    name,
-                    slug,
-                    icon{
-                        asset->{
-                            _id,
-                            url
-                        },
-                    alt
-                    },
-                    bgImage{
-                        asset->{
-                            _id,
-                            url
-                        },
-                    alt
-                    }
-                },
-                "relatedPosts": *[_type == "post" && "${slug}" in trips[]->slug.current] | order(publishedAt desc)  {
-                    title,
-                    "authorName": author->name,
-                    publishedAt,
-                    destinations[]->{slug},
-                    "destination": destinations[]->name[0],
-                    "category": categories[]->{
-                        "colourHex": colour.hex,
-                        title
-                    }[0],
-                    slug,
-                    isFeatured,
-                    mainImage{
-                        asset->{
-                            _id,
-                            url
-                        }
-                    }
-                }
-             }`)
-            .then((data) => setTrip(data))
+        getTripAndRelatedPosts(slug, preview)
+            .then(([tData, rpData]) => { setTrip(tData); setRelatedPosts(rpData);})
             .catch(console.error);
-    }, [slug]);
+    }, [slug, preview]);
     return typeof (trip) !== 'undefined' && trip !== null ? (
         <Box>
             <Box className={[classes.tripLanding, "tripLanding"]}
@@ -100,7 +45,7 @@ const Trip = () => {
             </span>
             <span className="sections">
                 <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <PostsGrid postsData={trip.relatedPosts} checked={true}
+                    <PostsGrid postsData={relatedPosts} checked={true}
                                header={
                                    <Typography vairant="h1" component="h2" className="sectionHeader">
                                        Related Posts.

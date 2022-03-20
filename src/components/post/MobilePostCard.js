@@ -11,7 +11,7 @@ export default function MobilePostCard({post}) {
     Moment.locale('en')
 
     return (
-        <Link href={"/post/" + post.slug.current} key={post.slug.current} underline="none" style={{width: "100%"}}>
+        <Link href={"/post/" + post.slug} key={post.slug} underline="none" style={{width: "100%"}}>
             <Paper elevation={0} square className="mobilePostCard"
                    style={{backgroundImage: "linear-gradient(rgba(0, 0, 0, 0) 65%, black), url(" + post.mainImage.asset.url + ")"}}>
                 <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1} style={{height: "80%"}}>
@@ -27,7 +27,7 @@ export default function MobilePostCard({post}) {
                     </Typography>
                     <Divider style={{borderColor: "rgba(255, 255, 255, 0.15)", width: "75%"}}/>
                     <span
-                        className="postCardAuthor">By {post.authorName} on {Moment(post.publishedAt).format('DD MMMM YYYY')}</span>
+                        className="postCardAuthor">By {post.author.name} on {Moment(post.date).format('DD MMMM YYYY')}</span>
                 </Stack>
             </Paper>
         </Link>

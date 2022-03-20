@@ -1,6 +1,5 @@
 import './PostsSection.css'
-import React, {useEffect, useState} from "react";
-import sanityClient from "../../client.js";
+import React from "react";
 import Box from "@mui/material/Box";
 import FeaturedPosts from "./FeaturedPosts";
 import PostsGrid from "./PostsGrid";
@@ -20,39 +19,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PostsSection() {
+export default function PostsSection({posts}) {
     const classes = useStyles();
-    const [postsData, setPosts] = useState(null);
     const checked = useWindowPosition("mapSection");
 
-    useEffect(() => {
-        sanityClient
-            .fetch(
-                `*[_type == "post"][0..16] | order(publishedAt desc) {
-                    title,
-                    "authorName": author->name,
-                    publishedAt,
-                    'destinationNames': destinations[]->name,
-                    categories[]->{title, 'colourHex':colour.hex},
-                    slug,
-                    isFeatured,
-                    mainImage{
-                      asset->{
-                      _id,
-                      url
-                    }
-                  }
-                }`
-            )
-            .then((data) => setPosts(data))
-            .catch(console.error);
-    }, []);
-
-    if (!postsData) return <div>Loading...</div>;
-    let featuredPosts = postsData.filter(p => {
+    if (!posts) return <div>Loading...</div>;
+    let featuredPosts = posts.filter(p => {
         return p.isFeatured
     }).slice(0, 4)
-    let recentPosts = postsData.filter(p => {
+    let recentPosts = posts.filter(p => {
         return !featuredPosts.includes(p)
     })
     let sectionBGUrl = featuredPosts[0]?.mainImage?.asset?.url;
