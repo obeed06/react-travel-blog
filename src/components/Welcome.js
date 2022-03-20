@@ -10,7 +10,7 @@ import {useEffect, useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
     goDown: {
-        color: '#ff8100',
+        color: 'var(--brand-color)',
         fontSize: '4rem',
     },
 }));

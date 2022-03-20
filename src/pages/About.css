@@ -69,5 +69,5 @@
     overflow: hidden;
     font-size: 80px;
     line-height: 100%;
-    color: #ff8100;
+    color: var(--brand-color);
 }

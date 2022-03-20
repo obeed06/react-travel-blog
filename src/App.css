@@ -1,5 +1,9 @@
+:root {
+    --brand-color: #ff8100;
+}
+
 .brandColor {
-    color: #ff8100;
+    color: var(--brand-color);
 }
 
 .subHeadline {
@@ -204,4 +208,15 @@ span.sections div.section:nth-of-type(2) h2.sectionHeader {
     margin-top: 5px;
     letter-spacing: 2px;
     margin-bottom: 0px;
+}
+
+h2, h3 {
+    scroll-margin-top: 16px;
+}
+
+@supports (-webkit-hyphens:none) {
+    h2, h3 {
+        padding-top: 16px;
+        margin-top: -16px;
+    }
 }

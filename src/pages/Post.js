@@ -1,21 +1,22 @@
 import './Post.css'
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
-import sanityClient from "../client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Moment from "moment";
 import Skeleton from "@mui/material/Skeleton";
-import BlockContent from "@sanity/block-content-to-react";
 import Container from "@mui/material/Container";
 import {makeStyles} from "@mui/styles";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Link from "@mui/material/Link";
 import Chip from "@mui/material/Chip";
+import TableOfContents from "../components/post/TableOfContents";
+import {PortableText} from "@portabletext/react";
+import {getPost} from "../lib/postApi";
+import {useParams} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -25,30 +26,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Post = () => {
+const Post = ({preview = false}) => {
     const classes = useStyles();
-    const [post, setPost] = useState(null)
     let {slug} = useParams();
+    const [post, setPost] = useState(null);
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "post" && slug.current == "${slug}"][0]{
-                 title,
-                    "authorName": author->name,
-                    publishedAt,
-                    destinations[]->{name,slug},
-                    categories[]->{title, 'colourHex':colour.hex},
-                    slug,
-                    isFeatured,
-                    mainImage{
-                      asset->{
-                            _id,
-                            url
-                        }
-                    },
-                    body
-             }`)
+        getPost(slug, preview)
             .then((data) => setPost(data))
             .catch(console.error);
-    }, [slug]);
+    }, []);
     return typeof (post) !== 'undefined' && post !== null ? (
         <Box>
             <Box className={[classes.postLanding, "postLanding"]}
@@ -67,13 +53,22 @@ const Post = () => {
                         </Typography>
                         <Divider style={{borderColor: "rgba(255, 255, 255, 0.15)", width: "75%"}}/>
                         <span
-                            className="postCardAuthor">By {post.authorName} on {Moment(post.publishedAt).format('DD MMMM YYYY')}</span>
+                            className="postCardAuthor">By {post.author.name} on {Moment(post.publishedAt).format('DD MMMM YYYY')}</span>
                     </Stack>
                 </Grid>
             </Box>
             <Container maxWidth='md' sx={{my: 5}}>
                 <DestinationBreadcrumbs destinations={post?.destinations}/>
-                <BlockContent blocks={post?.body} projectId="ho3u0oh3" dataset="production"/>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={8}>
+                        <Box className="post_body">
+                            <PortableText value={post?.body} components={myPortableTextComponents}/>
+                        </Box>
+                    </Grid>
+                    <Grid sx={{display: { xs: "none", md: "block" }}} item md={4}>
+                        <TableOfContents/>
+                    </Grid>
+                </Grid>
                 <ChipCategories categories={post?.categories}/>
             </Container>
         </Box>
@@ -95,7 +90,7 @@ const DestinationBreadcrumbs = ({destinations}) => {
         {
             destinations && Array.isArray(destinations) ?
                 (
-                    destinations.map((d, i) => <Link key={i+d.name} href={"/destination/" + d?.slug.current}
+                    destinations.map((d, i) => <Link key={i + d.name} href={"/destination/" + d?.slug.current}
                                                      underline="hover">{d.name}</Link>)
                 ) : ""
         }
@@ -108,13 +103,29 @@ const ChipCategories = ({categories}) => {
             <Stack direction="row" spacing={1} alignItems="center">
                 <strong>CATEGORIES</strong>
                 {categories.map((c, i) => (
-                    <Chip key={i+c.title} clickable style={{color: c?.colourHex, borderColor: c?.colourHex}} variant="outlined"
+                    <Chip key={i + c.title} clickable style={{color: c?.colourHex, borderColor: c?.colourHex}}
+                          variant="outlined"
                           size="small"
                           label={c?.title}/>))}
             </Stack>
 
         </React.Fragment>
         : ""
+}
+
+const myPortableTextComponents = {
+    block: {
+        h2: ({children}) => <h2 id={hyphenate(children[0])}>{children}</h2>,
+        h3: ({children}) => <h3 id={hyphenate(children[0])}>{children}</h3>,
+    },
+}
+
+function hyphenate(str) {
+    return str.replace(/[^\w\s]|_/g, '')
+        // replace groups of 1 or more whitespace with hyphens
+        .replace(/\s+/g, '-')
+        // lower case
+        .toLowerCase()
 }
 
 export default Post;
