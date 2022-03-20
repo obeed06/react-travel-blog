@@ -46,7 +46,7 @@ const About = ({preview = false}) => {
         return () => {
             typed.destroy();
         };
-    }, []);
+    }, [preview]);
 
     return (
         <Box>

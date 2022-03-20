@@ -10,7 +10,7 @@ const Posts = ({preview = false}) => {
         getAllPosts(preview)
             .then((data) => setPosts(data))
             .catch(console.error);
-    }, []);
+    }, [preview]);
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
             <PostsGrid postsData={posts} checked={true}

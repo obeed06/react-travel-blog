@@ -18,7 +18,7 @@ const Destination = ({preview = false}) => {
         getDestinationAndRelatedPosts(slug, preview)
             .then(([dData, rpData]) => { setDestination(dData); setRelatedPosts(rpData);})
             .catch(console.error);
-    }, []);
+    }, [slug, preview]);
     return typeof (destination) !== 'undefined' && destination !== null ? (
         <Box>
             <Box className="landingDestinationImage"

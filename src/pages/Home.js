@@ -23,7 +23,7 @@ const Home = ({ preview = false }) => {
         getTrips(preview)
             .then((data) => setTrips(data))
             .catch(console.error);
-    }, []);
+    }, [preview]);
     const containerRef = React.useRef(null);
     return (
         <Box>

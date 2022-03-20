@@ -34,7 +34,7 @@ const Post = ({preview = false}) => {
         getPost(slug, preview)
             .then((data) => setPost(data))
             .catch(console.error);
-    }, []);
+    }, [slug, preview]);
     return typeof (post) !== 'undefined' && post !== null ? (
         <Box>
             <Box className={[classes.postLanding, "postLanding"]}

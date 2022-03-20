@@ -12,7 +12,7 @@ const Destinations = ({preview = false}) => {
         getDestinations(preview)
             .then((data) => setDestinations(data))
             .catch(console.error);
-    }, []);
+    }, [preview]);
     return (
         <Box id="destinations" className="section" sx={{py: 5}}>
             <Container maxWidth='lg'>
