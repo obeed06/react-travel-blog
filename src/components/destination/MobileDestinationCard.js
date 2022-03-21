@@ -11,7 +11,7 @@ export default function MobileDestinationCard({post: destination}) {
                 <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1} style={{height: "80%"}}>
                     <div className="d-icon">
                         <div className="d-icon-bg" style={{backgroundImage: "url("+destination?.icon?.asset?.url+")"}}></div>
-                        <div className="d-title">{destination.name}</div>
+                        <div className="d-card-title">{destination.name}</div>
                     </div>
 
                 </Stack>
