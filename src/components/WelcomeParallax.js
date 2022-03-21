@@ -1,3 +1,4 @@
+import './WelcomeParalax.css'
 import * as React from 'react';
 import Typography from "@mui/material/Typography";
 import {ParallaxBanner} from "react-scroll-parallax";
@@ -5,7 +6,7 @@ import {ParallaxBanner} from "react-scroll-parallax";
 const WelcomeParallax = () => {
 
     const background = {
-        image:process.env.PUBLIC_URL + '/assets/desert-background.jpg',
+        image: process.env.PUBLIC_URL + '/assets/desert-background.jpg',
         translateY: [0, 50],
         opacity: [1, 0.3],
         scale: [1.05, 1, "easeOutCubic"],
@@ -19,7 +20,7 @@ const WelcomeParallax = () => {
         expanded: false,
         children: (
             <div className="inset center" style={{top: "-45vh"}}>
-                <Typography vairant="h1" component="h2" className="white">
+                <Typography vairant="h1" component="h2">
                     <div className="headline">WELCOME</div>
                 </Typography>
             </div>
@@ -51,15 +52,14 @@ const WelcomeParallax = () => {
         opacity: [0, 1, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
-        children: <div className="gradient inset" />
+        children: <div className="gradient inset"/>
     };
 
     return (
-
-            <ParallaxBanner
-                layers={[background, headline, foreground, headline2, gradientOverlay]}
-                className="full"
-            />
+        <ParallaxBanner
+            layers={[background, headline, foreground, headline2, gradientOverlay]}
+            className="full"
+        />
     );
 };
 

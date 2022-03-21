@@ -1,3 +1,4 @@
+import './HeroPostCard.css';
 import React from 'react';
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -13,17 +14,20 @@ export default function HeroPostCard({post}) {
     return (
         <Link href={"/post/" + post.slug} key={post.slug} underline="none" style={{width: "100%"}}>
             <Paper elevation={3} className="mobilePostCard"
-                   style={{height: "550px", backgroundImage: "linear-gradient(rgba(0, 0, 0, 0) 65%, black), url(" + post.mainImage.asset.url + ")"}}>
-                <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1} style={{height: "80%"}}>
+                   style={{
+                       height: "550px",
+                       backgroundImage: "linear-gradient(rgba(0, 0, 0, 0) 65%, black), url(" + post.mainImage.asset.url + ")"
+                   }}>
+                <Stack direction="column" justifyContent="flex-end" alignItems="center" spacing={1}
+                       style={{height: "80%"}}>
                     <span style={{fontSize: "15px"}}>
                         <PostTags post={post} tagSize="large"/>
                     </span>
                     <Typography
                         gutterBottom
                         variant="h3"
-                        component="h1"
-                        className="cardHeader"
-                        style={{fontSize: "45px", textAlign: "center"}}
+                        component="h3"
+                        className="heroCardHeader"
                     >
                         {post.title}
                     </Typography>

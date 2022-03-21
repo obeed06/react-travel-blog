@@ -1,0 +1,38 @@
+.headline {
+    color: white;
+    font-family: var(--font-signature);
+    font-weight: lighter;
+    font-size: 18vw;
+    text-align: center;
+    letter-spacing: 3vw;
+}
+
+.subHeadline {
+    font-family: var(--font-signature);
+    font-weight: bold;
+    font-size: 9vw;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inset {
+    position: absolute;
+    inset: 0;
+}
+
+.gray {
+    color: #446;
+}
+
+.full {
+    height: 100vh;
+}
+
+.gradient {
+    background: linear-gradient(rgba(14, 62, 151, 0.5) 50%, black);
+}

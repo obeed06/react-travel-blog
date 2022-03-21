@@ -46,8 +46,6 @@ const Post = ({preview = false}) => {
                             gutterBottom
                             variant="h3"
                             component="h1"
-                            className="cardHeader"
-                            style={{fontSize: "45px", textAlign: "center"}}
                         >
                             {post.title}
                         </Typography>

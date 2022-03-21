@@ -31,22 +31,24 @@
     }
 }
 
+.landingAbout h1 {
+    font-family: var(--font-signature);
+    font-weight: lighter;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1ch;
+}
+
 .aboutHeading {
     text-transform: uppercase;
     color: #fff;
     font-size: 4.5rem;
-    font-family: var(--font-heading-primary);
-    font-weight: bold;
-    text-align: center;
 }
 
 .aboutSubHeading {
     text-transform: uppercase;
     color: #fff;
     font-size: 2rem;
-    font-family: var(--font-heading-primary);
-    font-weight: lighter;
-    text-align: center;
 }
 
 .statTitle {

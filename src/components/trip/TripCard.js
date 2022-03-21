@@ -18,7 +18,6 @@ const useStyles = makeStyles({
     },
     title: {
         fontFamily: 'var(--font-heading-primary)',
-        fontWeight: 'bold',
         color: '#fff',
     },
     desc: {
@@ -49,7 +48,7 @@ export default function TripCard({slugPrefix, item, checked, timeout = 1}) {
                         <Typography
                             gutterBottom
                             variant="h5"
-                            component="h1"
+                            component="h4"
                             className={classes.title}
                         >
                             {item.name}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from "@mui/material/Container";
-import DestiantionCard from "./DestiantionCard";
+import DestinationCard from "./DestinationCard";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileDestinationCard from "./MobileDestinationCard";
@@ -18,7 +18,7 @@ const DestinationGrid = ({destinations}) => {
                         destinations ?
                             (
                                 destinations.map((destination, i) => (
-                                    <Grid sm={6} md={4} lg={3} item key={i}><DestiantionCard destination={destination}/></Grid>
+                                    <Grid sm={6} md={4} lg={3} item key={i}><DestinationCard destination={destination}/></Grid>
 
                                 ))
                             ) : (

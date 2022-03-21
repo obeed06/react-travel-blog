@@ -10,6 +10,14 @@
     overflow: hidden;
 }
 
+.postLanding h1 {
+    font-family: var(--font-signature);
+    font-weight: lighter;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1ch;
+}
+
 @media screen and (max-width: 992px) {
     .postLanding {
         max-height: 850px;
