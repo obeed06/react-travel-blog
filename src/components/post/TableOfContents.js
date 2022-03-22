@@ -20,10 +20,9 @@ const TableOfContents = () => {
     );
 }
 
-
 const Headings = ({headings, activeId}) => (
     <>
-        {headings.map((heading) => (
+        {headings.map((heading, i) => (
             <>
                 <ListItemButton key={heading.id} selected={heading.id === activeId} onClick={(e) => {
                     e.preventDefault();
@@ -34,7 +33,7 @@ const Headings = ({headings, activeId}) => (
                     <ListItemText primary={heading.title}/>
                 </ListItemButton>
                 {heading.items.length > 0 && (
-                    <List component="div" disablePadding>
+                    <List key={"sub-menu-"+i} component="div" disablePadding>
                         {heading.items.map((child) => (
                             <ListItemButton key={child.id} selected={child.id === activeId} onClick={(e) => {
                                 e.preventDefault();

@@ -33,7 +33,6 @@
     "react-scroll": "^1.8.6",
     "react-scroll-parallax": "^3.0.4",
     "react-simple-maps": "^2.3.0",
-    "react-tooltip": "^4.2.21",
     "typed.js": "^2.0.12",
     "web-vitals": "^2.1.4"
   },
