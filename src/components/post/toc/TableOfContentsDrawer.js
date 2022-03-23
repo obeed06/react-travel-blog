@@ -8,8 +8,6 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import {styled} from "@mui/material/styles";
 import {grey} from '@mui/material/colors';
 import Typography from "@mui/material/Typography";
-import CssBaseline from "@mui/material/CssBaseline";
-import {Global} from "@emotion/react";
 
 const drawerWidth = 240;
 const drawerBleeding = 56;
@@ -47,15 +45,6 @@ const TableOfContentsDrawer = (props) => {
         <>
             {nestedHeadings && nestedHeadings.length > 0 && (
                 <>
-                    <CssBaseline/>
-                    <Global
-                        styles={{
-                            'span.desktop-post-toc, .MuiDrawer-root > .MuiPaper-root': {
-                                height: `calc(50% - ${drawerBleeding}px)`,
-                                overflow: 'visible',
-                            },
-                        }}
-                    />
                     {/*Mobile*/}
                     <span className="desktop-post-toc">
                         <SwipeableDrawer
@@ -67,6 +56,8 @@ const TableOfContentsDrawer = (props) => {
                             disableSwipeToOpen={false}
                             sx={{
                                 display: {md: 'none'},
+                                '& .MuiPaper-root': {height: `calc(50% - ${drawerBleeding}px)`, overflow: 'visible',},
+
                             }}
                             ModalProps={{
                                 keepMounted: true,
