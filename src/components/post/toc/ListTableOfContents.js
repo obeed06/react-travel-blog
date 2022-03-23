@@ -1,31 +1,28 @@
-import './TableOfContents.css'
+import './ListTableOfContents.css'
 import React, {useState} from 'react';
-import useHeadingsData from "../../hook/useHeadingsData";
-import useIntersectionObserver from "../../hook/useIntersectionObserver";
+import useIntersectionObserver from "../../../hook/useIntersectionObserver";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
 import ListItemText from "@mui/material/ListItemText";
 
-const TableOfContents = () => {
+const ListTableOfContents = ({nestedHeadings}) => {
     const [activeId, setActiveId] = useState();
-    const {nestedHeadings} = useHeadingsData();
     useIntersectionObserver(setActiveId);
 
     return (
-        <List component="nav" className="postToC" aria-label="Table of contents" sx={{pt: 5}}>
-            <Headings headings={nestedHeadings} activeId={activeId}/>
-        </List>
-    );
+        <List id="post-table-of-contents" component="nav" className="postToC" aria-label="Table of contents">
+            <Headings nestedHeadings={nestedHeadings} activeId={activeId}/>
+        </List>);
 }
 
-const Headings = ({headings, activeId}) => (
+const Headings = ({nestedHeadings, activeId}) => (
     <>
-        {headings.map((heading, i) => (
+        {nestedHeadings && nestedHeadings.map((heading, i) => (
             <>
                 <ListItemButton key={heading.id} selected={heading.id === activeId} onClick={(e) => {
-                    e.preventDefault();
+                    // e.preventDefault();
                     document.querySelector(`#${heading.id}`).scrollIntoView({
                         behavior: "smooth"
                     });
@@ -33,10 +30,10 @@ const Headings = ({headings, activeId}) => (
                     <ListItemText primary={heading.title}/>
                 </ListItemButton>
                 {heading.items.length > 0 && (
-                    <List key={"sub-menu-"+i} component="div" disablePadding>
+                    <List key={"sub-menu-" + i} component="div" disablePadding>
                         {heading.items.map((child) => (
                             <ListItemButton key={child.id} selected={child.id === activeId} onClick={(e) => {
-                                e.preventDefault();
+                                // e.preventDefault();
                                 document.querySelector(`#${child.id}`).scrollIntoView({
                                     behavior: "smooth"
                                 });
@@ -45,7 +42,6 @@ const Headings = ({headings, activeId}) => (
                                     <SubdirectoryArrowRightIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary={child.title}/>
-
                             </ListItemButton>
                         ))}
                     </List>
@@ -55,4 +51,4 @@ const Headings = ({headings, activeId}) => (
     </>
 );
 
-export default TableOfContents;
+export default ListTableOfContents;

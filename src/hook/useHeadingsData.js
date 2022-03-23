@@ -5,7 +5,7 @@ const useHeadingsData = () => {
 
     useEffect(() => {
         const headingElements = Array.from(
-            document.querySelectorAll("h2, h3")
+            window.document.querySelectorAll(".post_body h2, h3")
         );
 
         const newNestedHeadings = getNestedHeadings(headingElements);

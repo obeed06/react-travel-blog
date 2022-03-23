@@ -20,7 +20,6 @@ const Trips = ({trips}) => {
     const classes = useStyles();
     const checked = true;//useWindowPosition("trips")
     if (!trips) return <div>Loading...</div>;
-    console.log(trips)
     // let sectionBGUrl = trips[0]?.thumbnail.asset.url;
 
     return (

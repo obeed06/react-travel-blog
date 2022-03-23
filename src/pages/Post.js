@@ -13,10 +13,12 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Link from "@mui/material/Link";
 import Chip from "@mui/material/Chip";
-import TableOfContents from "../components/post/TableOfContents";
 import {PortableText} from "@portabletext/react";
 import {getPost} from "../lib/postApi";
+import {getHeadingsFromPostBodyJson, hyphenate} from "../lib/postUtils";
 import {useParams} from "react-router";
+import { connect } from 'react-redux'
+import {addHeadings} from "../actions";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -26,15 +28,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Post = ({preview = false}) => {
+const Post = ({dispatch, preview = false}) => {
     const classes = useStyles();
     let {slug} = useParams();
     const [post, setPost] = useState(null);
     useEffect(() => {
         getPost(slug, preview)
-            .then((data) => setPost(data))
+            .then((data) => {
+                setPost(data);
+                typeof (data) !== 'undefined' && data !== null && dispatch(addHeadings(getHeadingsFromPostBodyJson(data?.body)))
+            })
             .catch(console.error);
-    }, [slug, preview]);
+    }, [slug, preview, dispatch]);
+
     return typeof (post) !== 'undefined' && post !== null ? (
         <Box>
             <Box className={[classes.postLanding, "postLanding"]}
@@ -62,9 +68,6 @@ const Post = ({preview = false}) => {
                         <Box className="post_body">
                             <PortableText value={post?.body} components={postBodyHeadingsComponent}/>
                         </Box>
-                    </Grid>
-                    <Grid sx={{display: { xs: "none", md: "block" }}} item md={4}>
-                        <TableOfContents/>
                     </Grid>
                 </Grid>
                 <ChipCategories categories={post?.categories}/>
@@ -118,12 +121,4 @@ const postBodyHeadingsComponent = {
     },
 }
 
-function hyphenate(str) {
-    return str.replace(/[^\w\s]|_/g, '')
-        // replace groups of 1 or more whitespace with hyphens
-        .replace(/\s+/g, '-')
-        // lower case
-        .toLowerCase()
-}
-
-export default Post;
+export default connect()(Post);
