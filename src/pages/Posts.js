@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import PostsGrid from "../components/post/PostsGrid";
 import Typography from "@mui/material/Typography";
 import {getAllPosts} from "../lib/postApi";
+import HeaderAndFooter from "../components/HeaderAndFooter";
 
 const Posts = ({preview = false}) => {
     const [posts, setPosts] = useState(null);
@@ -11,7 +12,7 @@ const Posts = ({preview = false}) => {
             .then((data) => setPosts(data))
             .catch(console.error);
     }, [preview]);
-    return (
+    return <HeaderAndFooter>
         <Box id="postsSection" className="section" sx={{py: 5}}>
             <PostsGrid postsData={posts} checked={true}
                        header={
@@ -21,7 +22,7 @@ const Posts = ({preview = false}) => {
                        }
             />
         </Box>
-    );
+    </HeaderAndFooter>
 };
 
 export default Posts;

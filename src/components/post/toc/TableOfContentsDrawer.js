@@ -8,9 +8,11 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import {styled} from "@mui/material/styles";
 import {grey} from '@mui/material/colors';
 import Typography from "@mui/material/Typography";
+import useIntersectionObserver from "../../../hook/useIntersectionObserver";
+import Slide from "@mui/material/Slide";
 
-const drawerWidth = 240;
-const drawerBleeding = 56;
+const drawerWidth = 250;
+const drawerBleeding = 54;
 
 styled('div')(({theme}) => ({
     height: '100%',
@@ -32,30 +34,35 @@ const Puller = styled(Box)(({theme}) => ({
 }));
 
 
-const TableOfContentsDrawer = (props) => {
-    const nestedHeadings = props.nestedHeadings
-    const container = window !== undefined ? () => window.document.body : undefined;
+const TableOfContentsDrawer = ({nestedHeadings, intersectTopRef, intersectBottomRef}) => {
     const [mOpen, setMOpen] = React.useState(false);
-
     const toggleMobileDrawer = (newOpen) => () => {
         setMOpen(newOpen);
     };
 
+    const entryTop = useIntersectionObserver(intersectTopRef, {})
+    const entryBottom = useIntersectionObserver(intersectBottomRef, {threshold: 0.33})
+
+    let belowTop = !entryTop?.isIntersecting && entryTop?.boundingClientRect.top < 0
+    let aboveBottom = entryBottom?.isIntersecting
+    const isVisible = belowTop && aboveBottom
+    if (mOpen && !isVisible)
+        setMOpen(isVisible)
     return (
         <>
-            {nestedHeadings && nestedHeadings.length > 0 && (
+            {nestedHeadings && nestedHeadings?.length > 0 && (
                 <>
                     {/*Mobile*/}
-                    <span className="desktop-post-toc">
+                    <span className="mobile-post-toc">
                         <SwipeableDrawer
                             anchor="bottom"
                             open={mOpen}
                             onClose={toggleMobileDrawer(false)}
                             onOpen={toggleMobileDrawer(true)}
-                            swipeAreaWidth={drawerBleeding}
+                            swipeAreaWidth={isVisible ? drawerBleeding : 0}
                             disableSwipeToOpen={false}
                             sx={{
-                                display: {md: 'none'},
+                                display: {xs: '', md: 'none'},
                                 '& .MuiPaper-root': {height: `calc(50% - ${drawerBleeding}px)`, overflow: 'visible',},
 
                             }}
@@ -63,20 +70,23 @@ const TableOfContentsDrawer = (props) => {
                                 keepMounted: true,
                             }}
                         >
-                            <StyledBox
-                                sx={{
-                                    position: 'absolute',
-                                    top: -drawerBleeding,
-                                    borderTopLeftRadius: 8,
-                                    borderTopRightRadius: 8,
-                                    visibility: 'visible',
-                                    right: 0,
-                                    left: 0,
-                                }}
-                            >
-                                <Puller/>
-                                <Typography sx={{p: 2, color: 'text.secondary'}}>Table of Contents</Typography>
-                            </StyledBox>
+                            <Slide direction="up" in={isVisible}>
+                                <StyledBox
+                                    sx={{
+                                        position: 'absolute',
+                                        top: -drawerBleeding,
+                                        borderTopLeftRadius: 8,
+                                        borderTopRightRadius: 8,
+                                        visibility: 'visible',
+                                        right: 0,
+                                        left: 0,
+                                    }}
+                                >
+                                    <Puller/>
+                                    <Typography sx={{p: 2, color: 'text.secondary'}}>Table of Contents</Typography>
+                                </StyledBox>
+                            </Slide>
+
                             <StyledBox
                                 sx={{
                                     px: 2,
@@ -85,7 +95,7 @@ const TableOfContentsDrawer = (props) => {
                                     overflow: 'auto',
                                 }}
                             >
-                                <ListTableOfContents nestedHeadings={nestedHeadings}/>
+                                <ListTableOfContents nestedHeadings={nestedHeadings} idPrefix="desktop"/>
                             </StyledBox>
                         </SwipeableDrawer>
                     </span>
@@ -93,19 +103,18 @@ const TableOfContentsDrawer = (props) => {
 
                     {/*Desktop*/}
                     <Drawer
-                        container={container}
                         anchor="right"
-                        variant="permanent"
+                        variant="persistent"
+                        open={isVisible}
                         sx={{
                             display: {xs: 'none', md: 'block'},
                             '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
                         }}
-                        open
                     >
                         <Box role="presentation">
                             <Toolbar/>
                             <Divider/>
-                            <ListTableOfContents nestedHeadings={nestedHeadings}/>
+                            <ListTableOfContents nestedHeadings={nestedHeadings} idPrefix="mobile"/>
                         </Box>
                     </Drawer>
                 </>

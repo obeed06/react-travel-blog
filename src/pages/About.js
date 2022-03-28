@@ -12,6 +12,7 @@ import Typed from "typed.js";
 import Avatar from "@mui/material/Avatar";
 import {PortableText} from "@portabletext/react";
 import {getAuthorDetails} from "../lib/authorApi";
+import HeaderAndFooter from "../components/HeaderAndFooter";
 
 const useStyles = makeStyles((theme) => ({
     landingAbout: {
@@ -49,7 +50,7 @@ const About = ({preview = false}) => {
     }, [preview]);
 
     return (
-        <Box>
+        <HeaderAndFooter>
             <Box className={[classes.landingAbout, "landingAbout"]}  ref={containerRef}>
                 <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
                     <Avatar alt="David Obee" src={process.env.PUBLIC_URL + '/assets/avatar.jpg'} sx={{ width: 56, height: 56 }} />
@@ -95,7 +96,7 @@ const About = ({preview = false}) => {
             ) : (
                 ""
             )}
-        </Box>
+        </HeaderAndFooter>
     );
 };
 

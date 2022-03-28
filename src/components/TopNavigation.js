@@ -12,7 +12,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from "@mui/material/Button";
 import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
-import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import Chip from "@mui/material/Chip";
@@ -20,7 +19,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import {useContext} from "react";
 import {ColorModeContext} from "../context/ColorModeContext";
-import AddTableOfContentsDrawer from "../containers/AddTableOfContentsDrawer";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 
 const pages = [{
     title: 'Destinations',
@@ -64,7 +63,7 @@ function HideOnScroll(props) {
     );
 }
 
-export default function TopNavigation() {
+const TopNavigation = props => {
     const classes = useStyles();
     const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
     const {toggleColorMode, mode} = useContext(ColorModeContext);
@@ -156,11 +155,13 @@ export default function TopNavigation() {
                 aria-label="mailbox folders"
             >
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Drawer
+                <SwipeableDrawer
                     container={container}
                     variant="temporary"
                     open={mobileNavOpen}
+                    onOpen={handleMobileNavDrawerToggle}
                     onClose={handleMobileNavDrawerToggle}
+                    disableSwipeToOpen={false}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
                     }}
@@ -170,10 +171,12 @@ export default function TopNavigation() {
                     }}
                 >
                     {mobileNavDrawer}
-                </Drawer>
+                </SwipeableDrawer>
             </Box>
-            <AddTableOfContentsDrawer />
+            {props?.postToC}
 
         </React.Fragment>
     );
 }
+
+export default TopNavigation;

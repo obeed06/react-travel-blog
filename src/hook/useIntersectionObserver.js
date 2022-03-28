@@ -1,43 +1,35 @@
-import {useEffect, useRef} from 'react';
+import {useEffect, useState} from 'react'
 
-const useIntersectionObserver = (setActiveId) => {
-    const headingElementsRef = useRef({});
+
+function useIntersectionObserver(elementRef,
+                                 {
+                                     threshold = 0,
+                                     root = null,
+                                     rootMargin = '0%',
+                                     freezeOnceVisible = false,
+                                 }) {
+    const [entry, setEntry] = useState(null)
+
+    const frozen = entry?.isIntersecting && freezeOnceVisible
+
+    const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
+        setEntry(entry)
+    }
+
     useEffect(() => {
-        const callback = (headings) => {
-            headingElementsRef.current = headings.reduce((map, headingElement) => {
-                map[headingElement.target.id] = headingElement;
-                return map;
-            }, headingElementsRef.current);
+        const node = elementRef?.current // DOM Ref
+        const hasIOSupport = !!window.IntersectionObserver
 
-            const visibleHeadings = [];
-            Object.keys(headingElementsRef.current).forEach((key) => {
-                const headingElement = headingElementsRef.current[key];
-                if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
-            });
+        if (!hasIOSupport || frozen || !node) return
 
-            const getIndexFromId = (id) =>
-                headingElements.findIndex((heading) => heading.id === id);
+        const observerParams = { threshold, root, rootMargin }
+        const observer = new IntersectionObserver(updateEntry, observerParams)
+        observer.observe(node)
 
-            if (visibleHeadings.length === 1) {
-                setActiveId(visibleHeadings[0].target.id);
-            } else if (visibleHeadings.length > 1) {
-                const sortedVisibleHeadings = visibleHeadings.sort(
-                    (a, b) => getIndexFromId(a.target.id) > getIndexFromId(b.target.id)
-                );
-                setActiveId(sortedVisibleHeadings[0].target.id);
-            }
-        };
+        return () => observer.disconnect()
+    }, [elementRef, threshold, frozen, root, rootMargin])
 
-        const observer = new IntersectionObserver(callback, {
-            rootMargin: "0px 0px -40% 0px"
-        });
+    return entry;
+}
 
-        const headingElements = Array.from(document.querySelectorAll(".post_body h2, h3"));
-
-        headingElements.forEach((element) => observer.observe(element));
-
-        return () => observer.disconnect();
-    }, [setActiveId]);
-};
-
-export default useIntersectionObserver;
+export default useIntersectionObserver

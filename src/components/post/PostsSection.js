@@ -35,7 +35,7 @@ export default function PostsSection({posts}) {
         <Box id="postsSection" className="section" sx={{py: 5}}>
             <Box className={[classes.featuredPostSection, "featuredPostSection"]}
                  sx={{backgroundImage: "url(" + sectionBGUrl + ")"}}>
-                <FeaturedPosts featuredPostsData={featuredPosts}/>
+                <FeaturedPosts featuredPostsData={featuredPosts} headingTitle="Featured."/>
             </Box>
             <Box sx={{zIndex: "4", marginTop: "-15px"}}>
                 <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn()}

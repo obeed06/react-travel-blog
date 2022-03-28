@@ -10,6 +10,7 @@ import {makeStyles} from "@mui/styles";
 import Skeleton from "@mui/material/Skeleton";
 import {getTripAndRelatedPosts} from "../lib/tripApi";
 import {useParams} from "react-router";
+import HeaderAndFooter from "../components/HeaderAndFooter";
 
 const useStyles = makeStyles((theme) => ({
     tripLanding: {
@@ -26,24 +27,30 @@ const Trip = ({preview = false}) => {
     const [relatedPosts, setRelatedPosts] = useState(null);
     useEffect(() => {
         getTripAndRelatedPosts(slug, preview)
-            .then(([tData, rpData]) => { setTrip(tData); setRelatedPosts(rpData);})
+            .then(([tData, rpData]) => {
+                setTrip(tData);
+                setRelatedPosts(rpData);
+            })
             .catch(console.error);
     }, [slug, preview]);
-    return typeof (trip) !== 'undefined' && trip !== null ? (
-        <Box>
-            <Box className={[classes.tripLanding, "tripLanding"]}
-                 style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + trip?.hero?.asset?.url + ")"}}>
-                <Grid sx={{height: "100%"}} container direction="column" justifyContent="center" alignItems="center">
-                    <Typography vairant="h1" component="h2" className="title">
-                        <div>{trip?.name}</div>
-                    </Typography>
-                </Grid>
-            </Box>
-            <span className="sections">
+    return <HeaderAndFooter>
+        {
+            typeof (trip) !== 'undefined' && trip !== null ? (
+                <Box>
+                    <Box className={[classes.tripLanding, "tripLanding"]}
+                         style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(" + trip?.hero?.asset?.url + ")"}}>
+                        <Grid sx={{height: "100%"}} container direction="column" justifyContent="center"
+                              alignItems="center">
+                            <Typography vairant="h1" component="h2" className="title">
+                                <div>{trip?.name}</div>
+                            </Typography>
+                        </Grid>
+                    </Box>
+                    <span className="sections">
                 <DestinationsSection destinations={trip?.destinations}/>
                 <ItineraryMap data={trip?.itinerary}/>
             </span>
-            <span className="sections">
+                    <span className="sections">
                 <Box id="postsSection" className="section" sx={{py: 5}}>
                     <PostsGrid postsData={relatedPosts} checked={true}
                                header={
@@ -54,12 +61,14 @@ const Trip = ({preview = false}) => {
                     />
                 </Box>
             </span>
-        </Box>
-    ) : <Box className="tripLanding">
-            <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="end">
-                <Skeleton sx={{mb: 5}} height={80} width={"40%"}/>
-            </Grid>
-        </Box>;
+                </Box>
+            ) : (<Box className="tripLanding">
+                <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="end">
+                    <Skeleton sx={{mb: 5}} height={80} width={"40%"}/>
+                </Grid>
+            </Box>)
+        }
+    </HeaderAndFooter>
 };
 
 export default Trip;

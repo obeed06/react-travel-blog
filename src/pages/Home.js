@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import AboutSummary from "../components/about/AboutSummary";
 import Trips from "../components/trip/Trips";
 import ItineraryMap from "../components/trip/ItineraryMap";
-import Box from "@mui/material/Box";
 import WelcomeParallax from "../components/WelcomeParallax";
 import PostsSection from "../components/post/PostsSection";
 import {getRecentPosts} from "../lib/postApi";
 import {getHomeItinerary} from "../lib/itineraryApi";
 import {getTrips} from "../lib/tripApi";
+import HeaderAndFooter from "../components/HeaderAndFooter";
 
 const Home = ({ preview = false }) => {
     const [trips, setTrips] = useState(null);
@@ -26,7 +26,7 @@ const Home = ({ preview = false }) => {
     }, [preview]);
     const containerRef = React.useRef(null);
     return (
-        <Box>
+        <HeaderAndFooter>
             <WelcomeParallax slideContainerRef={containerRef}/>
             <span className="sections">
 
@@ -35,7 +35,7 @@ const Home = ({ preview = false }) => {
                 <ItineraryMap data={itinerary}/>
                 <PostsSection posts={recentPosts}/>
             </span>
-        </Box>
+        </HeaderAndFooter>
     );
 };
 

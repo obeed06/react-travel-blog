@@ -8,6 +8,7 @@ import {getDestinations} from "../lib/destinationApi";
 import MapChart from "../components/mapChart/MapChart";
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
+import HeaderAndFooter from "../components/HeaderAndFooter";
 
 const Destinations = ({preview = false}) => {
     const [destinations, setDestinations] = useState(null);
@@ -19,29 +20,34 @@ const Destinations = ({preview = false}) => {
             .catch(console.error);
     }, [preview]);
 
-    return typeof (destinations) !== 'undefined' && destinations !== null && Array.isArray(destinations) ? (
-        <Box id="destinations" className="section" sx={{py: 5}}>
-            <Container maxWidth='lg'>
-                <Box sx={{pt:5}}>
-                    <MapChart visitedGeos={destinationNames} />
-                </Box>
+    return <HeaderAndFooter>
+        {
+            typeof (destinations) !== 'undefined' && destinations !== null && Array.isArray(destinations) ? (
+                <Box id="destinations" className="section" sx={{py: 5}}>
+                    <Container maxWidth='lg'>
+                        <Box sx={{pt:5}}>
+                            <MapChart visitedGeos={destinationNames} />
+                        </Box>
 
-                <Parallax translateY={['0', '+48']}>
-                    <Typography vairant="h1" component="h2" className="sectionHeader">
-                        Destinations.
-                    </Typography>
-                </Parallax>
-            </Container>
-            <DestinationGrid destinations={destinations}/>
-        </Box>
-    )  : (
-        <Box>
-            <Box >
-                <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="center">
-                    <Skeleton height={80} width={"40%"}/>
-                </Grid>
-            </Box>
-        </Box>);
+                        <Parallax translateY={['0', '+48']}>
+                            <Typography vairant="h1" component="h2" className="sectionHeader">
+                                Destinations.
+                            </Typography>
+                        </Parallax>
+                    </Container>
+                    <DestinationGrid destinations={destinations}/>
+                </Box>
+            )  : (
+                <Box>
+                    <Box >
+                        <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="center">
+                            <Skeleton height={80} width={"40%"}/>
+                        </Grid>
+                    </Box>
+                </Box>)
+        }
+
+    </HeaderAndFooter>
 };
 
 export default Destinations;
