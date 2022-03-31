@@ -20,6 +20,7 @@ import {useParams} from "react-router";
 import HeaderAndFooter from "../components/HeaderAndFooter";
 import TableOfContentsDrawer from "../components/post/toc/TableOfContentsDrawer";
 import FeaturedPosts from "../components/post/FeaturedPosts";
+import Button from "@mui/material/Button";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -82,6 +83,8 @@ const Post = ({dispatch, preview = false}) => {
                         <ChipCategories categories={post?.categories}/>
                     </Container>
                     <Container maxWidth='lg'>
+                        {/*<Comments comments={post.comments} />*/}
+                        {/*<Form _id={post._id} />*/}
                         <FeaturedPosts featuredPostsData={post?.relatedPosts} headingTitle="Related Posts."/>
                     </Container>
                     <TableOfContentsDrawer nestedHeadings={nestedHeadings} intersectTopRef={postBodyTopRef} intersectBottomRef={postBodyBottomRef}/>
@@ -103,12 +106,13 @@ const Post = ({dispatch, preview = false}) => {
 const DestinationBreadcrumbs = ({destinations}) => {
     return <Breadcrumbs separator={<NavigateNextIcon fontSize="small"/>}
                         aria-label="breadcrumb">
-        <Link href="/" underline="hover">Home</Link>
+        <Button color="primary" size="small"><Link href="/" underline="none">Home</Link></Button>
         {
             destinations && Array.isArray(destinations) ?
                 (
-                    destinations.map((d, i) => <Link key={i + d.name} href={"/destination/" + d?.slug.current}
-                                                     underline="hover">{d.name}</Link>)
+                    destinations.map((d, i) => <Button color="primary" size="small" key={i + d.name}>
+                        <Link underline="none" href={"/destination/" + d?.slug.current}>{d.name}</Link>
+                    </Button>)
                 ) : ""
         }
     </Breadcrumbs>

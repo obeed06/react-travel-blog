@@ -1,6 +1,7 @@
 import {getClient} from './client'
 
 const postFields = `
+  _id,
   title,
   'date': publishedAt,
   destinations[]->{name,slug},
@@ -61,6 +62,16 @@ export async function getPostAndRelatedPostsForCategory(slug, preview) {
         .fetch(`*[_type == "post" && slug.current == $slug][0]{
                   ${postFields}
                   body,
+                  'comments': *[
+                      _type == "comment" && 
+                      post._ref == ^._id && 
+                      approved == true] {
+                        _id, 
+                        name, 
+                        email, 
+                        comment, 
+                        _createdAt
+                      },
                   "relatedPosts": *[_type == "post" && ^._id != _id && ^.categories[0]->title in categories[]->title] | order(publishedAt desc)[0...4]  {
                     ${postFields}
                    }
