@@ -43,7 +43,6 @@ const Destination = ({preview = false}) => {
                                     {destination?.name}
                                 </Typography>
                             </div>
-
                         </Grid>
                     </Box>
                     <span className="sections">

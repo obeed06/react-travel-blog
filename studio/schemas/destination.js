@@ -30,9 +30,27 @@ export default {
             type: 'boolean',
         },
         {
+            name: 'isContinent',
+            title: 'Is Continent?',
+            type: 'boolean',
+        },
+        {
             name: 'isRegion',
             title: 'Is Region?',
             type: 'boolean',
+        },
+        {
+            name: 'continent',
+            title: 'Continent',
+            type: 'reference',
+            to: {type: 'destination'},
+            options: { filter: "isContinent == true"}
+        },
+        {
+            name: 'regions',
+            title: 'Regions',
+            type: 'array',
+            of: [{type: 'reference', to: {type: 'destination'}, options: { filter: "isRegion == true"}}],
         },
         {
             name: 'slug',

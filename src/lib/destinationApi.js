@@ -5,6 +5,8 @@ export async function getDestination(slug, preview) {
     return getClient(preview)
         .fetch(`*[_type == "destination" && slug.current == $slug][0]{
                 name,
+                continent {name,slug},
+                regions[]->{name,slug},
                 icon{
                     asset->{
                         _id,
@@ -31,20 +33,60 @@ export async function getDestinations(preview) {
     return getClient(preview)
         .fetch(`*[_type == "destination"] | order(name asc) {
             name,
-                slug,
-                icon{
-                    asset->{
-                        _id,
-                        url
-                    },
-                alt
+            slug,
+            icon{
+                asset->{
+                    _id,
+                    url
                 },
-                bgImage{
-                    asset->{
-                        _id,
-                        url
-                    },
-                alt
-                }
+            alt
+            },
+            bgImage{
+                asset->{
+                    _id,
+                    url
+                },
+            alt
+            }
              }`);
+}
+
+export async function getCountryDestinations(preview) {
+    return getClient(preview)
+        .fetch(`*[_type == "destination" && isCountry == true] | order(name asc) {
+            name,
+            slug,
+            'continent': continent->{name, slug},
+            regions[]->{name,slug},
+            icon{
+                asset->{
+                    _id,
+                    url
+                },
+            alt
+            },
+            bgImage{
+                asset->{
+                    _id,
+                    url
+                },
+            alt
+            },
+        }        
+`);
+}
+
+export async function getContinentsAndRegions(preview) {
+    return getClient(preview)
+        .fetch(`*[_type == "destination" && isContinent == true && 
+            count(*[_type == "destination" && isCountry == true && continent._ref == ^._id]) > 0] | order(name asc) {
+                name,
+                slug,
+                "regions": *[_type == "destination" && isRegion == true && continent._ref == ^._id &&
+                    count(*[_type == "destination" && isCountry == true && ^._id in regions[]->_id]) > 0] | order(name asc) {
+                        name,
+                        slug
+                    }
+            }       
+`);
 }
