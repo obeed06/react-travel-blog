@@ -91,7 +91,7 @@ function searchDestinations(destinations, q, continentQ) {
         if (continentQ)
             return ["continent.name"].some((newItem) => {
                 return (
-                    newItem.split('.').reduce((p,c)=>p&&p[c]||null, item)
+                    newItem.split('.').reduce((p,c)=>(p&&p[c])||null, item)
                         .toString()
                         .toLowerCase()
                         .indexOf(continentQ.toLowerCase()) > -1
