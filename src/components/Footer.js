@@ -19,7 +19,7 @@ const Footer = () => {
     const { toggleColorMode, mode } = useContext(ColorModeContext);
 
     return (
-        <Box className="siteFooter" sx={{ width: '100%', height: '35vh' }}>
+        <Box className="siteFooter" sx={{ width: '100%' }}>
             <Grid container direction="row" justifyContent="space-around"  spacing={{xs: 1, md: 3}} sx={{py:5}}>
                 <Grid item>
                     <h6 style={{textAlign: "center"}}>QUICK LINKS</h6>

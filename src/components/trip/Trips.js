@@ -7,6 +7,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Parallax} from "react-scroll-parallax";
 import {makeStyles} from "@mui/styles";
+import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import Grid from "@mui/material/Grid";
 
 const useStyles = makeStyles((theme) => ({
     tripsSection: {
@@ -33,11 +37,16 @@ const Trips = ({trips}) => {
                     </Parallax>
                 </Container>
             </Box>
-            <Stack direction="row" spacing={2} className="cardXScroll" sx={{pt:1, pb: 5, px: 5, position: "relative", zIndex: "3"}}>
+            <Stack direction="row" spacing={2} className="cardXScroll" sx={{pt:1, px: 5, position: "relative", zIndex: "3"}}>
                 {trips && trips.map((trip, i) => {
                     return <TripCard key={i} slugPrefix="/trip/" item={trip} checked={checked}/>
                 })}
             </Stack>
+            <Container maxWidth='lg' sx={{pb: 5}}>
+                <Grid container item direction="row" justifyContent="flex-end" alignItems="center" sx={{pt: 3}}>
+                    <Button style={{zIndex: 5}} component={Link} to="/destinations" variant="contained" endIcon={<DoubleArrowIcon/>}>ALL DESTINATIONS</Button>
+                </Grid>
+            </Container>
         </Box>
     );
 };

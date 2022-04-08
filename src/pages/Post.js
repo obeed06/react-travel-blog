@@ -21,6 +21,9 @@ import HeaderAndFooter from "../components/HeaderAndFooter";
 import TableOfContentsDrawer from "../components/post/toc/TableOfContentsDrawer";
 import FeaturedPosts from "../components/post/FeaturedPosts";
 import Button from "@mui/material/Button";
+import {getClient} from "../lib/client";
+import {getImageDimensions} from "@sanity/asset-utils";
+import urlBuilder from "@sanity/image-url";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -51,7 +54,7 @@ const Post = ({dispatch, preview = false}) => {
         {
             typeof (post) !== 'undefined' && post !== null ? (
                 <Box>
-                    <Box  className={[classes.postLanding, "postLanding"]}
+                    <Box className={[classes.postLanding, "postLanding"]}
                          style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url(" + post?.mainImage?.asset?.url + ")"}}>
                         <Grid sx={{height: "100%"}} container direction="column" justifyContent="center"
                               alignItems="center">
@@ -70,7 +73,7 @@ const Post = ({dispatch, preview = false}) => {
                             </Stack>
                         </Grid>
                     </Box>
-                    <Container  maxWidth='md' sx={{my: 5}}>
+                    <Container maxWidth='md' sx={{my: 5}}>
                         <DestinationBreadcrumbs destinations={post?.destinations}/>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={8}>
@@ -87,7 +90,8 @@ const Post = ({dispatch, preview = false}) => {
                         {/*<Form _id={post._id} />*/}
                         <FeaturedPosts featuredPostsData={post?.relatedPosts} headingTitle="Related Posts."/>
                     </Container>
-                    <TableOfContentsDrawer nestedHeadings={nestedHeadings} intersectTopRef={postBodyTopRef} intersectBottomRef={postBodyBottomRef}/>
+                    <TableOfContentsDrawer nestedHeadings={nestedHeadings} intersectTopRef={postBodyTopRef}
+                                           intersectBottomRef={postBodyBottomRef}/>
                 </Box>
             ) : (
                 <Box>
@@ -125,6 +129,8 @@ const ChipCategories = ({categories}) => {
                 <strong>CATEGORIES</strong>
                 {categories.map((c, i) => (
                     <Chip key={i + c.title} clickable style={{color: c?.colourHex, borderColor: c?.colourHex}}
+                          component={Link}
+                          href={"/posts?category=" + c.title}
                           variant="outlined"
                           size="small"
                           label={c?.title}/>))}
@@ -139,6 +145,30 @@ const postBodyHeadingsComponent = {
         h2: ({children}) => <h2 id={hyphenate(children[0])}>{children}</h2>,
         h3: ({children}) => <h3 id={hyphenate(children[0])}>{children}</h3>,
     },
+    types: {
+        figure: props => {
+            const {width, height} = getImageDimensions(props.value)
+            return (
+                <img
+                    src={urlBuilder(getClient(false))
+                        .image(props.value)
+                        .fit('max')
+                        .auto('format')
+                        .url()}
+                    alt={props.value.alt || ' '}
+                    loading="lazy"
+                    style={{
+                        // Display alongside text if image appears inside a block text span
+                        display: props.isInline ? 'inline-block' : 'block',
+                        width: "100%",
+                        // Avoid jumping around with aspect-ratio CSS property
+                        aspectRatio: width / height,
+                    }}
+                />
+            )
+        }
+
+    }
 }
 
 export default Post;

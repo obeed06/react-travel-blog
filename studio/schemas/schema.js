@@ -13,6 +13,7 @@ import itinerary from "./itinerary";
 import category from "./category";
 import destination from "./destination";
 import comment from "./comment";
+import figure from "./figure";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,6 +33,7 @@ export default createSchema({
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
         blockContent,
-        comment
+        comment,
+        figure
     ]),
 })

@@ -9,6 +9,13 @@ import {useTheme} from "@mui/styles";
 import {getDestinationAndRelatedPosts} from "../lib/destinationApi";
 import {useParams} from "react-router";
 import HeaderAndFooter from "../components/HeaderAndFooter";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import {Link} from "react-router-dom";
+import {Link as Scroll} from "react-scroll";
 
 const Destination = ({preview = false}) => {
     const themeProps = useTheme();
@@ -31,7 +38,7 @@ const Destination = ({preview = false}) => {
                          style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5), " + themeProps.palette.background.default + "), url(" + destination?.bgImage?.asset?.url + ")"}}>
                         <Grid sx={{height: "100%"}} container direction="column" justifyContent="center"
                               alignItems="center">
-                            <div className="d-icon" style={{width: '60%', height: '60%'}}>
+                            <Grid item className="d-icon" style={{width: '60%', height: '60%'}}>
                                 <div className="d-icon-bg"
                                      style={{backgroundImage: "url(" + destination?.icon?.asset?.url + ")"}}></div>
                                 <Typography vairant="h1" component="h1" className="d-title" style={{
@@ -42,20 +49,35 @@ const Destination = ({preview = false}) => {
                                 }}>
                                     {destination?.name}
                                 </Typography>
-                            </div>
+                            </Grid>
+                            <Grid item>
+                                <Scroll to="destination-content" smooth={true}>
+                                    <Button variant="contained"
+                                            endIcon={<ArrowDownwardIcon/>}>Explore {destination?.name}</Button>
+                                </Scroll>
+
+                            </Grid>
                         </Grid>
                     </Box>
+                    <Container maxWidth='lg' id="destination-content">
+                        <Stack direction="row" alignItems="center" spacing={2} className="cardXScroll"
+                               sx={{pt: 1, px: 5, position: "relative", zIndex: "3"}}>
+                            {getPickRegions(destination?.continent, destination?.regions)}
+                            {getPickCountries(destination?.countries)}
+                        </Stack>
+                        <Divider/>
+                    </Container>
                     <span className="sections">
-                <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <PostsGrid postsData={relatedPosts} checked={true}
-                               header={
-                                   <Typography vairant="h1" component="h2" className="sectionHeader">
-                                       Related Posts.
-                                   </Typography>
-                               }
-                    />
-                </Box>
-            </span>
+                        <Box id="postsSection" className="section" sx={{py: 5}}>
+                            <PostsGrid postsData={relatedPosts} checked={true}
+                                       header={
+                                           <Typography vairant="h1" component="h2" className="sectionHeader">
+                                               Related Posts.
+                                           </Typography>
+                                       }
+                            />
+                        </Box>
+                    </span>
                 </Box>
             ) : (
                 <Box>
@@ -70,5 +92,49 @@ const Destination = ({preview = false}) => {
 
     </HeaderAndFooter>
 };
+
+function getPickRegions(continent, regions) {
+    if (!continent && (!Array.isArray(regions) || regions.length === 0))
+        return;
+    return <>
+        <Typography sx={{whiteSpace: "nowrap", textTransform: "uppercase"}}>
+            Pick a region
+        </Typography>
+        <Divider orientation="vertical" variant="middle" flexItem/>
+        {(continent) !== 'undefined' && continent !== null ? (
+            <Button variant="underlined" style={{zIndex: 5}} component={Link}
+                    to={"/destination/" + continent?.slug?.current}
+            >{continent?.name}</Button>
+
+
+        ) : (
+            <></>
+        )}
+        {Array.isArray(regions) && regions.map(region => (
+            <Button variant="underlined" style={{zIndex: 5}} component={Link}
+                    to={"/destination/" + region?.slug?.current}
+            >{region?.name}</Button>
+        ))}
+    </>
+}
+
+
+function getPickCountries(countries) {
+    if (!Array.isArray(countries) || countries.length === 0)
+        return;
+
+    return <>
+        <Typography sx={{whiteSpace: "nowrap", textTransform: "uppercase"}}>
+            Pick a country
+        </Typography>
+        <Divider orientation="vertical" variant="middle" flexItem/>
+        {Array.isArray(countries) && countries.map(country => (
+            <Button variant="underlined" style={{zIndex: 5}} component={Link}
+                    to={"/destination/" + country?.slug?.current}
+            >{country?.name}</Button>
+        ))}
+    </>
+}
+
 
 export default Destination;

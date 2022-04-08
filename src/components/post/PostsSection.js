@@ -10,6 +10,8 @@ import {Link} from "react-router-dom";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import Typography from "@mui/material/Typography";
 import {makeStyles} from "@mui/styles";
+import {Parallax} from "react-scroll-parallax";
+import Container from "@mui/material/Container";
 
 const useStyles = makeStyles((theme) => ({
     featuredPostSection: {
@@ -31,6 +33,13 @@ export default function PostsSection({posts}) {
         return !featuredPosts.includes(p)
     })
     let sectionBGUrl = featuredPosts[0]?.mainImage?.asset?.url;
+    const olderPostBtn = (
+            <Grid container item direction="row" justifyContent="flex-end" alignItems="center" sx={{pt: 3}}>
+                <Button component={Link} to="/posts" variant="outlined" endIcon={<DoubleArrowIcon/>}>OLDER POSTS</Button>
+            </Grid>
+        );
+
+
     return (
         <Box id="postsSection" className="section" sx={{py: 5}}>
             <Box className={[classes.featuredPostSection, "featuredPostSection"]}
@@ -38,11 +47,16 @@ export default function PostsSection({posts}) {
                 <FeaturedPosts featuredPostsData={featuredPosts} headingTitle="Featured."/>
             </Box>
             <Box sx={{zIndex: "4", marginTop: "-15px"}}>
-                <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn()}
+                <PostsGrid postsData={recentPosts} checked={checked} actions={olderPostBtn}
                            header={
-                               <Typography variant="h1" component="h2" className="sectionHeader">
-                                   Recent Posts.
-                               </Typography>
+                               <Container maxWidth='lg'>
+                                   <Parallax translateY={['0', '+48']}>
+                                       <Typography variant="h1" component="h2" className="sectionHeader">
+                                           Recent Posts.
+                                       </Typography>
+                                   </Parallax>
+                               </Container>
+
                            }
                 />
             </Box>
@@ -50,10 +64,4 @@ export default function PostsSection({posts}) {
     );
 }
 
-function olderPostBtn() {
-    return (
-        <Grid container item direction="row" justifyContent="flex-end" alignItems="center" sx={{pt: 3}}>
-            <Button component={Link} to="/posts" variant="outlined" endIcon={<DoubleArrowIcon/>}>OLDER POSTS</Button>
-        </Grid>
-    );
-}
+

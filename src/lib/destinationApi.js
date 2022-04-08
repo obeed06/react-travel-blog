@@ -5,7 +5,8 @@ export async function getDestination(slug, preview) {
     return getClient(preview)
         .fetch(`*[_type == "destination" && slug.current == $slug][0]{
                 name,
-                continent {name,slug},
+                summary,
+                continent->{name,slug},
                 regions[]->{name,slug},
                 icon{
                     asset->{
@@ -20,7 +21,12 @@ export async function getDestination(slug, preview) {
                         url
                     },
                     alt
-                }               
+                },
+                "countries": *[^.isRegion == true && _type == "destination" && isCountry == true &&
+                    ^._id in regions[]->_id] | order(name asc) {
+                        name,
+                        slug
+                    }           
              }`,
             {slug});
 }

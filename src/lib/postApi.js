@@ -61,17 +61,18 @@ export async function getPostAndRelatedPostsForCategory(slug, preview) {
     return getClient(preview)
         .fetch(`*[_type == "post" && slug.current == $slug][0]{
                   ${postFields}
-                  body,
-                  'comments': *[
-                      _type == "comment" && 
-                      post._ref == ^._id && 
-                      approved == true] {
-                        _id, 
-                        name, 
-                        email, 
-                        comment, 
-                        _createdAt
-                      },
+                  body[]{
+                    ...,
+                    _type == 'figure' => {
+                        asset->{
+                            _id,
+                            _ref,
+                            url
+                        },
+                        alt,
+                        caption
+                    }
+                  },
                   "relatedPosts": *[_type == "post" && ^._id != _id && ^.categories[0]->title in categories[]->title] | order(publishedAt desc)[0...4]  {
                     ${postFields}
                    }

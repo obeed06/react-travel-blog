@@ -39,6 +39,7 @@ const MapPlaceholder = ({data, loadMap} ) => {
         <Box sx={{height: '500', width: '100%', position: 'relative'}} id="mapHolder">
             <img className={classes.mapPlaceholder}
                  src={data?.asset?.url}
+                 loading="lazy"
                  alt="travel map placeholder"/>
             <div className={classes.overlay}
                  onMouseOver={()=>setState({ raised: true})}

@@ -18,7 +18,7 @@ import Tab from "@mui/material/Tab";
 import Divider from "@mui/material/Divider";
 
 const Destinations = ({preview = false}) => {
-    const [destinations, setDestinations] = useState(null);
+    const [destinations, setDestinations] = useState([]);
     const [continents, setContinents] = useState([]);
 
     const [q, setQ] = useState("");
@@ -79,26 +79,33 @@ const Destinations = ({preview = false}) => {
                         </Grid>
                     </Grid>
                     <Box sx={{pb: 5}}>
-                        <Tabs
-                            value={selectedRegion}
-                            onChange={handleTabChange}
-                            variant="scrollable"
-                            scrollButtons="auto"
-                            aria-label="scrollable auto tabs example"
-                        >
-                            <Tab key="all-continents" label="All" value="All"/>
-                            <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
-                            {
-                                continents && continents.map((c, i) => <Tab data-type="continent"
-                                                                            key={c?.name + "-filter"} value={c?.name}
-                                                                            label={c?.name}/>)
-                            }
-                            <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
-                            {
-                                continents && continents.flatMap((c, i) => c.regions).map((c, i) => <Tab
-                                    data-type="sub-region" key={c?.name + "-filter"} value={c?.name} label={c?.name}/>)
-                            }
-                        </Tabs>
+                        {
+                            continents ?
+                                <Tabs
+                                    value={selectedRegion}
+                                    onChange={handleTabChange}
+                                    variant="scrollable"
+                                    scrollButtons="auto"
+                                    aria-label="scrollable auto tabs example"
+                                >
+                                    <Tab key="all-continents" label="All" value="All"/>
+                                    <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
+                                    {continents.map((c, i) => <Tab data-type="continent"
+                                                                   key={c?.name + "-filter"} value={c?.name}
+                                                                   label={c?.name}/>)
+                                    }
+                                    <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
+                                    {
+                                        continents.flatMap((c, i) => c.regions)
+                                            .map((c, i) => <Tab
+                                                data-type="sub-region" key={c?.name + "-filter"} value={c?.name}
+                                                label={c?.name}/>)
+
+                                    }
+                                </Tabs>
+                                :
+                                <></>
+                        }
                         <Divider/>
                     </Box>
                     <Parallax translateY={['0', '+48']}>

@@ -62,9 +62,9 @@ export default {
             },
         },
         {
-            name: 'body',
-            title: 'Body',
-            type: 'blockContent',
+            name: 'summary',
+            title: 'Summary',
+            type: 'text',
         },
     ],
 

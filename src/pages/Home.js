@@ -29,7 +29,6 @@ const Home = ({ preview = false }) => {
         <HeaderAndFooter>
             <WelcomeParallax slideContainerRef={containerRef}/>
             <span className="sections">
-
                 <AboutSummary/>
                 <Trips trips={trips}/>
                 <ItineraryMap data={itinerary}/>
