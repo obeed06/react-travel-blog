@@ -32,24 +32,6 @@ export const ColorModeContextProvider = ({app}) => {
                     primary:  deepOrange,
                     secondary: pink,
                     mode,
-                },
-                components: {
-                    MuiButton: {
-                        variants: [
-                            {
-                                props: { variant: "underlined"},
-                                style: {
-                                    whiteSpace: "nowrap",
-                                    borderRadius: "0",
-                                    borderBottom: "2px solid transparent",
-                                    ":hover": {
-                                        borderBottom: "2px solid " + deepOrange["500"]
-                                    }
-                                },
-
-                            }
-                        ]
-                    }
                 }
             }),
         [mode],
