@@ -12,10 +12,11 @@ import HeaderAndFooter from "../components/HeaderAndFooter";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import {Link} from "react-router-dom";
 import {Link as Scroll} from "react-scroll";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import {deepOrange} from "@mui/material/colors";
 
 const Destination = ({preview = false}) => {
     const themeProps = useTheme();
@@ -60,11 +61,13 @@ const Destination = ({preview = false}) => {
                         </Grid>
                     </Box>
                     <Container maxWidth='lg' id="destination-content">
-                        <Stack direction="row" alignItems="center" spacing={2} className="cardXScroll"
-                               sx={{pt: 1, px: 5, position: "relative", zIndex: "3"}}>
+                        <Tabs variant="scrollable"
+                              scrollButtons="auto"
+                              aria-label="related destinations links">
                             {getPickRegions(destination?.continent, destination?.regions)}
                             {getPickCountries(destination?.countries)}
-                        </Stack>
+                        </Tabs>
+
                         <Divider/>
                     </Container>
                     <span className="sections">
@@ -93,27 +96,34 @@ const Destination = ({preview = false}) => {
     </HeaderAndFooter>
 };
 
+function LinkTab(props) {
+    return (
+        <Tab
+            component="a"
+            sx={{
+                borderBottom: "2px solid transparent",
+                ":hover": {
+                    borderBottom: "2px solid " + deepOrange["500"]
+                }
+            }}
+            {...props}
+        />
+    );
+}
+
 function getPickRegions(continent, regions) {
     if (!continent && (!Array.isArray(regions) || regions.length === 0))
         return;
     return <>
-        <Typography sx={{whiteSpace: "nowrap", textTransform: "uppercase"}}>
-            Pick a region
-        </Typography>
-        <Divider orientation="vertical" variant="middle" flexItem/>
+        <Tab disabled sx={{textTransform: "uppercase"}} label="Pick a region" />
+        <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
         {(continent) !== 'undefined' && continent !== null ? (
-            <Button variant="underlined" style={{zIndex: 5}} component={Link}
-                    to={"/destination/" + continent?.slug?.current}
-            >{continent?.name}</Button>
-
-
+            <LinkTab style={{zIndex: 5}} label={continent?.name} href={"/destination/" + continent?.slug?.current} />
         ) : (
             <></>
         )}
         {Array.isArray(regions) && regions.map(region => (
-            <Button variant="underlined" style={{zIndex: 5}} component={Link}
-                    to={"/destination/" + region?.slug?.current}
-            >{region?.name}</Button>
+            <LinkTab style={{zIndex: 5}} label={region?.name} href={"/destination/" + region?.slug?.current} />
         ))}
     </>
 }
@@ -124,17 +134,12 @@ function getPickCountries(countries) {
         return;
 
     return <>
-        <Typography sx={{whiteSpace: "nowrap", textTransform: "uppercase"}}>
-            Pick a country
-        </Typography>
-        <Divider orientation="vertical" variant="middle" flexItem/>
+        <Tab disabled sx={{textTransform: "uppercase"}} label="Pick a country" />
+        <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
         {Array.isArray(countries) && countries.map(country => (
-            <Button variant="underlined" style={{zIndex: 5}} component={Link}
-                    to={"/destination/" + country?.slug?.current}
-            >{country?.name}</Button>
+            <LinkTab style={{zIndex: 5}} label={country?.name} href={"/destination/" + country?.slug?.current} />
         ))}
     </>
 }
-
 
 export default Destination;
