@@ -16,7 +16,7 @@ import Chip from "@mui/material/Chip";
 import {PortableText} from "@portabletext/react";
 import {getPostAndRelatedPostsForCategory} from "../lib/postApi";
 import {getHeadingsFromPostBodyJson, hyphenate} from "../lib/postUtils";
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 import HeaderAndFooter from "../components/HeaderAndFooter";
 import TableOfContentsDrawer from "../components/post/toc/TableOfContentsDrawer";
 import FeaturedPosts from "../components/post/FeaturedPosts";
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const Post = ({dispatch, preview = false}) => {
     const classes = useStyles();
     let {slug} = useParams();
+    let location = useLocation();
     const [post, setPost] = useState(null);
     const [nestedHeadings, setNestedHeadings] = useState(null);
     const postBodyTopRef = useRef(null)
@@ -55,7 +56,9 @@ const Post = ({dispatch, preview = false}) => {
         {
             typeof (post) !== 'undefined' && post !== null ? (
                 <Box>
-                    <Meta type="article" title={post.title} description={post.summary} image={urlBuilder(getClient(false))
+                    <Meta type="article" title={post.title} description={post.summary}
+                          path={location.pathname}
+                          image={urlBuilder(getClient(false))
                         .image(post?.mainImage)
                         .fit('crop')
                         .width(1200)
