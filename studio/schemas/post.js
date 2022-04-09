@@ -7,6 +7,19 @@ export default {
             name: 'title',
             title: 'Title',
             type: 'string',
+            options: {
+                source: doc => `${doc.title}-${doc.publishedAt}`,
+                maxLength: 60,
+            },
+        },
+        {
+            name: 'summary',
+            title: 'Summary',
+            type: 'string',
+            options: {
+                source: doc => `${doc.title}-${doc.publishedAt}`,
+                maxLength: 160,
+            },
         },
         {
             name: 'slug',
@@ -59,6 +72,7 @@ export default {
             title: 'Is Featured Post?',
             type: 'boolean',
         },
+
         {
             name: 'body',
             title: 'Body',

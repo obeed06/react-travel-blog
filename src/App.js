@@ -13,6 +13,7 @@ import Post from "./pages/Post";
 import Posts from "./pages/Posts";
 import Destinations from "./pages/Destinations";
 import useWindowDimensions from "./hook/useWindowDimensions";
+import Meta from "./components/Meta";
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -21,6 +22,7 @@ const App = () => {
     return (
         <ColorModeContextProvider app={
             <ParallaxProvider>
+                <Meta />
                 <Router>
                     <Routes>
                         <Route path='/' element={<Home/>}/> exact/>

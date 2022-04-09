@@ -24,6 +24,7 @@ import Button from "@mui/material/Button";
 import {getClient} from "../lib/client";
 import {getImageDimensions} from "@sanity/asset-utils";
 import urlBuilder from "@sanity/image-url";
+import Meta from "../components/Meta";
 
 const useStyles = makeStyles((theme) => ({
     postLanding: {
@@ -54,6 +55,12 @@ const Post = ({dispatch, preview = false}) => {
         {
             typeof (post) !== 'undefined' && post !== null ? (
                 <Box>
+                    <Meta type="article" title={post.title} description={post.summary} image={urlBuilder(getClient(false))
+                        .image(post?.mainImage)
+                        .fit('crop')
+                        .width(1200)
+                        .height(630)
+                        .url()} />
                     <Box className={[classes.postLanding, "postLanding"]}
                          style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url(" + post?.mainImage?.asset?.url + ")"}}>
                         <Grid sx={{height: "100%"}} container direction="column" justifyContent="center"
