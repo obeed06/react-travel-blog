@@ -17,9 +17,8 @@ const MapChart = ({visitedGeos}) => {
     return (
         visitedGeos ?
             (
-                <>
                     <ComposableMap className="mapChart" data-tip="" projection="geoEqualEarth"
-                                   projectionConfig={{scale: 130}}>
+                                   projectionConfig={{scale: 180}}>
                         <Geographies geography={geoUrl}>
                             {({geographies}) =>
                                 geographies.filter(geo => !excluded.includes(geo.properties['NAME'])).map(geo => (
@@ -45,7 +44,6 @@ const MapChart = ({visitedGeos}) => {
                             }
                         </Geographies>
                     </ComposableMap>
-                </>
             ) : (
                 <></>
             )

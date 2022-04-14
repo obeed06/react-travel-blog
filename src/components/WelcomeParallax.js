@@ -2,8 +2,10 @@ import './WelcomeParalax.css'
 import * as React from 'react';
 import Typography from "@mui/material/Typography";
 import {ParallaxBanner} from "react-scroll-parallax";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const WelcomeParallax = () => {
+    const matches = useMediaQuery('(min-width:700px)');
 
     const background = {
         image: process.env.PUBLIC_URL + '/assets/desert-background.jpg',
@@ -20,8 +22,8 @@ const WelcomeParallax = () => {
         expanded: false,
         children: (
             <div className="inset center" style={{top: "-45vh"}}>
-                <Typography vairant="h1" component="h2">
-                    <div className="headline">WELCOME</div>
+                <Typography vairant="h1" component="h2" className={matches ? 'headline' : 'mobileHeadline'}>
+                    WELCOME
                 </Typography>
             </div>
         )

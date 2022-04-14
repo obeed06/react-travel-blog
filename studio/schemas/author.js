@@ -38,6 +38,12 @@ export default {
                 },
             ],
         },
+        {
+            name: 'currentDestination',
+            title: 'Current Destination',
+            type: 'reference',
+            to: {type: 'destination'},
+        },
     ],
     preview: {
         select: {

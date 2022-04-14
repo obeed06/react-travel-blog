@@ -7,6 +7,26 @@
     letter-spacing: 3vw;
 }
 
+.mobileHeadline {
+    color: white;
+    font-family: var(--font-signature);
+    font-weight: lighter;
+    font-size: 250px;
+    text-align: center;
+    /*letter-spacing: 1vw;*/
+    pointer-events: none;
+    animation: horizontal-shaking infinite 20s linear;
+}
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(100px); animation-timing-function: ease;}
+    50% { transform: translateX(-100px); animation-timing-function: ease;}
+    75% { transform: translateX(100px); animation-timing-function: ease;}
+    100% { transform: translateX(0) }
+}
+
+
 .subHeadline {
     font-family: var(--font-signature);
     font-weight: bold;

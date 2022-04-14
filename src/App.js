@@ -14,6 +14,7 @@ import Posts from "./pages/Posts";
 import Destinations from "./pages/Destinations";
 import useWindowDimensions from "./hook/useWindowDimensions";
 import Meta from "./components/Meta";
+import RouterScrollToTop from "./components/RouterScrollToTop";
 
 library.add(fab, faCheckSquare, faCoffee)
 
@@ -24,15 +25,17 @@ const App = () => {
             <ParallaxProvider>
                 <Meta />
                 <Router>
-                    <Routes>
-                        <Route path='/' element={<Home/>}/> exact/>
-                        <Route path='/about' element={<About/>}/>
-                        <Route path='/trip/:slug' element={<Trip/>}/>
-                        <Route path='/destination/:slug' element={<Destination/>}/>
-                        <Route path='/destinations' element={<Destinations/>}/>
-                        <Route path='/posts' element={<Posts/>}/>
-                        <Route path='/post/:slug' element={<Post/>}/>
-                    </Routes>
+                    <RouterScrollToTop>
+                        <Routes>
+                            <Route path='/' element={<Home/>}/> exact/>
+                            <Route path='/about' element={<About/>}/>
+                            <Route path='/trip/:slug' element={<Trip/>}/>
+                            <Route path='/destination/:slug' element={<Destination/>}/>
+                            <Route path='/destinations' element={<Destinations/>}/>
+                            <Route path='/posts' element={<Posts/>}/>
+                            <Route path='/post/:slug' element={<Post/>}/>
+                        </Routes>
+                    </RouterScrollToTop>
                 </Router>
             </ParallaxProvider>
         } />);

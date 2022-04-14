@@ -176,7 +176,7 @@ const postBodyHeadingsComponent = {
                     }}
                 />
             )
-        }
+        },
 
     }
 }

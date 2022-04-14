@@ -41,7 +41,7 @@ const TableOfContentsDrawer = ({nestedHeadings, intersectTopRef, intersectBottom
     };
 
     const entryTop = useIntersectionObserver(intersectTopRef, {})
-    const entryBottom = useIntersectionObserver(intersectBottomRef, {threshold: 0.33})
+    const entryBottom = useIntersectionObserver(intersectBottomRef, {})
 
     let belowTop = !entryTop?.isIntersecting && entryTop?.boundingClientRect.top < 0
     let aboveBottom = entryBottom?.isIntersecting

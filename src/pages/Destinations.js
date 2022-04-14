@@ -52,8 +52,8 @@ const Destinations = ({preview = false}) => {
     return <HeaderAndFooter>
         {
             <Box id="destinations" className="section" sx={{py: 5}}>
-                <Container maxWidth='lg'>
-                    <Box sx={{pt: 5}}>
+                <Container maxWidth='lg' className='destinationsLanding'>
+                    <Box>
                         {
                             destinations ?
                                 <MapChart
