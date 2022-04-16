@@ -15,7 +15,7 @@ import Link from "@mui/material/Link";
 import Chip from "@mui/material/Chip";
 import {PortableText} from "@portabletext/react";
 import {getPostAndRelatedPostsForCategory} from "../lib/postApi";
-import {getHeadingsFromPostBodyJson, hyphenate} from "../lib/postUtils";
+import {getHeadingsFromPostBodyJson} from "../lib/postUtils";
 import {useLocation, useParams} from "react-router";
 import HeaderAndFooter from "../components/HeaderAndFooter";
 import TableOfContentsDrawer from "../components/post/toc/TableOfContentsDrawer";
