@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ItineraryMap = ({trip}) => {
+const ItineraryMap = ({itinerary, bgOverride}) => {
     const classes = useStyles();
     const [isMapLoaded, setIsMapLoaded] = useState(false)
     const parallaxController = useParallaxController();
@@ -25,7 +25,7 @@ const ItineraryMap = ({trip}) => {
 
     return (
         <Box id="mapSection" className={[classes.mapSection, "section"]}  sx={{py: 5}}
-             style={{backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url("+trip?.thumbnail?.asset?.url+")"}}>
+             style={bgOverride ? {backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url("+bgOverride?.asset?.url+")"} : {}}>
             <Parallax translateY={['0', '+48']}>
                 <Container maxWidth='lg'>
                     <Typography vairant="h1" component="h2" className="sectionHeader">
@@ -35,10 +35,10 @@ const ItineraryMap = ({trip}) => {
             </Parallax>
             <Container maxWidth="lg">
                 {
-                    !isMapLoaded ? <MapPlaceholder data={trip?.itinerary?.placeholder} loadMap={() => {
+                    !isMapLoaded ? <MapPlaceholder data={itinerary?.placeholder} loadMap={() => {
                             setIsMapLoaded(true);
                         }}/> :
-                        <iframe title="embedded-travel-map" src={trip?.itinerary?.iframeLink} style={{position: "relative", zIndex: 4}}
+                        <iframe title="embedded-travel-map" src={itinerary?.iframeLink} style={{position: "relative", zIndex: 4}}
                                 onLoad={handleLoad}
                                 width="100%" height="500"/>
                 }

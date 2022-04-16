@@ -31,7 +31,7 @@ const Home = ({ preview = false }) => {
             <span className="sections">
                 <AboutSummary/>
                 <Trips trips={trips}/>
-                <ItineraryMap data={itinerary}/>
+                <ItineraryMap itinerary={itinerary}/>
                 <PostsSection posts={recentPosts}/>
             </span>
         </HeaderAndFooter>

@@ -57,7 +57,7 @@ const Trip = ({preview = false}) => {
 
                     <span className="sections">
                         <DestinationsSection destinations={trip?.destinations}/>
-                        <ItineraryMap trip={trip}/>
+                        <ItineraryMap itinerary={trip?.itinerary} bgOverride={trip?.thumbnail}/>
                     </span>
                     { trip?.breakdown ? (
                         <Container maxWidth='lg' sx={{
