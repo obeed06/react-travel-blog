@@ -66,6 +66,7 @@ const Destination = ({preview = false}) => {
                               aria-label="related destinations links">
                             {getPickRegions(destination?.continent, destination?.regions)}
                             {getPickCountries(destination?.countries)}
+                            {getPickTrips(destination?.trips)}
                         </Tabs>
 
                         <Divider/>
@@ -128,7 +129,6 @@ function getPickRegions(continent, regions) {
     </>
 }
 
-
 function getPickCountries(countries) {
     if (!Array.isArray(countries) || countries.length === 0)
         return;
@@ -138,6 +138,19 @@ function getPickCountries(countries) {
         <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
         {Array.isArray(countries) && countries.map(country => (
             <LinkTab style={{zIndex: 5}} label={country?.name} href={"/destination/" + country?.slug?.current} />
+        ))}
+    </>
+}
+
+function getPickTrips(trips) {
+    if (!Array.isArray(trips) || trips.length === 0)
+        return;
+
+    return <>
+        <Tab disabled sx={{textTransform: "uppercase"}} label="See in trips" />
+        <Divider sx={{mx: 1}} orientation="vertical" variant="middle" flexItem/>
+        {Array.isArray(trips) && trips.map(trip => (
+            <LinkTab style={{zIndex: 5}} label={trip?.name} href={"/trip/" + trip?.slug?.current} />
         ))}
     </>
 }

@@ -11,6 +11,8 @@ import Skeleton from "@mui/material/Skeleton";
 import {getTripAndRelatedPosts} from "../lib/tripApi";
 import {useParams} from "react-router";
 import HeaderAndFooter from "../components/HeaderAndFooter";
+import Container from "@mui/material/Container";
+import {PortableText} from "@portabletext/react";
 
 const useStyles = makeStyles((theme) => ({
     tripLanding: {
@@ -46,21 +48,40 @@ const Trip = ({preview = false}) => {
                             </Typography>
                         </Grid>
                     </Box>
+                    { trip?.summary ? (
+                        <Container maxWidth='sm'
+                                   sx={{pt: 5, textAlign: 'center', fontFamily: 'var(--font-heading-primary)'}}>
+                            <PortableText value={trip?.summary}/>
+                        </Container>
+                    ) : ""}
+
                     <span className="sections">
-                <DestinationsSection destinations={trip?.destinations}/>
-                <ItineraryMap data={trip?.itinerary}/>
-            </span>
+                        <DestinationsSection destinations={trip?.destinations}/>
+                        <ItineraryMap data={trip?.itinerary}/>
+                    </span>
+                    { trip?.breakdown ? (
+                        <Container maxWidth='lg' sx={{
+                            py: 5,
+                        }}>
+                            <Typography vairant="h1" component="h2" className="sectionHeader">
+                                Breakdown.
+                            </Typography>
+                            <PortableText value={trip?.breakdown} />
+                        </Container>
+                    ) : ""}
+
                     <span className="sections">
-                <Box id="postsSection" className="section" sx={{py: 5}}>
-                    <PostsGrid postsData={relatedPosts} checked={true}
-                               header={
-                                   <Typography vairant="h1" component="h2" className="sectionHeader">
-                                       Related Posts.
-                                   </Typography>
-                               }
-                    />
-                </Box>
-            </span>
+
+                        <Box id="postsSection" className="section" sx={{py: 5}}>
+                            <PostsGrid postsData={relatedPosts} checked={true}
+                                       header={
+                                           <Typography vairant="h1" component="h2" className="sectionHeader">
+                                               Related Posts.
+                                           </Typography>
+                                       }
+                            />
+                        </Box>
+                    </span>
                 </Box>
             ) : (<Box className="tripLanding">
                 <Grid sx={{height: "100%"}} container direction="row" justifyContent="center" alignItems="end">

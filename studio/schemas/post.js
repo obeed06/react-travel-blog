@@ -72,7 +72,6 @@ export default {
             title: 'Is Featured Post?',
             type: 'boolean',
         },
-
         {
             name: 'body',
             title: 'Body',

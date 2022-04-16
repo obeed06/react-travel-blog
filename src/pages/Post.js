@@ -22,7 +22,6 @@ import TableOfContentsDrawer from "../components/post/toc/TableOfContentsDrawer"
 import FeaturedPosts from "../components/post/FeaturedPosts";
 import Button from "@mui/material/Button";
 import {getClient} from "../lib/client";
-import {getImageDimensions} from "@sanity/asset-utils";
 import urlBuilder from "@sanity/image-url";
 import Meta from "../components/Meta";
 
@@ -89,7 +88,7 @@ const Post = ({dispatch, preview = false}) => {
                             <Grid item xs={12} md={8}>
                                 <Box ref={postBodyBottomRef} className="post_body">
                                     <span ref={postBodyTopRef}></span>
-                                    <PortableText value={post?.body} components={postBodyHeadingsComponent}/>
+                                    <PortableText value={post?.body}/>
                                 </Box>
                             </Grid>
                         </Grid>
@@ -148,37 +147,6 @@ const ChipCategories = ({categories}) => {
 
         </React.Fragment>
         : ""
-}
-
-const postBodyHeadingsComponent = {
-    block: {
-        h2: ({children}) => <h2 id={hyphenate(children[0])}>{children}</h2>,
-        h3: ({children}) => <h3 id={hyphenate(children[0])}>{children}</h3>,
-    },
-    types: {
-        figure: props => {
-            const {width, height} = getImageDimensions(props.value)
-            return (
-                <img
-                    src={urlBuilder(getClient(false))
-                        .image(props.value)
-                        .fit('max')
-                        .auto('format')
-                        .url()}
-                    alt={props.value.alt || ' '}
-                    loading="lazy"
-                    style={{
-                        // Display alongside text if image appears inside a block text span
-                        display: props.isInline ? 'inline-block' : 'block',
-                        width: "100%",
-                        // Avoid jumping around with aspect-ratio CSS property
-                        aspectRatio: width / height,
-                    }}
-                />
-            )
-        },
-
-    }
 }
 
 export default Post;

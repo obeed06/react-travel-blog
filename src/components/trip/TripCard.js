@@ -59,7 +59,7 @@ export default function TripCard({slugPrefix, item, checked, timeout = 1}) {
                             component="p"
                             className={classes.desc}
                         >
-                            {item.summary}
+                            {item.tagline}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

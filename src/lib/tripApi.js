@@ -5,6 +5,19 @@ export async function getTrip(slug, preview) {
     return getClient(preview)
         .fetch(`*[_type == "trip" && slug.current == $slug][0]{
                 name,
+                summary,
+                breakdown[]{
+                    ...,
+                    markDefs[]{
+                        ...,
+                        _type == "internalLink" => {
+                            _key,
+                            "slug": @.reference->slug,
+                            "type": @.reference->_type,
+                            "url": "/" + @.reference->_type + "/" + @.reference->slug.current
+                        }
+                    }
+                },
                 hero{
                     asset->{
                         _id,
@@ -52,7 +65,7 @@ export async function getTrips(preview) {
     return getClient(preview)
         .fetch(`*[_type == "trip"] | order(tripDate desc) {
             name,
-            summary,
+            tagline,
             slug,
             thumbnail{
                 asset->{

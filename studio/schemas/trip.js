@@ -18,8 +18,8 @@ export default {
             },
         },
         {
-            name: 'summary',
-            title: 'Summary',
+            name: 'tagline',
+            title: 'tagline',
             type: 'string',
         },
         {
@@ -54,6 +54,16 @@ export default {
             title: 'Itinerary',
             type: 'reference',
             to: {type: 'itinerary'},
+        },
+        {
+            name: 'summary',
+            title: 'Summary',
+            type: 'blockContent',
+        },
+        {
+            name: 'breakdown',
+            title: 'Breakdown',
+            type: 'blockContent',
         },
     ],
     orderings: [

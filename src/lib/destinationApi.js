@@ -26,7 +26,12 @@ export async function getDestination(slug, preview) {
                     ^._id in regions[]->_id] | order(name asc) {
                         name,
                         slug
-                    }           
+                },     
+                "trips": *[^.isCountry == true && _type == "trip" &&
+                    ^._id in destinations[]->_id] | order(name asc) {
+                        name,
+                        slug
+                },       
              }`,
             {slug});
 }
