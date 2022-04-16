@@ -25,6 +25,13 @@ export async function getTrip(slug, preview) {
                     },
                     alt
                 },
+                thumbnail{
+                    asset->{
+                        _id,
+                        url
+                    },
+                    alt
+                },
                 itinerary->{
                     iframeLink,
                     placeholder{

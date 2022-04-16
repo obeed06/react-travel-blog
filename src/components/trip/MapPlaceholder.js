@@ -36,7 +36,7 @@ const MapPlaceholder = ({data, loadMap} ) => {
         raised:false,
     });
     return (
-        <Box sx={{height: '500', width: '100%', position: 'relative'}} id="mapHolder">
+        <Box sx={{height: '500', width: '100%', position: 'relative', zIndex: 4}} id="mapHolder">
             <img className={classes.mapPlaceholder}
                  src={data?.asset?.url}
                  loading="lazy"
